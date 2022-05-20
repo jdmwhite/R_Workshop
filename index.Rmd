@@ -36,7 +36,7 @@ It is aimed at R beginners, though many lessons will likely be useful to those w
 4. Reporting R outputs
 
 
-See the [Additional Resources](https://jdmwhite.github.io/R_Workshp/Resources.html) page for lots of helpful links on learning R.
+See the [Additional Resources](https://jdmwhite.github.io/R_Workshop/Resources.html) page for lots of helpful links on learning R.
 
 
 </div>
