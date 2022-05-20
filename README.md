@@ -1,4 +1,4 @@
-# SAEON Graduate Student Network Workshop
+# R Workshop
 
 ## Basics of R
 
