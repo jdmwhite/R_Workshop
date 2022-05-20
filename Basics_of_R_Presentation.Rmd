@@ -4,6 +4,9 @@ author: "Joseph White"
 date: "20/05/2022"
 output: 
   powerpoint_presentation:
+    reference_doc: template.pptx
+    toc: true
+    toc_depth: 1
     slide_level: 3
 ---
 
