@@ -7,7 +7,7 @@ output:
     collapsed: false
     number_sections: false
     toc_depth: 1
-    theme: united
+    theme: paper
     highlight: tango
     #code_folding: hide
 ---

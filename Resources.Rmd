@@ -2,7 +2,7 @@
 title: "Additional Resources"
 output: 
   html_document:
-    theme: united
+    theme: paper
 ---
 
 ### R and RStudio

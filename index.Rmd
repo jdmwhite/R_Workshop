@@ -2,7 +2,7 @@
 title: "SAEON GSN R Workshop"
 output: 
   html_document:
-    theme: united
+    theme: paper
 ---
 
 <style type="text/css">
