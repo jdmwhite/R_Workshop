@@ -7,6 +7,8 @@ output:
     collapsed: false
     number_sections: false
     toc_depth: 1
+    theme: united
+    highlight: tango
     #code_folding: hide
 ---
 

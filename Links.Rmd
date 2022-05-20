@@ -1,6 +1,8 @@
 ---
 title: "Resources"
-output: html_document
+output: 
+  html_document:
+    theme: united
 ---
 
 ### R and R-Studio

@@ -1,6 +1,8 @@
 ---
 title: "SAEON GSN R Workshop"
-output: html_document
+output: 
+  html_document:
+    theme: united
 ---
 
 <style type="text/css">
