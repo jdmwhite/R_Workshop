@@ -29,11 +29,11 @@ It is aimed at R beginners, though many lessons will likely be useful to those w
 
 1. Installing R/RStudio and setting up your workspace
 
-2. Version control
+2. Basics of data cleaning, manipulation & plotting
 
-3. Reporting R workflows
+3. Version control & collaborating
 
-4. Basics of data cleaning, manipulation & plotting
+4. Reporting R outputs
 
 
 See the [links page](https://jdmwhite.github.io/SAEON_GSN_R/Links.html) for lots of helpful links on learning R.

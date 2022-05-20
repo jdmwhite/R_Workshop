@@ -22,13 +22,13 @@ On day 1, we will cover:
 
 1. Installing R/RStudio and setting up your workspace
 
-2. Version control
+2. Basics of data cleaning, manipulation & plotting
 
 On day 2, we will cover: 
 
-3. Reporting R workflows
+3. Version control & collaborating
 
-4. Basics of data cleaning, manipulation & plotting
+4. Reporting R outputs
 
 # 1. Installing R/RStudio and setting up your workspace
 
@@ -38,7 +38,15 @@ knitr::include_graphics("images/RStudio_logo.png")
 
 [R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
 
-# 2. Version Control
+# 2. Basics of data cleaning, manipulation & plotting
+
+```{r out.width='20%', out.extra='style="float:right; padding:10px"', echo = FALSE}
+knitr::include_graphics("images/tidyverse_hex.png")
+```
+
+[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
+
+# 3. Version Control & Collaborating
 
 ```{r out.width='20%', out.extra='style="float:right; padding:10px"', echo = FALSE}
 knitr::include_graphics("images/GitHub_logo.png")
@@ -46,18 +54,10 @@ knitr::include_graphics("images/GitHub_logo.png")
 
 [R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
 
-# 3. Reporting R workflows
+# 4. Reporting R outputs
 
 ```{r out.width='20%', out.extra='style="float:right; padding:10px"', echo = FALSE}
 knitr::include_graphics("images/rmarkdown_hex.png")
-```
-
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
-
-# 4. Basics of data cleaning, manipulation & plotting
-
-```{r out.width='20%', out.extra='style="float:right; padding:10px"', echo = FALSE}
-knitr::include_graphics("images/tidyverse_hex.png")
 ```
 
 [R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
