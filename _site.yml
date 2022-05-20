@@ -4,8 +4,8 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Topics"
-      href: Topics.html
-    - text: "Links"
-      href: Links.html
+    - text: "Basics of R"
+      href: Basics_of_R.html
+    - text: "Additional Resources"
+      href: Resources.html
 output_dir: "docs"
