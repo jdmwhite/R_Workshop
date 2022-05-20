@@ -1,6 +1,6 @@
-name: "SAEON GSN R Workshop"
+name: "R Workshop"
 navbar:
-  title: "SAEON GSN R Workshop"
+  title: "R Workshop"
   left:
     - text: "Home"
       href: index.html
