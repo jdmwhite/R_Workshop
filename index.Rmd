@@ -40,7 +40,7 @@ See the [links page](https://jdmwhite.github.io/SAEON_GSN_R/Links.html) for lots
 </div>
 <div class="col-sm-6">
 
-<a href = "https://crumplab.github.io">
+<a href = "">
 ![](images/logo.png)
 </a>
 </div>
