@@ -23,7 +23,7 @@ This short workshop will introduce you to the basics of R and go over some funda
 
 It is aimed at R beginners, though many lessons will likely be useful to those who have been using R for several years with bad ingrained practices. 
 
-### The four lectures:
+### The four topics:
 
 1. Installing R/RStudio and setting up your workspace
 

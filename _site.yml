@@ -1,11 +1,11 @@
-name: "MyLabJournal"
+name: "SAEON GSN R Workshop"
 navbar:
-  title: "MyLabJournal"
+  title: "SAEON GSN R Workshop"
   left:
     - text: "Home"
       href: index.html
-    - text: "Journal"
-      href: Journal.html
+    - text: "Topics"
+      href: Topics.html
     - text: "Links"
       href: Links.html
 output_dir: "docs"

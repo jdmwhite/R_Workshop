@@ -1,0 +1,40 @@
+---
+title: "Topics"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 1
+    #code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+In this workshop, we will cover four primary topics to get you started with R/RStudio. 
+
+On day 1, we will cover:
+
+1. Installing R/RStudio and setting up your workspace
+
+2. Version control
+
+On day 2, we will cover: 
+
+3. Reporting R workflows
+
+4. Basics of data cleaning, manipulation & plotting
+
+# 1. Installing R/RStudio and setting up your workspace
+
+# 2. Version Control
+
+# 3. Reporting R workflows
+
+# 4. Basics of data cleaning, manipulation & plotting
+
+
+
