@@ -32,11 +32,17 @@ On day 2, we will cover:
 
 # 1. Installing R/RStudio and setting up your workspace
 
+![](images/R Studio Workspace.jpeg)
+
 # 2. Version Control
+
+![](images/GitHub_logo.png)
 
 # 3. Reporting R workflows
 
+![](images/rmarkdown_hex.png)
+
 # 4. Basics of data cleaning, manipulation & plotting
 
-
+![](images/tidyverse_hex.png)
 
