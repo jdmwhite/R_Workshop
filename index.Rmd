@@ -40,8 +40,6 @@ See the [links page](https://jdmwhite.github.io/SAEON_GSN_R/Links.html) for lots
 </div>
 <div class="col-sm-6">
 
-### [Crump Lab: Human Cognition and Performance](https://crumplab.github.io)
-
 <a href = "https://crumplab.github.io">
 ![](images/logo.png)
 </a>
