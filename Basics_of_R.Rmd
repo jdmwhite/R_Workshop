@@ -16,27 +16,39 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
+# Background
+
 In this workshop, we will cover four primary topics to get you started with R/RStudio. 
 
 On day 1, we will cover:
 
 1. Installing R/RStudio and setting up your workspace
-
 2. Basics of data cleaning, manipulation & plotting
 
 On day 2, we will cover: 
 
 3. Version control & collaborating
-
 4. Reporting R outputs
 
-# 1. Installing R/RStudio and setting up your workspace
+# 1. Installing R/RStudio and setting up my workspace
 
 ```{r out.width='20%', out.extra='style="float:right; padding:10px"', echo = FALSE}
 knitr::include_graphics("images/RStudio_logo.png")
 ```
 
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
+## Installing R/RStudio
+
+### How to install R & RStudio?
+
+### What is RStudio?
+
+## Setting up your workspace
+
+### My workspace
+
+### My file structure
+
+### File naming conventions
 
 # 2. Basics of data cleaning, manipulation & plotting
 
@@ -44,7 +56,13 @@ knitr::include_graphics("images/RStudio_logo.png")
 knitr::include_graphics("images/tidyverse_hex.png")
 ```
 
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
+## What is the tidyverse?
+
+### dplyr
+
+### ggplot2
+
+### Why should I use tidyverse over Base R?
 
 # 3. Version Control & Collaborating
 
@@ -52,7 +70,19 @@ knitr::include_graphics("images/tidyverse_hex.png")
 knitr::include_graphics("images/GitHub_logo.png")
 ```
 
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
+### What is Git/Github?
+
+"Git is a version control system. Its original purpose was to help groups of developers work collaboratively on big software projects. Git has been re-purposed by the data science community... to manage the motley collection of files that make up typical data analytical projects, which often consist of data, figures, reports" - Jenny Bryan, [happygitwithr](https://happygitwithr.com/big-picture.html)
+
+Git makes it easy to back-up your projects, communicate with colleagues and simultaneously work on the same files.
+
+[Github](https://github.com/) is a hosting service, which provides an online space for your work. It is a hosting & sharing platform for your projects, which can far exceed the uses of Google Drive or DropBox. 
+
+### Why should I use Github?
+
+You may be asking whether this is an essential tool for you to learn as a beginner in R? Well, it is always easier to create good habits when you are starting than further down the line. So my answer is yes.
+
+### Installation
 
 # 4. Reporting R outputs
 
@@ -60,4 +90,6 @@ knitr::include_graphics("images/GitHub_logo.png")
 knitr::include_graphics("images/rmarkdown_hex.png")
 ```
 
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
+### What is RMarkdown?
+
+### Why should I use RMarkdown?

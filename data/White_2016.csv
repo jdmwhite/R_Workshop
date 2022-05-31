@@ -1,0 +1,1339 @@
+﻿/* DATA DESCRIPTION:,,,,,,,,,,,
+Citation:,"White, Joseph Douglas Mandla; Jack, Sam; Puttick, James; Bonora, Daniela; Visser, Vernon; February, Edmund (2016): Mortality and climatic/environmental correlates of Widdringtonia cedargensis trees in the Cederberg, South Africa. PANGAEA, https://doi.org/10.1594/PANGAEA.866937, ",,,,,,,,,,
+,"Supplement to: White, Joseph Douglas Mandla; Jack, Sam; Hoffman, Michael Timm; Puttick, James; Bonora, Daniela; Visser, Vernon; February, Edmund (2016): Collapse of an iconic conifer: long-term changes in the demography of Widdringtonia cedarbergensis using repeat photography. BMC Ecology, 16(1), 11 pp, https://doi.org/10.1186/s12898-016-0108-6",,,,,,,,,,
+Abstract:,"Background: Conifer populations appear disproportionately threatened by global change. Most examples are, however, drawn from the northern hemisphere and long-term rates of population decline are not well documented as historical data are often lacking. We use a large and long-term (1931-2013) repeat photography dataset together with environmental data and fire records to account for the decline of the critically endangered Widdringtonia cedarbergensis. Eighty-seven historical and repeat photo-pairs were analysed to establish 20th century changes in W. cedarbergensis demography. A generalized linear mixed-effects model was fitted to determine the relative importance of environmental factors and fire-return interval on mortality for the species.",,,,,,,,,,
+,"Results: From an initial total of 1313 live trees in historical photographs, 74% had died and only 44 (3.4%) had recruited in the repeat photographs, leaving 387 live individuals. Juveniles (mature adults) had decreased (increased) from 27% (73%) to 8% (92%) over the intervening period. Our model demonstrates that mortality is related to greater fire frequency, higher temperatures, lower elevations, less rocky habitats and aspect (i.e. east-facing slopes had the least mortality).",,,,,,,,,,
+,"Conclusions: Our results show that W. cedarbergensis populations have declined significantly over the recorded period, with a pronounced decline in the last 30 years. Individuals that established in open habitats at lower, hotter elevations and experienced a greater fire frequency appear to be more vulnerable to mortality than individuals growing within protected, rocky environments at higher, cooler locations with less frequent fires. Climate models predict increasing temperatures for our study area (and likely increases in wildfires). If these predictions are realised, further declines in the species can be expected. Urgent management interventions, including seedling out-planting in fire-protected high elevation sites, reducing fire frequency in higher elevation populations, and assisted migration, should be considered.",,,,,,,,,,
+Coverage:,MEDIAN LATITUDE: -32.305427 * MEDIAN LONGITUDE: 19.101896 * SOUTH-BOUND LATITUDE: -32.437389 * WEST-BOUND LONGITUDE: 19.060393 * NORTH-BOUND LATITUDE: -32.211215 * EAST-BOUND LONGITUDE: 19.213508,,,,,,,,,,
+,MINIMUM ELEVATION: 947 m a.s.l. * MAXIMUM ELEVATION: 1426 m a.s.l.,,,,,,,,,,
+Event(s):,Cederberg * LATITUDE: -32.300000 * LONGITUDE: 19.100000 * ELEVATION: 1209.0 m * LOCATION: South Africa,,,,,,,,,,
+Comment:,"Only natural stands (i.e. not Heuningvlei) were used in the analysis to determine environmental and climatic correlates of W. cedarbergensis mortality. This model exhibited significant positive spatial autocorrelation for spatial lags up to about 5 km (measured using spatial correlograms from the 'ncf' package in R). To account for spatial autocorrelation we included a spatial autocovariate using an exponential correlation structure with latitude and longitude coordinates. The GLMM used to determine correlates of mortality included mortality as the binary response variable, habitat, aspect, mean annual temperature (¬∞C) and fire frequency as fixed effects and region and photograph site as random effects with a binomial family link.",,,,,,,,,,
+Parameter(s):,"Site (Site) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"Number (No) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com) * COMMENT: tree",,,,,,,,,,
+,"Habitat (Habitat) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"ELEVATION [m a.s.l.] (Elevation) * GEOCODE * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"Aspect (Aspect) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"LATITUDE (Latitude) * GEOCODE * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"LONGITUDE (Longitude) * GEOCODE * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"Mortality (Mortality) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com) * COMMENT: 1 = a mortality event; 0 = a tree remains alive",,,,,,,,,,
+,"Temperature, air, annual mean [¬∞C] (MAAT) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"Precipitation, annual total [mm/a] (Precip annual total) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"Area/locality (Area) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com)",,,,,,,,,,
+,"Fire frequency [#] (Fire) * PI: White, Joseph Douglas Mandla (https://orcid.org/0000-0002-5617-4515, josephwhite16@gmail.com) * COMMENT: Number of fires recorded for each specific GPS location (i.e. tree) over the recorded period between 1944-2012",,,,,,,,,,
+License:,Creative Commons Attribution 3.0 Unported (CC-BY-3.0),,,,,,,,,,
+Size:,11817 data points,,,,,,,,,,
+*/,,,,,,,,,,,
+Site,No,Habitat,Elevation [m a.s.l.],Aspect,Latitude,Longitude,Mortality,MAAT [¬∞C],Precip annual total [mm/a],Area,Fire [#]
+450,1,Rocky,1185,W,-32.31547933,19.10194472,1,12.7,450,Skerpiornspoort,5
+450,2,Rocky,1185,W,-32.31544034,19.10201903,1,12.7,450,Skerpiornspoort,5
+450,3,Rocky,1185,W,-32.31542404,19.10208524,1,12.7,450,Skerpiornspoort,5
+450,4,Rocky,1185,W,-32.31544633,19.10235969,1,12.7,450,Skerpiornspoort,5
+450,5,Rocky,1185,W,-32.31454159,19.10167026,1,12.7,450,Skerpiornspoort,5
+450,6,Rocky,1185,W,-32.31554786,19.10264893,1,12.7,450,Skerpiornspoort,5
+450,7,Rocky,1185,W,-32.31559057,19.10273024,1,12.7,450,Skerpiornspoort,5
+451,1,Rocky,1208,W,-32.32023246,19.10269959,1,12.7,450,Skerpiornspoort,4
+451,2,Rocky,1208,W,-32.32043325,19.10259053,1,12.7,450,Skerpiornspoort,4
+451,3,Rocky,1208,W,-32.32046366,19.10253335,1,12.7,450,Skerpiornspoort,4
+451,4,Rocky,1208,W,-32.32049486,19.1024828,1,12.7,450,Skerpiornspoort,4
+451,5,Rocky,1208,W,-32.32051766,19.1024162,1,12.7,450,Skerpiornspoort,4
+451,6,Rocky,1208,W,-32.32070038,19.10243457,1,12.7,450,Skerpiornspoort,4
+451,7,Rocky,1208,W,-32.32074437,19.10230817,1,12.7,450,Skerpiornspoort,4
+451,8,Rocky,1208,W,-32.32075057,19.1022327,1,12.7,450,Skerpiornspoort,4
+451,9,Rocky,1208,W,-32.32078311,19.10217012,1,12.7,450,Skerpiornspoort,4
+451,10,Rocky,1208,W,-32.3207502,19.10207424,1,12.7,450,Skerpiornspoort,4
+451,11,Rocky,1208,W,-32.32078807,19.10202003,1,12.7,450,Skerpiornspoort,4
+451,12,Rocky,1208,W,-32.32072316,19.10193424,1,12.7,450,Skerpiornspoort,4
+451,13,Rocky,1208,W,-32.32078439,19.1018818,1,12.7,450,Skerpiornspoort,4
+451,14,Rocky,1208,W,-32.32066095,19.10185073,1,12.7,450,Skerpiornspoort,4
+451,15,Rocky,1208,W,-32.32076491,19.10178769,1,12.7,450,Skerpiornspoort,4
+451,16,Rocky,1208,W,-32.32064527,19.10174072,1,12.7,450,Skerpiornspoort,4
+451,17,Rocky,1208,W,-32.32058029,19.10169656,1,12.7,450,Skerpiornspoort,4
+451,18,Rocky,1208,W,-32.32049072,19.10179011,1,12.7,450,Skerpiornspoort,4
+451,19,Rocky,1208,W,-32.32044459,19.10168897,1,12.7,450,Skerpiornspoort,4
+451,20,Rocky,1208,W,-32.3203779,19.10172425,1,12.7,450,Skerpiornspoort,4
+452,1,Rocky,1260,S,-32.32308472,19.10624693,1,13.2,438,Skerpiornspoort,5
+452,2,Well Protected,1260,S,-32.3231844,19.10646708,1,13.2,438,Skerpiornspoort,5
+452,3,Well Protected,1260,S,-32.32302483,19.10643812,1,13.2,438,Skerpiornspoort,5
+452,4,Well Protected,1260,S,-32.32308437,19.10649573,1,13.2,438,Skerpiornspoort,5
+452,5,Well Protected,1260,S,-32.32313728,19.10652935,1,13.2,438,Skerpiornspoort,5
+452,6,Well Protected,1260,S,-32.32314816,19.10653379,1,13.2,438,Skerpiornspoort,5
+452,7,Well Protected,1260,S,-32.3230237,19.10652451,1,13.2,438,Skerpiornspoort,5
+452,8,Well Protected,1260,S,-32.32307643,19.10654638,1,13.2,438,Skerpiornspoort,5
+452,9,Well Protected,1260,S,-32.32294163,19.1065498,1,13.2,438,Skerpiornspoort,5
+452,10,Well Protected,1260,S,-32.32298528,19.10656907,1,13.2,438,Skerpiornspoort,5
+452,11,Well Protected,1260,S,-32.32301011,19.10658558,1,13.2,438,Skerpiornspoort,5
+452,12,Well Protected,1260,S,-32.32288894,19.10655656,1,13.2,438,Skerpiornspoort,5
+452,13,Well Protected,1260,S,-32.322928,19.10658464,1,13.2,438,Skerpiornspoort,5
+452,14,Rocky,1260,S,-32.32295259,19.10658198,1,13.2,438,Skerpiornspoort,5
+452,15,Rocky,1260,S,-32.32295687,19.10659354,1,13.2,438,Skerpiornspoort,5
+452,16,Well Protected,1260,S,-32.32297925,19.10660745,1,13.2,438,Skerpiornspoort,5
+452,17,Well Protected,1260,S,-32.32300801,19.10662732,1,13.2,438,Skerpiornspoort,5
+452,18,Well Protected,1260,S,-32.32286431,19.10656748,1,13.2,438,Skerpiornspoort,5
+452,19,Well Protected,1260,S,-32.3229015,19.10659793,1,13.2,438,Skerpiornspoort,5
+452,20,Well Protected,1260,S,-32.32293897,19.10661425,1,13.2,438,Skerpiornspoort,5
+452,21,Well Protected,1260,S,-32.32295312,19.10662168,1,13.2,438,Skerpiornspoort,5
+452,22,Well Protected,1260,S,-32.32298861,19.10665529,1,13.2,438,Skerpiornspoort,5
+452,23,Well Protected,1260,S,-32.32302219,19.10665911,1,13.2,438,Skerpiornspoort,5
+452,24,Well Protected,1260,S,-32.32304607,19.10667586,1,13.2,438,Skerpiornspoort,5
+452,25,Well Protected,1260,S,-32.32306058,19.10666886,1,13.2,438,Skerpiornspoort,5
+452,26,Well Protected,1260,S,-32.32308254,19.10669335,1,13.2,438,Skerpiornspoort,5
+452,27,Well Protected,1260,S,-32.32308062,19.1067251,1,13.2,438,Skerpiornspoort,5
+452,28,Well Protected,1260,S,-32.32312489,19.10674118,1,13.2,438,Skerpiornspoort,5
+452,29,Well Protected,1260,S,-32.32308578,19.10663305,1,13.2,438,Skerpiornspoort,5
+452,30,Well Protected,1260,S,-32.32318103,19.1065793,1,13.2,438,Skerpiornspoort,5
+452,31,Well Protected,1260,S,-32.32317763,19.10661335,1,13.2,438,Skerpiornspoort,5
+452,32,Well Protected,1260,S,-32.32320795,19.10662662,1,13.2,438,Skerpiornspoort,5
+452,33,Well Protected,1260,S,-32.32314351,19.10662122,1,13.2,438,Skerpiornspoort,5
+452,34,Well Protected,1260,S,-32.32312304,19.10665108,1,13.2,438,Skerpiornspoort,5
+452,35,Well Protected,1260,S,-32.32314447,19.10668374,1,13.2,438,Skerpiornspoort,5
+452,36,Well Protected,1260,S,-32.3231321,19.10678601,1,13.2,438,Skerpiornspoort,5
+452,37,Well Protected,1260,S,-32.32315027,19.10680883,1,13.2,438,Skerpiornspoort,5
+452,38,Well Protected,1260,S,-32.3231728,19.10670421,1,13.2,438,Skerpiornspoort,5
+452,39,Well Protected,1260,S,-32.32322755,19.10689533,1,13.2,438,Skerpiornspoort,5
+452,40,Well Protected,1260,S,-32.32326348,19.10691643,1,13.2,438,Skerpiornspoort,5
+452,41,Well Protected,1260,S,-32.32285083,19.10660684,1,13.2,438,Skerpiornspoort,5
+452,42,Well Protected,1260,S,-32.32284708,19.10664035,1,13.2,438,Skerpiornspoort,5
+452,43,Well Protected,1260,S,-32.32283593,19.10666976,1,13.2,438,Skerpiornspoort,5
+452,44,Well Protected,1260,S,-32.32288996,19.10667429,1,13.2,438,Skerpiornspoort,5
+452,45,Well Protected,1260,S,-32.3229211,19.10668424,1,13.2,438,Skerpiornspoort,5
+452,46,Well Protected,1260,S,-32.32294454,19.10671827,1,13.2,438,Skerpiornspoort,5
+452,47,Well Protected,1260,S,-32.32306576,19.10676459,1,13.2,438,Skerpiornspoort,5
+452,48,Well Protected,1260,S,-32.32323761,19.10658076,1,13.2,438,Skerpiornspoort,5
+452,49,Well Protected,1260,S,-32.32323487,19.10650601,1,13.2,438,Skerpiornspoort,5
+452,50,Well Protected,1260,S,-32.32326464,19.10648731,1,13.2,438,Skerpiornspoort,5
+452,51,Well Protected,1260,S,-32.32327566,19.10653955,1,13.2,438,Skerpiornspoort,5
+452,52,Well Protected,1260,S,-32.32328944,19.10661407,1,13.2,438,Skerpiornspoort,5
+452,53,Well Protected,1260,S,-32.32330829,19.10659908,1,13.2,438,Skerpiornspoort,5
+452,54,Well Protected,1260,S,-32.32332474,19.10657381,1,13.2,438,Skerpiornspoort,5
+452,55,Well Protected,1260,S,-32.32333408,19.10653923,1,13.2,438,Skerpiornspoort,5
+452,56,Well Protected,1260,S,-32.32334307,19.1065059,1,13.2,438,Skerpiornspoort,5
+452,57,Well Protected,1260,S,-32.32333609,19.1066219,1,13.2,438,Skerpiornspoort,5
+452,58,Well Protected,1260,S,-32.32334746,19.10660659,1,13.2,438,Skerpiornspoort,5
+452,59,Well Protected,1260,S,-32.32333838,19.10665068,1,13.2,438,Skerpiornspoort,5
+452,60,Well Protected,1260,S,-32.32337122,19.10663806,1,13.2,438,Skerpiornspoort,5
+452,61,Rocky,1260,S,-32.32336565,19.10659079,1,13.2,438,Skerpiornspoort,5
+452,62,Rocky,1260,S,-32.32337464,19.10658937,1,13.2,438,Skerpiornspoort,5
+452,63,Rocky,1260,S,-32.32318138,19.10629086,1,13.2,438,Skerpiornspoort,5
+452,64,Rocky,1260,S,-32.32320641,19.1062889,1,13.2,438,Skerpiornspoort,5
+452,65,Well Protected,1260,S,-32.32325243,19.10664934,1,13.2,438,Skerpiornspoort,5
+452,66,Well Protected,1260,S,-32.323214,19.10667058,1,13.2,438,Skerpiornspoort,5
+452,67,Well Protected,1260,S,-32.32322368,19.10667878,1,13.2,438,Skerpiornspoort,5
+452,68,Well Protected,1260,S,-32.32321604,19.10669892,1,13.2,438,Skerpiornspoort,5
+452,69,Well Protected,1260,S,-32.32323364,19.10671381,1,13.2,438,Skerpiornspoort,5
+452,70,Well Protected,1260,S,-32.32324223,19.10671305,1,13.2,438,Skerpiornspoort,5
+452,71,Well Protected,1260,S,-32.32325988,19.10672533,1,13.2,438,Skerpiornspoort,5
+452,72,Well Protected,1260,S,-32.32321161,19.10673719,1,13.2,438,Skerpiornspoort,5
+452,73,Well Protected,1260,S,-32.32323914,19.1067488,1,13.2,438,Skerpiornspoort,5
+452,74,Well Protected,1260,S,-32.32327767,19.106779,1,13.2,438,Skerpiornspoort,5
+452,75,Well Protected,1260,S,-32.32331229,19.10676612,1,13.2,438,Skerpiornspoort,5
+452,76,Well Protected,1260,S,-32.32328993,19.10689932,0,13.2,438,Skerpiornspoort,5
+452,77,Well Protected,1260,S,-32.32337968,19.10667356,1,13.2,438,Skerpiornspoort,5
+452,78,Rocky,1260,S,-32.32340272,19.10660135,1,13.2,438,Skerpiornspoort,5
+452,79,Well Protected,1260,S,-32.32339909,19.10670478,1,13.2,438,Skerpiornspoort,5
+452,80,Well Protected,1260,S,-32.32341706,19.10665562,1,13.2,438,Skerpiornspoort,5
+452,81,Well Protected,1260,S,-32.3233568,19.10674476,1,13.2,438,Skerpiornspoort,5
+452,82,Well Protected,1260,S,-32.32338943,19.10674981,1,13.2,438,Skerpiornspoort,5
+452,83,Well Protected,1260,S,-32.32338081,19.10690257,1,13.2,438,Skerpiornspoort,5
+452,84,Well Protected,1260,S,-32.32343418,19.10686308,1,13.2,438,Skerpiornspoort,5
+452,85,Well Protected,1260,S,-32.32345469,19.10678051,1,13.2,438,Skerpiornspoort,5
+452,86,Well Protected,1260,S,-32.32345367,19.10667646,1,13.2,438,Skerpiornspoort,5
+452,87,Well Protected,1260,S,-32.32347096,19.10674491,1,13.2,438,Skerpiornspoort,5
+452,88,Well Protected,1260,S,-32.32349156,19.10685799,1,13.2,438,Skerpiornspoort,5
+452,89,Well Protected,1260,S,-32.32349484,19.1067945,1,13.2,438,Skerpiornspoort,5
+452,90,Well Protected,1260,S,-32.32351295,19.10677946,1,13.2,438,Skerpiornspoort,5
+452,91,Well Protected,1260,S,-32.32353856,19.10688159,1,13.2,438,Skerpiornspoort,5
+452,92,Well Protected,1260,S,-32.32353737,19.10683232,1,13.2,438,Skerpiornspoort,5
+452,93,Well Protected,1260,S,-32.32350451,19.10680151,1,13.2,438,Skerpiornspoort,5
+452,94,Well Protected,1260,S,-32.32352161,19.10678884,1,13.2,438,Skerpiornspoort,5
+452,95,Well Protected,1260,S,-32.32354276,19.10680516,1,13.2,438,Skerpiornspoort,5
+452,96,Well Protected,1260,S,-32.3234795,19.10671303,1,13.2,438,Skerpiornspoort,5
+452,97,Well Protected,1260,S,-32.3234892,19.10673526,1,13.2,438,Skerpiornspoort,5
+452,98,Well Protected,1260,S,-32.32351843,19.10675408,1,13.2,438,Skerpiornspoort,5
+452,99,Well Protected,1260,S,-32.32354663,19.10678245,1,13.2,438,Skerpiornspoort,5
+452,100,Rocky,1260,E,-32.32344627,19.10654815,1,13.2,438,Skerpiornspoort,4
+452,101,Rocky,1260,E,-32.32347979,19.10660323,1,13.2,438,Skerpiornspoort,4
+452,102,Rocky,1260,E,-32.32349256,19.1066174,0,13.2,438,Skerpiornspoort,4
+452,103,Rocky,1260,E,-32.32351052,19.10663624,0,13.2,438,Skerpiornspoort,4
+452,104,Rocky,1260,E,-32.32349344,19.10656377,1,13.2,438,Skerpiornspoort,4
+452,105,Rocky,1260,E,-32.32353077,19.10663548,0,13.2,438,Skerpiornspoort,4
+452,106,Rocky,1260,E,-32.32354596,19.10662783,1,13.2,438,Skerpiornspoort,4
+452,107,Rocky,1260,E,-32.32344768,19.10637447,0,13.2,438,Skerpiornspoort,4
+452,108,Rocky,1260,E,-32.32359548,19.10667767,1,13.2,438,Skerpiornspoort,4
+452,109,Rocky,1260,E,-32.3235618,19.10658024,1,13.2,438,Skerpiornspoort,4
+452,110,Rocky,1260,E,-32.32353571,19.10649046,1,13.2,438,Skerpiornspoort,4
+452,111,Rocky,1260,E,-32.32351011,19.1064077,1,13.2,438,Skerpiornspoort,4
+452,112,Rocky,1260,E,-32.32358957,19.10648995,1,13.2,438,Skerpiornspoort,4
+452,113,Rocky,1260,E,-32.32355326,19.10641115,1,13.2,438,Skerpiornspoort,4
+452,114,Rocky,1260,E,-32.32369019,19.1065729,1,13.2,438,Skerpiornspoort,4
+452,115,Rocky,1260,E,-32.32369297,19.10651814,1,13.2,438,Skerpiornspoort,4
+452,116,Rocky,1260,E,-32.32341092,19.10618116,1,13.2,438,Skerpiornspoort,4
+452,117,Rocky,1260,E,-32.32344423,19.10618779,1,13.2,438,Skerpiornspoort,4
+452,118,Rocky,1260,E,-32.32344593,19.10614539,1,13.2,438,Skerpiornspoort,4
+452,119,Rocky,1260,E,-32.32349089,19.10615813,1,13.2,438,Skerpiornspoort,4
+452,120,Rocky,1260,E,-32.32347399,19.10610613,1,13.2,438,Skerpiornspoort,4
+452,121,Rocky,1260,E,-32.32355524,19.10627498,0,13.2,438,Skerpiornspoort,4
+452,122,Rocky,1260,E,-32.32355823,19.10622305,1,13.2,438,Skerpiornspoort,4
+452,123,Rocky,1260,E,-32.32355601,19.1061817,1,13.2,438,Skerpiornspoort,4
+452,124,Rocky,1260,E,-32.32372474,19.1064201,0,13.2,438,Skerpiornspoort,4
+452,125,Rocky,1260,E,-32.32358699,19.10612947,1,13.2,438,Skerpiornspoort,4
+452,126,Rocky,1260,E,-32.32369822,19.10612525,1,13.2,438,Skerpiornspoort,4
+452,127,Rocky,1260,E,-32.32309557,19.10693108,1,13.2,438,Skerpiornspoort,4
+452,128,Rocky,1260,E,-32.32316103,19.10700791,0,13.2,438,Skerpiornspoort,4
+452,129,Rocky,1260,E,-32.32334584,19.10697862,0,13.2,438,Skerpiornspoort,4
+453,1,Rocky,1298,S,-32.32599781,19.1110747,1,13,441,Skerpiornspoort,5
+453,2,Rocky,1298,S,-32.32607963,19.11103444,0,13,441,Skerpiornspoort,5
+453,3,Rocky,1298,S,-32.32614352,19.11102359,1,13,441,Skerpiornspoort,5
+453,4,Rocky,1298,S,-32.32624438,19.11110984,1,13,441,Skerpiornspoort,5
+453,5,Well Protected,1298,S,-32.32614884,19.11143409,1,13,441,Skerpiornspoort,5
+453,6,Well Protected,1298,S,-32.32605517,19.11150586,1,13,441,Skerpiornspoort,5
+453,7,Well Protected,1298,S,-32.32626379,19.11151849,1,13,441,Skerpiornspoort,5
+453,8,Well Protected,1298,S,-32.32633381,19.1116871,1,13,441,Skerpiornspoort,5
+453,9,Well Protected,1298,S,-32.32643824,19.11184404,1,13,441,Skerpiornspoort,5
+453,10,Rocky,1298,S,-32.3262817,19.11138119,1,13,441,Skerpiornspoort,5
+453,11,Rocky,1298,S,-32.32636739,19.11146606,1,13,441,Skerpiornspoort,5
+453,12,Rocky,1298,S,-32.3263618,19.11125016,1,13,441,Skerpiornspoort,5
+453,13,Rocky,1298,S,-32.32648383,19.11181166,1,13,441,Skerpiornspoort,5
+453,14,Rocky,1298,S,-32.32655257,19.11176284,1,13,441,Skerpiornspoort,5
+453,15,Rocky,1298,S,-32.3264083,19.11123218,1,13,441,Skerpiornspoort,5
+453,16,Rocky,1298,S,-32.32647768,19.11136361,1,13,441,Skerpiornspoort,5
+453,17,Rocky,1298,S,-32.32653293,19.11145416,1,13,441,Skerpiornspoort,5
+453,18,Rocky,1298,S,-32.32658555,19.11154936,1,13,441,Skerpiornspoort,5
+453,19,Rocky,1292,E,-32.32663749,19.111748,1,13,441,Skerpiornspoort,4
+453,20,Rocky,1292,E,-32.32681492,19.11095973,1,13,441,Skerpiornspoort,4
+453,21,Rocky,1292,E,-32.32694569,19.11099187,1,13,441,Skerpiornspoort,4
+453,22,Rocky,1292,E,-32.32705696,19.11102331,0,13,441,Skerpiornspoort,4
+453,23,Rocky,1292,E,-32.32713073,19.11096581,0,13,441,Skerpiornspoort,4
+453,24,Rocky,1292,E,-32.32720165,19.11089582,0,13,441,Skerpiornspoort,4
+453,25,Rocky,1292,E,-32.32720473,19.11076934,0,13,441,Skerpiornspoort,4
+453,26,Rocky,1292,E,-32.32681986,19.11078734,0,13,441,Skerpiornspoort,4
+453,27,Rocky,1292,E,-32.3269339,19.1106955,0,13,441,Skerpiornspoort,4
+454,1,Rocky,1272,S,-32.32816554,19.11477101,1,13,441,Skerpiornspoort,5
+454,2,Rocky,1272,S,-32.32835464,19.114842,0,13,441,Skerpiornspoort,5
+454,3,Rocky,1272,S,-32.32867451,19.11484859,0,13,441,Skerpiornspoort,5
+454,4,Rocky,1272,S,-32.32858082,19.11453791,0,13,441,Skerpiornspoort,5
+454,5,Rocky,1272,S,-32.32829116,19.11426467,1,13,441,Skerpiornspoort,5
+455,1,Rocky,1286,E,-32.33880907,19.12882003,1,12.5,448,Skerpiornspoort,4
+455,2,Rocky,1286,W,-32.33891178,19.12963954,1,12.5,448,Skerpiornspoort,4
+455,3,Rocky,1286,W,-32.33894771,19.12980941,1,12.5,448,Skerpiornspoort,4
+455,4,Rocky,1286,W,-32.33889102,19.12997955,1,12.5,448,Skerpiornspoort,4
+455,5,Rocky,1286,W,-32.33886496,19.13009359,1,12.5,448,Skerpiornspoort,4
+455,6,Rocky,1286,W,-32.3388272,19.13010038,1,12.5,448,Skerpiornspoort,4
+455,7,Rocky,1286,W,-32.33879492,19.13012314,1,12.5,448,Skerpiornspoort,4
+455,8,Rocky,1286,W,-32.33859444,19.12989455,1,12.5,448,Skerpiornspoort,4
+455,9,Rocky,1286,W,-32.33846373,19.12974165,1,12.5,448,Skerpiornspoort,4
+455,10,Rocky,1286,W,-32.33821888,19.12921738,1,12.5,448,Skerpiornspoort,4
+455,11,Rocky,1286,E,-32.33839525,19.12905124,1,12.5,448,Skerpiornspoort,4
+455,12,Rocky,1286,W,-32.3387403,19.13022105,1,12.5,448,Skerpiornspoort,4
+455,13,Rocky,1286,W,-32.33877316,19.13026285,1,12.5,448,Skerpiornspoort,4
+455,14,Rocky,1286,W,-32.33875903,19.13027254,1,12.5,448,Skerpiornspoort,4
+455,15,Rocky,1286,W,-32.33874922,19.13033998,1,12.5,448,Skerpiornspoort,4
+455,16,Rocky,1286,W,-32.3381746,19.12972688,0,12.5,448,Skerpiornspoort,4
+455,17,Rocky,1286,W,-32.33849716,19.1301706,0,12.5,448,Skerpiornspoort,4
+456,1,Rocky,1286,N,-32.3462019,19.1380152,0,12.6,443,Skerpiornspoort,3
+456,2,Open,1286,N,-32.34621863,19.13731264,0,12.6,443,Skerpiornspoort,3
+456,3,Open,1286,N,-32.34610047,19.13727167,1,12.6,443,Skerpiornspoort,3
+456,4,Open,1286,N,-32.34588252,19.13736399,1,12.6,443,Skerpiornspoort,3
+456,5,Rocky,1286,N,-32.34593167,19.13687209,1,12.6,443,Skerpiornspoort,3
+457,1,Well Protected,1328,N,-32.3489967,19.13598381,1,11.7,468,Skerpiornspoort,4
+457,2,Well Protected,1328,N,-32.34899019,19.13565586,0,11.7,468,Skerpiornspoort,4
+457,3,Well Protected,1328,N,-32.34916147,19.13557818,0,11.7,468,Skerpiornspoort,4
+458,1,Rocky,1328,N,-32.34810694,19.13523133,1,11.7,468,Skerpiornspoort,4
+459,1,Open,1265,N,-32.3515768,19.13198362,1,12.6,446,Skerpiornspoort,5
+459,2,Open,1265,N,-32.35149626,19.13182558,1,12.6,446,Skerpiornspoort,5
+459,3,Well Protected,1265,N,-32.35281734,19.1313127,1,12.6,446,Skerpiornspoort,5
+459,4,Well Protected,1265,N,-32.35260559,19.13090373,1,12.6,446,Skerpiornspoort,5
+459,5,Well Protected,1265,N,-32.35233366,19.13081383,0,12.6,446,Skerpiornspoort,5
+460,1,Rocky,1298,N,-32.34412415,19.13519158,1,12.6,443,Skerpiornspoort,3
+461,1,Rocky,1247,E,-32.33689982,19.12618268,0,12.5,448,Skerpiornspoort,4
+461,2,Rocky,1247,E,-32.33673969,19.12640016,1,12.5,448,Skerpiornspoort,4
+461,3,Rocky,1247,E,-32.33663879,19.12665513,1,12.5,448,Skerpiornspoort,4
+461,4,Rocky,1247,E,-32.33646391,19.12636343,0,12.5,448,Skerpiornspoort,4
+461,5,Rocky,1247,E,-32.33635613,19.12627774,0,12.5,448,Skerpiornspoort,4
+461,6,Rocky,1247,E,-32.33624207,19.1262671,1,12.5,448,Skerpiornspoort,4
+461,7,Rocky,1247,E,-32.33610537,19.12576644,0,12.5,448,Skerpiornspoort,4
+461,8,Rocky,1247,E,-32.33596061,19.12582458,0,12.5,448,Skerpiornspoort,4
+461,9,Rocky,1247,E,-32.33582085,19.12547893,0,12.5,448,Skerpiornspoort,4
+461,10,Rocky,1247,E,-32.33577621,19.1256912,1,12.5,448,Skerpiornspoort,4
+461,11,Rocky,1247,E,-32.33563873,19.12536611,1,12.5,448,Skerpiornspoort,4
+461,12,Rocky,1247,E,-32.3356468,19.12563855,1,12.5,448,Skerpiornspoort,4
+461,13,Rocky,1247,E,-32.33550603,19.12540132,1,12.5,448,Skerpiornspoort,4
+461,14,Rocky,1247,E,-32.33547334,19.12550813,0,12.5,448,Skerpiornspoort,4
+461,15,Rocky,1247,E,-32.33541737,19.12555701,1,12.5,448,Skerpiornspoort,4
+461,16,Rocky,1247,E,-32.33556477,19.12570929,0,12.5,448,Skerpiornspoort,4
+461,17,Rocky,1247,E,-32.33573721,19.12594985,1,12.5,448,Skerpiornspoort,4
+461,18,Rocky,1247,E,-32.33561755,19.12596368,1,12.5,448,Skerpiornspoort,4
+461,19,Rocky,1247,E,-32.33547835,19.12583496,0,12.5,448,Skerpiornspoort,4
+461,20,Rocky,1247,E,-32.33539562,19.12570209,1,12.5,448,Skerpiornspoort,4
+461,21,Rocky,1247,E,-32.33533333,19.1257971,0,12.5,448,Skerpiornspoort,4
+461,22,Rocky,1247,E,-32.33551566,19.1260025,1,12.5,448,Skerpiornspoort,4
+461,23,Rocky,1247,E,-32.3353915,19.12602378,1,12.5,448,Skerpiornspoort,4
+461,24,Rocky,1247,E,-32.33539879,19.12613353,1,12.5,448,Skerpiornspoort,4
+461,25,Rocky,1247,E,-32.33540649,19.12624666,1,12.5,448,Skerpiornspoort,4
+461,26,Rocky,1247,E,-32.33546696,19.1264049,1,12.5,448,Skerpiornspoort,4
+461,27,Rocky,1247,E,-32.3352969,19.12624116,1,12.5,448,Skerpiornspoort,4
+461,28,Rocky,1247,E,-32.33536478,19.12647809,1,12.5,448,Skerpiornspoort,4
+462,1,Well Protected,1248,E,-32.33397776,19.12045033,1,12.8,443,Skerpiornspoort,6
+462,2,Well Protected,1250,S,-32.33371182,19.12049337,0,12.3,455,Skerpiornspoort,5
+462,3,Well Protected,1250,S,-32.33120638,19.11479497,0,12.3,455,Skerpiornspoort,5
+462,4,Well Protected,1250,S,-32.33113582,19.11484302,0,12.3,455,Skerpiornspoort,5
+462,5,Well Protected,1250,S,-32.330977,19.11473683,1,12.3,455,Skerpiornspoort,5
+462,6,Well Protected,1250,S,-32.33078599,19.11459743,0,12.3,455,Skerpiornspoort,5
+462,7,Well Protected,1250,S,-32.33053879,19.11431591,1,12.3,455,Skerpiornspoort,5
+462,8,Well Protected,1250,S,-32.33027355,19.11397213,1,12.3,455,Skerpiornspoort,5
+462,9,Well Protected,1250,S,-32.33008684,19.11407481,1,12.3,455,Skerpiornspoort,5
+462,10,Well Protected,1250,S,-32.33034507,19.11472244,0,12.3,455,Skerpiornspoort,5
+462,11,Well Protected,1250,S,-32.33006875,19.11448464,1,12.3,455,Skerpiornspoort,5
+462,12,Well Protected,1250,S,-32.33028093,19.11490054,0,12.3,455,Skerpiornspoort,5
+462,13,Well Protected,1250,S,-32.33008225,19.11489141,0,12.3,455,Skerpiornspoort,5
+462,14,Well Protected,1250,S,-32.33010955,19.11508614,1,12.3,455,Skerpiornspoort,5
+462,15,Well Protected,1250,S,-32.33012247,19.11533124,1,12.3,455,Skerpiornspoort,5
+462,16,Well Protected,1250,S,-32.32700387,19.11406489,0,12.3,455,Skerpiornspoort,5
+462,17,Well Protected,1250,S,-32.33067703,19.11575979,0,12.3,455,Skerpiornspoort,5
+462,18,Well Protected,1250,S,-32.33101226,19.11599839,1,12.3,455,Skerpiornspoort,5
+462,19,Rocky,1248,E,-32.33383537,19.12084295,1,12.8,443,Skerpiornspoort,6
+463,1,Rocky,1233,W,-32.332673,19.12032878,1,12.8,443,Skerpiornspoort,6
+463,2,Rocky,1233,W,-32.33275974,19.12019759,0,12.8,443,Skerpiornspoort,6
+463,3,Rocky,1233,W,-32.332523,19.12009755,0,12.8,443,Skerpiornspoort,6
+463,4,Rocky,1233,W,-32.33270358,19.11998165,1,12.8,443,Skerpiornspoort,6
+463,5,Rocky,1233,W,-32.33258134,19.11995906,0,12.8,443,Skerpiornspoort,6
+463,6,Rocky,1233,W,-32.33254611,19.11985675,0,12.8,443,Skerpiornspoort,6
+463,7,Rocky,1233,W,-32.33248874,19.11981716,0,12.8,443,Skerpiornspoort,6
+463,8,Rocky,1233,W,-32.33243113,19.11979184,0,12.8,443,Skerpiornspoort,6
+464,1,Well Protected,1242,S,-32.33318913,19.12195172,1,12.8,443,Skerpiornspoort,6
+464,2,Well Protected,1242,S,-32.33328965,19.12147469,1,12.8,443,Skerpiornspoort,6
+464,3,Well Protected,1242,S,-32.33320049,19.12146139,0,12.8,443,Skerpiornspoort,6
+464,4,Well Protected,1242,S,-32.33314221,19.12148454,1,12.8,443,Skerpiornspoort,6
+464,5,Well Protected,1242,S,-32.3331033,19.12144525,1,12.8,443,Skerpiornspoort,6
+464,6,Well Protected,1242,S,-32.33308605,19.12153322,0,12.8,443,Skerpiornspoort,6
+464,7,Well Protected,1242,S,-32.33307582,19.12144443,1,12.8,443,Skerpiornspoort,6
+464,8,Well Protected,1242,S,-32.33302939,19.12144567,1,12.8,443,Skerpiornspoort,6
+464,9,Well Protected,1242,S,-32.3329835,19.12146234,1,12.8,443,Skerpiornspoort,6
+464,10,Well Protected,1242,S,-32.33296054,19.12171604,1,12.8,443,Skerpiornspoort,6
+464,11,Well Protected,1242,S,-32.33281462,19.1220248,1,12.8,443,Skerpiornspoort,6
+464,12,Well Protected,1242,S,-32.33272036,19.12185889,1,12.8,443,Skerpiornspoort,6
+464,13,Well Protected,1242,S,-32.33277857,19.1214689,1,12.8,443,Skerpiornspoort,6
+464,14,Well Protected,1242,S,-32.33266887,19.12157643,0,12.8,443,Skerpiornspoort,6
+464,15,Well Protected,1242,S,-32.33255303,19.1216515,1,12.8,443,Skerpiornspoort,6
+464,16,Well Protected,1242,S,-32.33244086,19.12176855,1,12.8,443,Skerpiornspoort,6
+464,17,Well Protected,1242,S,-32.3322715,19.1218488,1,12.8,443,Skerpiornspoort,6
+1006,1,Open,1249,S,-32.343343,19.07662156,1,12.8,455,Middelberg,8
+1006,2,Open,1249,S,-32.34335686,19.07654152,1,12.8,455,Middelberg,8
+1006,3,Open,1249,S,-32.34337669,19.07647441,1,12.8,455,Middelberg,8
+1006,4,Open,1249,S,-32.34339145,19.07628244,1,12.8,455,Middelberg,8
+1006,5,Open,1249,S,-32.34337356,19.0763809,1,12.8,455,Middelberg,8
+1006,6,Open,1249,S,-32.3434107,19.076197,1,12.8,455,Middelberg,8
+1006,7,Open,1249,S,-32.34341982,19.07613513,1,12.8,455,Middelberg,8
+1006,8,Open,1249,S,-32.34344591,19.07606229,1,12.8,455,Middelberg,8
+1006,9,Open,1249,S,-32.34346306,19.07600332,1,12.8,455,Middelberg,8
+1006,10,Open,1249,S,-32.34350262,19.07594233,1,12.8,455,Middelberg,8
+1006,11,Open,1249,S,-32.34351947,19.07588538,1,12.8,455,Middelberg,8
+1006,12,Open,1249,S,-32.34354452,19.07583578,1,12.8,455,Middelberg,8
+1006,13,Open,1249,S,-32.34356359,19.0757721,1,12.8,455,Middelberg,8
+1006,14,Open,1249,S,-32.34357425,19.07572748,1,12.8,455,Middelberg,8
+1006,15,Open,1249,S,-32.3435818,19.07566748,1,12.8,455,Middelberg,8
+1006,16,Open,1249,S,-32.34341728,19.07679496,1,12.8,455,Middelberg,8
+1006,17,Open,1249,S,-32.34341831,19.07664988,1,12.8,455,Middelberg,8
+1006,18,Open,1249,S,-32.34342353,19.07654369,1,12.8,455,Middelberg,8
+1006,19,Open,1249,S,-32.34343666,19.07644294,1,12.8,455,Middelberg,8
+1006,20,Open,1249,S,-32.34344311,19.07634692,1,12.8,455,Middelberg,8
+1006,21,Open,1249,S,-32.34345864,19.07625805,1,12.8,455,Middelberg,8
+1006,22,Open,1249,S,-32.34346374,19.07615145,1,12.8,455,Middelberg,8
+1006,23,Open,1249,S,-32.34349072,19.07612275,1,12.8,455,Middelberg,8
+1006,24,Open,1249,S,-32.34352367,19.07606144,1,12.8,455,Middelberg,8
+1006,25,Open,1249,S,-32.34355767,19.07603836,1,12.8,455,Middelberg,8
+1006,26,Open,1249,S,-32.34356876,19.07594843,1,12.8,455,Middelberg,8
+1006,27,Open,1249,S,-32.34361123,19.075907,1,12.8,455,Middelberg,8
+1006,28,Open,1249,S,-32.34362421,19.07583092,1,12.8,455,Middelberg,8
+1006,29,Open,1249,S,-32.3436485,19.07578466,1,12.8,455,Middelberg,8
+1006,30,Open,1249,S,-32.34366792,19.07574223,1,12.8,455,Middelberg,8
+1006,31,Open,1249,S,-32.34353527,19.07689596,1,12.8,455,Middelberg,8
+1006,32,Open,1249,S,-32.34350745,19.07673116,1,12.8,455,Middelberg,8
+1006,33,Open,1249,S,-32.34349986,19.07660844,1,12.8,455,Middelberg,8
+1006,34,Open,1249,S,-32.34352428,19.07652731,1,12.8,455,Middelberg,8
+1006,35,Open,1249,S,-32.34351584,19.07644657,1,12.8,455,Middelberg,8
+1006,36,Open,1249,S,-32.34354207,19.0763813,1,12.8,455,Middelberg,8
+1006,37,Open,1249,S,-32.34354964,19.07629583,1,12.8,455,Middelberg,8
+1006,38,Open,1249,S,-32.34356763,19.07621991,1,12.8,455,Middelberg,8
+1006,39,Open,1249,S,-32.34358047,19.07615589,1,12.8,455,Middelberg,8
+1006,40,Open,1249,S,-32.34358408,19.07606611,1,12.8,455,Middelberg,8
+1006,41,Open,1249,S,-32.34359515,19.07603239,1,12.8,455,Middelberg,8
+1006,42,Open,1249,S,-32.34363719,19.07600797,1,12.8,455,Middelberg,8
+1006,43,Open,1249,S,-32.34365145,19.07588617,1,12.8,455,Middelberg,8
+1006,44,Open,1249,S,-32.34367838,19.07585664,1,12.8,455,Middelberg,8
+1006,45,Open,1249,S,-32.34373303,19.07582394,1,12.8,455,Middelberg,8
+1006,46,Open,1249,S,-32.34361498,19.07695638,1,12.8,455,Middelberg,8
+1006,47,Open,1249,S,-32.34360174,19.07679006,1,12.8,455,Middelberg,8
+1006,48,Open,1249,S,-32.34358872,19.07665828,1,12.8,455,Middelberg,8
+1006,49,Open,1249,S,-32.34360056,19.07653722,1,12.8,455,Middelberg,8
+1006,50,Open,1249,S,-32.34360498,19.07642441,1,12.8,455,Middelberg,8
+1006,51,Open,1249,S,-32.3436075,19.07631392,1,12.8,455,Middelberg,8
+1006,52,Open,1249,S,-32.34366963,19.07630551,1,12.8,455,Middelberg,8
+1006,53,Open,1249,S,-32.34365362,19.07617789,1,12.8,455,Middelberg,8
+1006,54,Open,1249,S,-32.34366895,19.07610242,1,12.8,455,Middelberg,8
+1006,55,Open,1249,S,-32.34367809,19.07602409,1,12.8,455,Middelberg,8
+1006,56,Open,1249,S,-32.34370652,19.07599534,1,12.8,455,Middelberg,8
+1006,57,Open,1249,S,-32.34371376,19.0759442,1,12.8,455,Middelberg,8
+1006,58,Open,1249,S,-32.34373756,19.07590527,0,12.8,455,Middelberg,8
+1006,59,Open,1249,S,-32.34374129,19.07610871,0,12.8,455,Middelberg,8
+1007,1,Well Protected,1395,S,-32.34022117,19.07563183,1,12.8,455,Middelberg,7
+1007,2,Well Protected,1395,S,-32.34032416,19.07553475,1,12.8,455,Middelberg,7
+1007,3,Well Protected,1395,S,-32.34045104,19.07562715,1,12.8,455,Middelberg,7
+1007,4,Well Protected,1395,S,-32.34059222,19.07536074,0,12.8,455,Middelberg,7
+1008,1,Rocky,1384,N,-32.34221638,19.06109094,1,12.2,477,Middelberg,6
+1008,2,Rocky,1384,N,-32.3420965,19.06103741,1,12.2,477,Middelberg,6
+1008,3,Rocky,1384,N,-32.34196094,19.06102144,0,12.2,477,Middelberg,6
+1008,4,Rocky,1384,N,-32.34203398,19.06135436,1,12.2,477,Middelberg,6
+1008,5,Rocky,1384,N,-32.34185574,19.0613201,0,12.2,477,Middelberg,6
+1010,1,Rocky,1384,N,-32.34116777,19.06083325,1,12.2,477,Middelberg,6
+1010,2,Rocky,1384,N,-32.34189689,19.06042053,1,12.2,477,Middelberg,6
+1010,3,Rocky,1384,N,-32.34200547,19.060393,0,12.2,477,Middelberg,6
+1010,4,Rocky,1384,N,-32.34212007,19.06042246,1,12.2,477,Middelberg,6
+1012,1,Rocky,1219,N,-32.35490709,19.08442052,1,13.1,447,Middelberg,4
+1012,2,Rocky,1219,N,-32.35508387,19.084343,0,13.1,447,Middelberg,4
+1012,3,Rocky,1219,N,-32.35523453,19.08422976,1,13.1,447,Middelberg,4
+1013,1,Well Protected,1349,W,-32.35283467,19.0905854,1,13.1,447,Middelberg,6
+1013,2,Well Protected,1349,W,-32.35354525,19.08950477,0,13.1,447,Middelberg,6
+1013,3,Well Protected,1320,W,-32.35398898,19.08860181,1,13.1,447,Middelberg,6
+1013,4,Well Protected,1320,W,-32.35411254,19.08847922,1,13.1,447,Middelberg,6
+1013,5,Well Protected,1320,W,-32.35418044,19.08855214,1,13.1,447,Middelberg,6
+1013,6,Well Protected,1320,W,-32.35422202,19.08855822,0,13.1,447,Middelberg,6
+1013,7,Well Protected,1320,W,-32.35427191,19.088596,1,13.1,447,Middelberg,6
+1013,8,Well Protected,1320,W,-32.35455853,19.08920629,1,13.1,447,Middelberg,6
+1013,9,Well Protected,1320,W,-32.35459073,19.08901778,0,13.1,447,Middelberg,6
+1013,10,Well Protected,1320,W,-32.35467317,19.08890414,0,13.1,447,Middelberg,6
+1013,11,Well Protected,1320,W,-32.35474919,19.08904811,0,13.1,447,Middelberg,6
+1013,12,Well Protected,1320,W,-32.35467387,19.0893081,0,13.1,447,Middelberg,6
+1013,13,Well Protected,1320,W,-32.35473307,19.08928923,0,13.1,447,Middelberg,6
+1013,14,Well Protected,1320,W,-32.35478487,19.08921084,0,13.1,447,Middelberg,6
+1014,1,Rocky,1245,E,-32.35506962,19.07753901,1,13,453,Middelberg,4
+1014,2,Rocky,1245,E,-32.35490928,19.07756691,1,13,453,Middelberg,4
+1014,3,Rocky,1245,E,-32.35483887,19.0775975,0,13,453,Middelberg,4
+1014,4,Rocky,1245,E,-32.35480957,19.07741743,1,13,453,Middelberg,4
+1014,5,Rocky,1245,E,-32.3547228,19.07754819,1,13,453,Middelberg,4
+1014,6,Rocky,1245,E,-32.35466051,19.07754634,1,13,453,Middelberg,4
+1014,7,Rocky,1245,E,-32.354586,19.07775356,1,13,453,Middelberg,4
+1014,8,Rocky,1245,E,-32.35455187,19.07784632,1,13,453,Middelberg,4
+1014,9,Rocky,1245,E,-32.35451127,19.07755269,1,13,453,Middelberg,4
+1015,1,Rocky,1224,W,-32.35506401,19.08992739,1,12.3,465,Middelberg,5
+1015,2,Rocky,1224,W,-32.35495185,19.09020842,1,12.3,465,Middelberg,5
+1015,3,Rocky,1224,W,-32.35468457,19.09038742,1,12.3,465,Middelberg,5
+1015,4,Rocky,1224,W,-32.35468582,19.09059181,1,12.3,465,Middelberg,5
+1015,5,Rocky,1213,W,-32.35482823,19.0911853,1,12.3,465,Middelberg,5
+1015,6,Rocky,1213,W,-32.35484151,19.09138375,1,12.3,465,Middelberg,5
+1015,7,Rocky,1213,W,-32.35497195,19.09140638,1,12.3,465,Middelberg,5
+1015,8,Rocky,1213,W,-32.35459187,19.09137743,1,12.3,465,Middelberg,5
+1015,9,Rocky,1213,W,-32.35448318,19.0916007,0,12.3,465,Middelberg,5
+1015,10,Rocky,1213,W,-32.35468699,19.09164618,0,12.3,465,Middelberg,5
+1015,11,Rocky,1213,W,-32.3548321,19.09169388,0,12.3,465,Middelberg,5
+1015,12,Rocky,1213,W,-32.3552452,19.09170534,1,12.3,465,Middelberg,5
+1015,13,Rocky,1213,W,-32.35535172,19.09176918,1,12.3,465,Middelberg,5
+1015,14,Rocky,1213,W,-32.35544433,19.09190343,1,12.3,465,Middelberg,5
+1015,15,Rocky,1213,W,-32.35550065,19.09194733,1,12.3,465,Middelberg,5
+1015,16,Rocky,1213,W,-32.35556111,19.0920042,1,12.3,465,Middelberg,5
+1015,17,Rocky,1213,W,-32.35571377,19.09202567,1,12.3,465,Middelberg,5
+1015,18,Rocky,1213,W,-32.35457363,19.09107143,0,12.3,465,Middelberg,5
+1015,19,Rocky,1213,W,-32.35509104,19.09165203,1,12.3,465,Middelberg,5
+1016,1,Rocky,1219,N,-32.35778526,19.08900982,1,12.4,466,Middelberg,5
+1017,1,Rocky,1222,N,-32.35805056,19.08987378,1,12.4,466,Middelberg,4
+1017,2,Rocky,1222,N,-32.35807061,19.089806,1,12.4,466,Middelberg,4
+1017,3,Rocky,1222,N,-32.35805816,19.08973902,0,12.4,466,Middelberg,4
+1017,4,Rocky,1222,N,-32.35804367,19.08965503,1,12.4,466,Middelberg,4
+1018,1,Well Protected,1394,S,-32.35184333,19.09327223,1,12.6,458,Middelberg,6
+1018,2,Well Protected,1394,S,-32.35167996,19.09332511,1,12.6,458,Middelberg,6
+1018,3,Well Protected,1394,S,-32.35165508,19.09327085,0,12.6,458,Middelberg,6
+1018,4,Well Protected,1394,S,-32.35168612,19.09310361,1,12.6,458,Middelberg,6
+1018,5,Well Protected,1394,S,-32.35154307,19.09318132,0,12.6,458,Middelberg,6
+1018,6,Well Protected,1394,S,-32.35157011,19.09304777,1,12.6,458,Middelberg,6
+1018,7,Well Protected,1394,S,-32.35152821,19.09305236,1,12.6,458,Middelberg,6
+1018,8,Well Protected,1394,S,-32.35145341,19.09301422,1,12.6,458,Middelberg,6
+1018,9,Well Protected,1394,S,-32.35142488,19.0929534,1,12.6,458,Middelberg,6
+1018,10,Well Protected,1394,S,-32.35134523,19.09300406,0,12.6,458,Middelberg,6
+1018,11,Well Protected,1394,S,-32.35127363,19.09304189,1,12.6,458,Middelberg,6
+1018,12,Well Protected,1394,S,-32.35144101,19.09322457,0,12.6,458,Middelberg,6
+1020,1,Well Protected,1094,S,-32.36173011,19.07577044,0,13.4,444,Middelberg,3
+1020,2,Well Protected,1094,S,-32.36142713,19.07576814,1,13.4,444,Middelberg,3
+1020,3,Well Protected,1094,S,-32.36120752,19.07590341,1,13.4,444,Middelberg,3
+1020,4,Well Protected,1094,S,-32.36105385,19.07610076,0,13.4,444,Middelberg,3
+1020,5,Well Protected,1094,S,-32.36110158,19.07636441,1,13.4,444,Middelberg,3
+1020,6,Well Protected,1094,S,-32.36127199,19.07621132,0,13.4,444,Middelberg,3
+1020,7,Well Protected,1094,S,-32.36138466,19.07616571,1,13.4,444,Middelberg,3
+1020,8,Well Protected,1094,S,-32.36156651,19.07605828,1,13.4,444,Middelberg,3
+1020,9,Well Protected,1094,S,-32.36162862,19.07633326,0,13.4,444,Middelberg,3
+1020,10,Well Protected,1094,S,-32.3614538,19.07639858,1,13.4,444,Middelberg,3
+1020,11,Well Protected,1094,S,-32.36130814,19.07634638,0,13.4,444,Middelberg,3
+1020,12,Well Protected,1094,S,-32.36123246,19.0763992,1,13.4,444,Middelberg,3
+1020,13,Well Protected,1094,S,-32.3613066,19.07646939,0,13.4,444,Middelberg,3
+1021,1,Rocky,1094,S,-32.3615953,19.07638952,0,13.4,444,Middelberg,3
+1021,2,Rocky,1094,S,-32.36150065,19.07643611,1,13.4,444,Middelberg,3
+1023,1,Rocky,1181,N,-32.35513885,19.08340474,1,13.1,447,Middelberg,5
+1023,2,Rocky,1181,N,-32.35514115,19.08333937,1,13.1,447,Middelberg,5
+1023,3,Rocky,1181,N,-32.35509349,19.08335819,1,13.1,447,Middelberg,5
+1023,4,Rocky,1181,N,-32.35510912,19.0832621,1,13.1,447,Middelberg,5
+1023,5,Rocky,1181,N,-32.3550351,19.08327071,1,13.1,447,Middelberg,5
+1023,6,Rocky,1181,N,-32.35496109,19.08327338,1,13.1,447,Middelberg,5
+1023,7,Rocky,1181,N,-32.35490667,19.08326061,1,13.1,447,Middelberg,5
+1023,8,Rocky,1181,N,-32.35486146,19.08326544,1,13.1,447,Middelberg,5
+1023,9,Rocky,1206,S,-32.35637055,19.07731235,1,13,453,Middelberg,4
+1023,10,Rocky,1181,S,-32.3559804,19.07737016,1,13,453,Middelberg,4
+1023,11,Rocky,1181,S,-32.35580324,19.07741543,1,13,453,Middelberg,4
+1023,12,Rocky,1206,S,-32.35556345,19.07755373,1,13,453,Middelberg,4
+1024,1,Rocky,1181,N,-32.35514775,19.08272215,1,13.1,447,Middelberg,5
+1025,1,Rocky,1181,N,-32.35592988,19.08188477,1,12.4,466,Middelberg,4
+1025,2,Rocky,1181,N,-32.35579462,19.08199205,1,12.4,466,Middelberg,4
+1026,1,Rocky,1201,N,-32.35671402,19.08172271,1,13,453,Middelberg,5
+1026,2,Rocky,1201,N,-32.3564828,19.08151666,1,13,453,Middelberg,5
+1029,1,Well Protected,1294,N,-32.36132316,19.09484089,1,12.3,465,Middelberg,3
+1029,2,Well Protected,1294,N,-32.36185445,19.09484543,1,12.3,465,Middelberg,3
+1029,3,Well Protected,1294,N,-32.36143904,19.0943995,1,12.3,465,Middelberg,3
+1029,4,Well Protected,1425,W,-32.36775205,19.09822488,1,11.5,485,Middelberg,5
+1029,5,Well Protected,1425,W,-32.36752199,19.0977819,0,11.5,485,Middelberg,5
+1030,1,Rocky,1390,W,-32.37060119,19.1053515,1,11.9,476,Middelberg,5
+1030,2,Rocky,1390,W,-32.37040935,19.10505159,0,11.9,476,Middelberg,5
+1030,3,Rocky,1390,W,-32.3703272,19.10490053,0,11.9,476,Middelberg,5
+1030,4,Rocky,1390,W,-32.37022322,19.10461706,1,11.9,476,Middelberg,5
+1030,5,Rocky,1390,W,-32.37020645,19.10450232,1,11.9,476,Middelberg,5
+1030,6,Rocky,1390,W,-32.37026677,19.10447494,0,11.9,476,Middelberg,5
+1030,7,Rocky,1390,W,-32.37069549,19.10466462,0,11.9,476,Middelberg,5
+1030,8,Rocky,1390,W,-32.37071935,19.10464383,1,11.9,476,Middelberg,5
+1030,9,Rocky,1390,W,-32.3711046,19.10470952,1,11.9,476,Middelberg,5
+1030,10,Rocky,1390,W,-32.37102231,19.10462551,0,11.9,476,Middelberg,5
+1030,11,Rocky,1390,W,-32.37137639,19.10521767,0,11.9,476,Middelberg,5
+1030,12,Rocky,1390,W,-32.37165585,19.10512577,1,11.9,476,Middelberg,5
+1031,1,Rocky,1408,S,-32.3688106,19.10560867,1,11.9,476,Middelberg,4
+1031,2,Rocky,1408,S,-32.3687152,19.10571869,1,11.9,476,Middelberg,4
+1031,3,Rocky,1408,S,-32.36769319,19.10680989,0,11.9,476,Middelberg,4
+1031,4,Rocky,1408,S,-32.36780194,19.10683321,0,11.9,476,Middelberg,4
+1031,5,Rocky,1408,S,-32.36786317,19.10684151,1,11.9,476,Middelberg,4
+1031,6,Rocky,1408,S,-32.36792945,19.10688619,1,11.9,476,Middelberg,4
+1031,7,Rocky,1408,S,-32.36802875,19.10687585,1,11.9,476,Middelberg,4
+1031,8,Rocky,1408,S,-32.36806173,19.10700037,1,11.9,476,Middelberg,4
+1031,9,Rocky,1408,S,-32.36819679,19.10706516,1,11.9,476,Middelberg,4
+1031,10,Rocky,1408,S,-32.36852774,19.10682478,1,11.9,476,Middelberg,4
+1032,1,Well Protected,1407,N,-32.37153026,19.10488799,0,11.9,476,Middelberg,5
+1032,2,Well Protected,1407,N,-32.37165923,19.10480706,1,11.9,476,Middelberg,5
+1032,3,Rocky,1407,N,-32.37115815,19.10456433,1,11.9,476,Middelberg,5
+1032,4,Well Protected,1407,N,-32.37154731,19.10465415,1,11.9,476,Middelberg,5
+1032,5,Well Protected,1407,N,-32.37152336,19.10457381,0,11.9,476,Middelberg,5
+1032,6,Rocky,1407,N,-32.37128799,19.10448317,1,11.9,476,Middelberg,5
+1032,7,Rocky,1407,N,-32.37150595,19.1041845,1,11.9,476,Middelberg,5
+1032,8,Rocky,1407,N,-32.37163465,19.10388033,1,11.9,476,Middelberg,5
+1032,9,Rocky,1407,N,-32.371735,19.10379964,1,11.9,476,Middelberg,5
+1032,10,Rocky,1407,N,-32.37184232,19.10370585,1,11.9,476,Middelberg,5
+1032,11,Rocky,1407,N,-32.37176617,19.10360751,1,11.9,476,Middelberg,5
+1032,12,Rocky,1407,N,-32.3717302,19.10350701,1,11.9,476,Middelberg,5
+1032,13,Rocky,1407,N,-32.37173564,19.10342959,1,11.9,476,Middelberg,5
+1032,14,Rocky,1407,N,-32.3716399,19.10340008,1,11.9,476,Middelberg,5
+1033,1,Rocky,1391,W,-32.36875754,19.10552034,0,11.9,476,Middelberg,5
+1033,2,Rocky,1391,W,-32.36898292,19.10653581,1,11.9,476,Middelberg,5
+1034,1,Rocky,1412,N,-32.37159135,19.10412084,1,11.9,476,Middelberg,5
+1034,2,Rocky,1412,N,-32.37167892,19.10381784,1,11.9,476,Middelberg,5
+1034,3,Rocky,1412,N,-32.37176997,19.10373632,1,11.9,476,Middelberg,5
+1034,4,Rocky,1412,N,-32.37179948,19.10355441,1,11.9,476,Middelberg,5
+1034,5,Rocky,1412,N,-32.37164655,19.10344807,1,11.9,476,Middelberg,5
+1034,6,Rocky,1412,N,-32.3715904,19.10344816,1,11.9,476,Middelberg,5
+1035,1,Rocky,1393,W,-32.3687526,19.10581763,0,11.9,476,Middelberg,4
+1035,2,Rocky,1393,W,-32.36866644,19.10589158,1,11.9,476,Middelberg,4
+1035,3,Rocky,1393,W,-32.36860798,19.10602721,1,11.9,476,Middelberg,4
+1035,4,Rocky,1393,W,-32.3684056,19.10649739,0,11.9,476,Middelberg,4
+1035,5,Rocky,1393,W,-32.36840826,19.10671179,0,11.9,476,Middelberg,4
+1035,6,Rocky,1393,W,-32.36859631,19.10676472,1,11.9,476,Middelberg,4
+1035,7,Rocky,1393,W,-32.3686488,19.10669179,0,11.9,476,Middelberg,4
+1035,8,Rocky,1393,W,-32.36869775,19.10663643,1,11.9,476,Middelberg,4
+1035,9,Rocky,1393,W,-32.36871232,19.10687729,1,11.9,476,Middelberg,4
+1035,10,Rocky,1393,W,-32.36877154,19.10688814,1,11.9,476,Middelberg,4
+1036,1,Rocky,1414,N,-32.37203336,19.10377522,1,11.9,476,Middelberg,5
+1036,2,Rocky,1414,N,-32.37207048,19.10369757,1,11.9,476,Middelberg,5
+1036,3,Rocky,1414,N,-32.37205801,19.10363732,1,11.9,476,Middelberg,5
+1036,4,Rocky,1414,N,-32.37170841,19.10368139,1,11.9,476,Middelberg,5
+1036,5,Rocky,1414,N,-32.3719885,19.1033703,1,11.9,476,Middelberg,5
+1036,6,Rocky,1414,N,-32.37193876,19.10332887,1,11.9,476,Middelberg,5
+1036,7,Rocky,1414,N,-32.37179586,19.10332524,1,11.9,476,Middelberg,5
+1036,8,Rocky,1414,N,-32.37174102,19.10330379,1,11.9,476,Middelberg,5
+1037,1,Rocky,1392,W,-32.37458596,19.09948498,1,11.9,476,Middelberg,3
+1037,2,Rocky,1392,W,-32.37419289,19.099693,1,11.9,476,Middelberg,3
+1037,3,Rocky,1392,W,-32.37390608,19.10003493,1,11.9,476,Middelberg,3
+1037,4,Rocky,1392,W,-32.37429642,19.099067,1,11.9,476,Middelberg,3
+1037,5,Rocky,1392,W,-32.37423005,19.09899649,1,11.9,476,Middelberg,3
+1037,6,Rocky,1392,W,-32.37404486,19.0989888,1,11.9,476,Middelberg,3
+1037,7,Rocky,1392,W,-32.37394086,19.09909278,0,11.9,476,Middelberg,3
+1037,8,Rocky,1392,W,-32.37377345,19.09938165,1,11.9,476,Middelberg,3
+1037,9,Rocky,1392,W,-32.37364378,19.09959671,0,11.9,476,Middelberg,3
+1037,10,Rocky,1392,W,-32.37351738,19.09980332,0,11.9,476,Middelberg,3
+1037,11,Well Protected,1392,W,-32.37366006,19.09901233,0,11.9,476,Middelberg,3
+1037,12,Well Protected,1392,W,-32.37356151,19.09908106,0,11.9,476,Middelberg,3
+1037,13,Well Protected,1392,W,-32.37344549,19.09935386,0,11.9,476,Middelberg,3
+1037,14,Well Protected,1392,W,-32.37317034,19.09907301,1,11.9,476,Middelberg,3
+1037,15,Well Protected,1392,W,-32.3730335,19.09928898,0,11.9,476,Middelberg,3
+1037,16,Well Protected,1415,N,-32.37217059,19.10331752,1,11.9,476,Middelberg,5
+1038,1,Rocky,1388,E,-32.36812574,19.10255252,1,11.9,476,Middelberg,3
+1038,2,Rocky,1388,E,-32.36766175,19.10243417,1,11.9,476,Middelberg,3
+1038,3,Rocky,1388,E,-32.36789296,19.10219009,0,11.9,476,Middelberg,3
+1038,4,Rocky,1388,E,-32.36816178,19.10184113,1,11.9,476,Middelberg,3
+1038,5,Rocky,1388,E,-32.36819814,19.10150846,0,11.9,476,Middelberg,3
+1038,6,Rocky,1388,E,-32.36778582,19.10117495,1,11.9,476,Middelberg,3
+1038,7,Rocky,1388,E,-32.36781072,19.10077803,1,11.9,476,Middelberg,3
+1038,8,Well Protected,1410,E,-32.36818702,19.10031403,1,11.9,476,Middelberg,3
+1038,9,Well Protected,1410,E,-32.36744416,19.09882786,0,11.9,476,Middelberg,3
+1038,10,Well Protected,1410,E,-32.36777401,19.09855561,0,11.9,476,Middelberg,3
+1040,1,Rocky,1383,E,-32.37116154,19.10706662,1,11.9,472,Middelberg,5
+1040,2,Rocky,1383,E,-32.3710043,19.10727301,1,11.9,472,Middelberg,5
+1040,3,Rocky,1383,E,-32.37089801,19.10747854,1,11.9,472,Middelberg,5
+1040,4,Rocky,1383,E,-32.37089592,19.10763091,0,11.9,472,Middelberg,5
+1040,5,Rocky,1383,E,-32.37076932,19.1072175,1,11.9,472,Middelberg,5
+1040,6,Rocky,1383,E,-32.37073311,19.10722619,1,11.9,472,Middelberg,5
+1040,7,Rocky,1383,E,-32.37070436,19.10726661,1,11.9,472,Middelberg,5
+1040,8,Rocky,1383,E,-32.37069663,19.10738013,1,11.9,472,Middelberg,5
+1040,9,Rocky,1383,E,-32.37079357,19.10757133,1,11.9,472,Middelberg,5
+1040,10,Rocky,1383,E,-32.37081249,19.10782027,0,11.9,472,Middelberg,5
+1040,11,Rocky,1383,E,-32.37075377,19.10786403,0,11.9,472,Middelberg,5
+1041,1,Rocky,1384,E,-32.37092008,19.1072087,1,11.9,472,Middelberg,5
+1041,2,Rocky,1384,E,-32.37089078,19.10717508,1,11.9,472,Middelberg,5
+1041,3,Rocky,1384,E,-32.37084051,19.10721095,0,11.9,472,Middelberg,5
+1042,1,Rocky,1373,S,-32.37048834,19.1086228,1,11.9,476,Middelberg,5
+1042,2,Open,1373,S,-32.37051111,19.10848555,0,11.9,476,Middelberg,5
+1042,3,Open,1373,S,-32.3705827,19.10856946,0,11.9,476,Middelberg,5
+1042,4,Rocky,1373,S,-32.37094534,19.1093956,1,11.9,476,Middelberg,5
+1042,5,Rocky,1373,S,-32.37104123,19.10950772,0,11.9,476,Middelberg,5
+1042,6,Rocky,1373,S,-32.37104132,19.10940297,0,11.9,476,Middelberg,5
+1042,7,Rocky,1373,S,-32.3710389,19.109283,0,11.9,476,Middelberg,5
+1042,8,Rocky,1373,S,-32.37109284,19.1086873,0,11.9,476,Middelberg,5
+1042,9,Rocky,1373,S,-32.3710619,19.10846918,0,11.9,476,Middelberg,5
+1042,10,Rocky,1392,E,-32.37136337,19.10895166,1,11.9,476,Middelberg,5
+1042,11,Rocky,1392,E,-32.3714303,19.10898959,0,11.9,476,Middelberg,5
+1042,12,Rocky,1392,E,-32.37148495,19.10898169,1,11.9,476,Middelberg,5
+1042,13,Rocky,1392,E,-32.37156065,19.10896623,1,11.9,476,Middelberg,5
+1043,1,Well Protected,1416,N,-32.37181055,19.10443181,0,11.9,476,Middelberg,5
+1043,2,Well Protected,1416,N,-32.37183482,19.10451091,1,11.9,476,Middelberg,5
+1043,3,Well Protected,1416,N,-32.37193976,19.1044633,0,11.9,476,Middelberg,5
+1043,4,Well Protected,1416,N,-32.37193902,19.10457533,1,11.9,476,Middelberg,5
+1043,5,Well Protected,1416,N,-32.37198525,19.10469187,1,11.9,476,Middelberg,5
+1043,6,Well Protected,1416,N,-32.37208569,19.10473284,1,11.9,476,Middelberg,5
+1043,7,Well Protected,1416,N,-32.37221853,19.10477631,1,11.9,476,Middelberg,5
+1043,8,Rocky,1416,N,-32.37221861,19.10455991,1,11.9,476,Middelberg,5
+1043,9,Rocky,1403,N,-32.37212205,19.10439087,1,11.9,476,Middelberg,5
+1043,10,Rocky,1403,N,-32.37223556,19.10435855,1,11.9,476,Middelberg,5
+1044,1,Rocky,1277,S,-32.37246086,19.11957309,1,12.7,449,Middelberg,3
+1044,2,Rocky,1277,S,-32.37242815,19.11955942,1,12.7,449,Middelberg,3
+1044,3,Rocky,1277,S,-32.37238212,19.11955344,0,12.7,449,Middelberg,3
+1044,4,Rocky,1277,S,-32.37229147,19.1195176,0,12.7,449,Middelberg,3
+1044,5,Rocky,1277,S,-32.37226898,19.11986338,1,12.7,449,Middelberg,3
+1044,6,Rocky,1277,S,-32.37216943,19.11949894,1,12.7,449,Middelberg,3
+1044,7,Rocky,1277,S,-32.372149,19.119565,1,12.7,449,Middelberg,3
+1044,8,Rocky,1277,S,-32.37214514,19.11964346,1,12.7,449,Middelberg,3
+1044,9,Rocky,1277,S,-32.37211497,19.11951336,0,12.7,449,Middelberg,3
+1044,10,Rocky,1277,S,-32.37208858,19.11959715,1,12.7,449,Middelberg,3
+1045,1,Rocky,1300,E,-32.37484142,19.11906953,1,12.5,457,Middelberg,5
+1045,2,Rocky,1300,E,-32.37471392,19.11924656,0,12.5,457,Middelberg,5
+1046,1,Rocky,1305,S,-32.37441446,19.11863425,1,12.5,457,Middelberg,5
+1046,2,Rocky,1305,S,-32.37439239,19.11879561,1,12.5,457,Middelberg,5
+1046,3,Rocky,1305,S,-32.37455585,19.11885345,1,12.5,457,Middelberg,5
+1046,4,Rocky,1305,S,-32.37464342,19.11891665,1,12.5,457,Middelberg,5
+1047,1,Rocky,1309,S,-32.37432424,19.11910106,0,12.5,457,Middelberg,5
+1047,2,Well Protected,1309,S,-32.37441168,19.11924509,0,12.5,457,Middelberg,5
+1047,3,Well Protected,1309,S,-32.37446906,19.11923576,0,12.5,457,Middelberg,5
+1047,4,Rocky,1309,S,-32.37454746,19.11902564,1,12.5,457,Middelberg,5
+1047,5,Rocky,1309,S,-32.3746172,19.11916544,1,12.5,457,Middelberg,5
+1047,6,Rocky,1309,S,-32.37476957,19.11898237,0,12.5,457,Middelberg,5
+1048,1,Rocky,1290,N,-32.37342829,19.11843267,1,12.5,457,Middelberg,5
+1048,2,Rocky,1290,N,-32.37347951,19.11837939,1,12.5,457,Middelberg,5
+1049,1,Rocky,1292,W,-32.37344915,19.11891469,1,12.5,457,Middelberg,5
+1049,2,Rocky,1292,W,-32.3734619,19.11869838,1,12.5,457,Middelberg,5
+1049,3,Rocky,1292,W,-32.37338939,19.11858572,1,12.5,457,Middelberg,5
+1049,4,Rocky,1292,W,-32.37334353,19.118556,1,12.5,457,Middelberg,5
+1049,5,Rocky,1292,W,-32.37330055,19.11850576,1,12.5,457,Middelberg,5
+1049,6,Rocky,1292,W,-32.37330033,19.11842531,0,12.5,457,Middelberg,5
+1049,7,Rocky,1292,W,-32.3732575,19.11837735,1,12.5,457,Middelberg,5
+1050,1,Rocky,1291,N,-32.37342182,19.11927931,1,12.5,457,Middelberg,5
+1050,2,Rocky,1291,N,-32.37354919,19.11920272,1,12.5,457,Middelberg,5
+1050,3,Rocky,1291,N,-32.37347124,19.11903136,1,12.5,457,Middelberg,5
+1050,4,Rocky,1291,N,-32.37341815,19.11897505,1,12.5,457,Middelberg,5
+1050,5,Rocky,1291,N,-32.3733989,19.11876388,1,12.5,457,Middelberg,5
+1050,6,Rocky,1291,N,-32.37331368,19.11874379,0,12.5,457,Middelberg,5
+1050,7,Rocky,1291,N,-32.37324687,19.11873379,0,12.5,457,Middelberg,5
+1051,1,Rocky,1284,E,-32.3735509,19.11975708,0,12.5,457,Middelberg,5
+1051,2,Rocky,1284,E,-32.37349538,19.11974723,1,12.5,457,Middelberg,5
+1051,3,Rocky,1284,E,-32.37355013,19.11968493,0,12.5,457,Middelberg,5
+1051,4,Rocky,1284,E,-32.37354191,19.11962848,0,12.5,457,Middelberg,5
+1051,5,Rocky,1284,E,-32.37351986,19.11952572,1,12.5,457,Middelberg,5
+1052,1,Rocky,1281,E,-32.37457046,19.11996715,0,12.5,457,Middelberg,5
+1052,2,Rocky,1281,E,-32.37452198,19.11978904,0,12.5,457,Middelberg,5
+1052,3,Rocky,1281,E,-32.37437839,19.11983549,1,12.5,457,Middelberg,5
+1052,4,Rocky,1281,E,-32.37435552,19.11965816,0,12.5,457,Middelberg,5
+1052,5,Rocky,1281,E,-32.37417929,19.11945007,1,12.5,457,Middelberg,5
+1052,6,Rocky,1281,E,-32.37412523,19.11943231,1,12.5,457,Middelberg,5
+1052,7,Rocky,1281,E,-32.37406785,19.1195205,1,12.5,457,Middelberg,5
+1053,1,Rocky,1284,S,-32.37656339,19.12032455,0,12.5,457,Middelberg,5
+1053,2,Rocky,1284,S,-32.37643524,19.12020031,0,12.5,457,Middelberg,5
+1053,3,Rocky,1284,S,-32.37637265,19.11990017,0,12.5,457,Middelberg,5
+1053,4,Rocky,1284,S,-32.37624378,19.11984959,1,12.5,457,Middelberg,5
+1053,5,Rocky,1284,S,-32.37610619,19.11984688,1,12.5,457,Middelberg,5
+1054,1,Rocky,1307,W,-32.37382274,19.11807721,1,12.5,457,Middelberg,5
+1054,2,Rocky,1307,W,-32.37391681,19.11807249,1,12.5,457,Middelberg,5
+1054,3,Rocky,1307,W,-32.37400498,19.11805532,1,12.5,457,Middelberg,5
+1054,4,Rocky,1307,W,-32.3739889,19.11818546,1,12.5,457,Middelberg,5
+1054,5,Rocky,1307,W,-32.37404366,19.11815575,1,12.5,457,Middelberg,5
+1054,6,Rocky,1307,W,-32.37409726,19.11816107,0,12.5,457,Middelberg,5
+1054,7,Rocky,1307,W,-32.37412169,19.11821277,1,12.5,457,Middelberg,5
+1054,8,Rocky,1307,W,-32.37398944,19.11834271,1,12.5,457,Middelberg,5
+1054,9,Rocky,1307,W,-32.3741714,19.11828651,1,12.5,457,Middelberg,5
+1055,1,Rocky,1307,W,-32.37360952,19.11797975,1,12.5,457,Middelberg,5
+1055,2,Rocky,1307,W,-32.37365431,19.11800039,1,12.5,457,Middelberg,5
+1055,3,Rocky,1307,W,-32.37374955,19.11799721,1,12.5,457,Middelberg,5
+1055,4,Rocky,1307,W,-32.37377634,19.11800981,1,12.5,457,Middelberg,5
+1055,5,Rocky,1307,W,-32.37381158,19.11801387,1,12.5,457,Middelberg,5
+1055,6,Rocky,1307,W,-32.37388179,19.11803072,1,12.5,457,Middelberg,5
+1055,7,Rocky,1307,W,-32.37390699,19.11802661,1,12.5,457,Middelberg,5
+1055,8,Rocky,1307,W,-32.37393082,19.11801818,1,12.5,457,Middelberg,5
+1055,9,Rocky,1307,W,-32.37394954,19.11801741,1,12.5,457,Middelberg,5
+1055,10,Rocky,1307,W,-32.37399881,19.11802804,1,12.5,457,Middelberg,5
+1056,1,Well Protected,1307,W,-32.37346264,19.11801385,1,12.5,457,Middelberg,5
+1056,2,Well Protected,1307,W,-32.37347542,19.11795756,1,12.5,457,Middelberg,5
+1056,3,Well Protected,1307,W,-32.37355479,19.11802906,1,12.5,457,Middelberg,5
+1056,4,Well Protected,1307,W,-32.37355466,19.11795675,1,12.5,457,Middelberg,5
+1056,5,Well Protected,1307,W,-32.37362805,19.11815841,1,12.5,457,Middelberg,5
+1056,6,Well Protected,1307,W,-32.37365902,19.1181245,1,12.5,457,Middelberg,5
+1056,7,Well Protected,1307,W,-32.37369324,19.11813915,1,12.5,457,Middelberg,5
+1056,8,Well Protected,1307,W,-32.37370853,19.11808059,1,12.5,457,Middelberg,5
+1056,9,Well Protected,1307,W,-32.3737652,19.11812963,1,12.5,457,Middelberg,5
+1057,1,Well Protected,1302,N,-32.37333513,19.11819392,1,12.5,457,Middelberg,5
+1057,2,Rocky,1302,N,-32.37342729,19.11790626,1,12.5,457,Middelberg,5
+1057,3,Well Protected,1302,N,-32.37348254,19.11806531,1,12.5,457,Middelberg,5
+1057,4,Well Protected,1302,N,-32.3735398,19.11808924,1,12.5,457,Middelberg,5
+1057,5,Well Protected,1302,N,-32.37358027,19.11808597,1,12.5,457,Middelberg,5
+1057,6,Well Protected,1302,N,-32.37360557,19.11804481,1,12.5,457,Middelberg,5
+1059,1,Rocky,1260,N,-32.36997712,19.12666021,1,12.7,445,Middelberg,5
+1059,2,Rocky,1260,N,-32.37008477,19.1265483,1,12.7,445,Middelberg,5
+1063,1,Rocky,1366,E,-32.38266927,19.11885298,0,12.1,466,Middelberg,4
+1063,2,Rocky,1379,E,-32.38239967,19.11877734,0,12.1,466,Middelberg,4
+1063,3,Rocky,1379,E,-32.38242976,19.11893076,0,12.1,466,Middelberg,4
+1063,4,Rocky,1366,E,-32.3824284,19.11901292,0,12.1,466,Middelberg,4
+1063,5,Rocky,1366,E,-32.38266873,19.119065,0,12.1,466,Middelberg,4
+1063,6,Rocky,1366,E,-32.38260524,19.1191145,0,12.1,466,Middelberg,4
+1063,7,Rocky,1366,E,-32.38281429,19.11919774,0,12.1,466,Middelberg,4
+1063,8,Well Protected,1379,E,-32.38243624,19.11851919,0,12.1,466,Middelberg,4
+1063,9,Well Protected,1379,E,-32.38222203,19.11822248,0,12.1,466,Middelberg,4
+1063,10,Well Protected,1379,E,-32.38200761,19.11826633,0,12.1,466,Middelberg,4
+1064,1,Rocky,1366,E,-32.38281782,19.11889762,0,12.1,466,Middelberg,4
+1064,2,Rocky,1366,E,-32.38281777,19.1189975,0,12.1,466,Middelberg,4
+1064,3,Rocky,1366,E,-32.38285873,19.11909609,0,12.1,466,Middelberg,4
+1064,4,Rocky,1366,E,-32.3829187,19.11914814,0,12.1,466,Middelberg,4
+1064,5,Rocky,1366,E,-32.38298517,19.11922904,0,12.1,466,Middelberg,4
+1064,6,Rocky,1366,E,-32.38298975,19.11936305,0,12.1,466,Middelberg,4
+1065,1,Well Protected,1402,N,-32.38236371,19.11805699,1,12.1,466,Middelberg,5
+1065,2,Well Protected,1402,N,-32.38238872,19.11806548,1,12.1,466,Middelberg,5
+1065,3,Well Protected,1402,N,-32.38232541,19.11816612,0,12.1,466,Middelberg,5
+1065,4,Well Protected,1402,N,-32.38236647,19.11817311,0,12.1,466,Middelberg,5
+1065,5,Well Protected,1402,N,-32.38240195,19.11826176,0,12.1,466,Middelberg,5
+1065,6,Rocky,1402,N,-32.38250182,19.11802558,0,12.1,466,Middelberg,5
+1065,7,Well Protected,1402,N,-32.3825556,19.11821228,0,12.1,466,Middelberg,5
+1065,8,Well Protected,1402,N,-32.38261909,19.11818122,1,12.1,466,Middelberg,5
+1065,9,Well Protected,1402,N,-32.38268377,19.11811034,0,12.1,466,Middelberg,5
+1065,10,Well Protected,1402,N,-32.38276686,19.11814343,0,12.1,466,Middelberg,5
+1065,11,Well Protected,1402,N,-32.38277958,19.11807829,1,12.1,466,Middelberg,5
+1065,12,Well Protected,1402,N,-32.38274692,19.11798776,1,12.1,466,Middelberg,5
+1065,13,Well Protected,1415,N,-32.38280747,19.11846819,0,12.1,466,Middelberg,5
+1065,14,Well Protected,1415,N,-32.3828358,19.11847055,1,12.1,466,Middelberg,5
+1066,1,Well Protected,1381,E,-32.38133042,19.11797238,0,12.5,457,Middelberg,5
+1066,2,Well Protected,1381,E,-32.38142029,19.11793557,0,12.5,457,Middelberg,5
+1066,3,Rocky,1381,E,-32.38146536,19.11817896,0,12.5,457,Middelberg,5
+1066,4,Rocky,1381,E,-32.38147851,19.11824866,1,12.5,457,Middelberg,5
+1066,5,Rocky,1381,E,-32.38176723,19.11810275,0,12.5,457,Middelberg,5
+1067,1,Rocky,1368,E,-32.383807,19.11993203,0,12.1,466,Middelberg,4
+1067,2,Rocky,1368,E,-32.38355882,19.11946535,0,12.1,466,Middelberg,4
+1067,3,Rocky,1368,E,-32.38352808,19.11913782,0,12.1,466,Middelberg,4
+1067,4,Rocky,1368,E,-32.38385896,19.11916972,0,12.1,466,Middelberg,4
+1067,5,Rocky,1368,E,-32.38354502,19.11882457,0,12.1,466,Middelberg,4
+1067,6,Rocky,1368,E,-32.38375885,19.11875357,0,12.1,466,Middelberg,4
+1067,7,Rocky,1368,E,-32.38369881,19.1186166,0,12.1,466,Middelberg,4
+1067,8,Rocky,1368,E,-32.38390849,19.11868442,0,12.1,466,Middelberg,4
+1067,9,Rocky,1368,E,-32.38389139,19.11858146,0,12.1,466,Middelberg,4
+1067,10,Rocky,1368,E,-32.38404908,19.11854318,0,12.1,466,Middelberg,4
+1067,11,Rocky,1368,E,-32.38402535,19.11844712,0,12.1,466,Middelberg,4
+1067,12,Well Protected,1368,E,-32.38425889,19.11891724,0,12.1,466,Middelberg,4
+1067,13,Well Protected,1368,E,-32.38369882,19.11882479,1,12.1,466,Middelberg,4
+1068,1,Rocky,1221,E,-32.35839138,19.08981255,1,12.4,466,Middelberg,4
+1068,2,Rocky,1221,E,-32.35831755,19.08984564,1,12.4,466,Middelberg,4
+1070,1,Well Protected,1269,E,-32.35545549,19.06879094,0,12.7,462,Middelberg,3
+1070,2,Rocky,1254,E,-32.3560903,19.06968932,1,12.7,462,Middelberg,3
+1070,3,Rocky,1254,E,-32.35548501,19.06965079,1,12.7,462,Middelberg,3
+1070,4,Well Protected,1254,E,-32.355125,19.06979475,1,12.7,462,Middelberg,3
+1070,5,Well Protected,1254,E,-32.35498189,19.06987284,1,12.7,462,Middelberg,3
+1070,6,Well Protected,1254,E,-32.35492752,19.06997822,1,12.7,462,Middelberg,3
+1070,7,Well Protected,1254,E,-32.35485446,19.07018077,0,12.7,462,Middelberg,3
+1070,8,Well Protected,1254,E,-32.35478077,19.07021179,0,12.7,462,Middelberg,3
+1070,9,Well Protected,1254,E,-32.35473135,19.07029281,1,12.7,462,Middelberg,3
+1070,10,Rocky,1254,E,-32.35502582,19.07029594,1,12.7,462,Middelberg,3
+1070,11,Rocky,1254,E,-32.35493044,19.07041654,1,12.7,462,Middelberg,3
+1070,12,Well Protected,1254,E,-32.35454212,19.07005553,0,12.7,462,Middelberg,3
+1070,13,Well Protected,1254,E,-32.35449361,19.07014831,0,12.7,462,Middelberg,3
+1070,14,Well Protected,1269,E,-32.35440784,19.07024739,1,12.7,462,Middelberg,3
+1070,15,Well Protected,1269,E,-32.35415326,19.07042746,1,12.7,462,Middelberg,3
+1070,16,Rocky,1254,E,-32.35561671,19.07029421,1,12.7,462,Middelberg,3
+1100,1,Rocky,1324,S,-32.40915869,19.17967837,0,12.2,449,Welbedacht,3
+1100,2,Rocky,1324,S,-32.40898053,19.17986328,0,12.2,449,Welbedacht,3
+1100,3,Rocky,1324,S,-32.40873281,19.17971033,0,12.2,449,Welbedacht,3
+1100,4,Well Protected,1324,S,-32.4085924,19.17962688,0,12.2,449,Welbedacht,3
+1100,5,Rocky,1324,S,-32.40871731,19.17912004,1,12.2,449,Welbedacht,3
+1101,1,Rocky,1380,W,-32.40853345,19.1836961,1,11.8,456,Welbedacht,3
+1101,2,Rocky,1380,W,-32.40780747,19.18004566,0,11.8,456,Welbedacht,3
+1101,3,Rocky,1380,W,-32.40688482,19.18018459,1,11.8,456,Welbedacht,3
+1101,4,Rocky,1380,W,-32.40668529,19.18020854,1,11.8,456,Welbedacht,3
+1101,5,Rocky,1380,W,-32.4082855,19.18352204,0,11.8,456,Welbedacht,3
+1101,6,Rocky,1380,W,-32.40673511,19.18182511,1,11.8,456,Welbedacht,3
+1101,7,Rocky,1380,W,-32.40656673,19.1819379,1,11.8,456,Welbedacht,3
+1103,1,Rocky,1340,S,-32.43661972,19.21227586,0,12.3,438,Welbedacht,3
+1103,2,Rocky,1340,S,-32.43657784,19.2122044,0,12.3,438,Welbedacht,3
+1103,3,Rocky,1340,S,-32.43654428,19.21215948,1,12.3,438,Welbedacht,3
+1103,4,Rocky,1340,S,-32.43653976,19.21210309,1,12.3,438,Welbedacht,3
+1103,5,Rocky,1340,S,-32.43662511,19.21204073,1,12.3,438,Welbedacht,3
+1103,6,Rocky,1340,S,-32.43652425,19.21203097,1,12.3,438,Welbedacht,3
+1103,7,Rocky,1340,S,-32.43655193,19.21196895,1,12.3,438,Welbedacht,3
+1103,8,Rocky,1340,S,-32.43656853,19.21193255,1,12.3,438,Welbedacht,3
+1103,9,Rocky,1340,S,-32.43667455,19.21191657,1,12.3,438,Welbedacht,3
+1103,10,Rocky,1340,S,-32.43670315,19.21186738,1,12.3,438,Welbedacht,3
+1103,11,Rocky,1340,S,-32.43658657,19.21188131,0,12.3,438,Welbedacht,3
+1103,12,Rocky,1340,S,-32.43669645,19.21181844,1,12.3,438,Welbedacht,3
+1103,13,Rocky,1340,S,-32.43653003,19.21179891,1,12.3,438,Welbedacht,3
+1104,1,Well Protected,1330,S,-32.43692472,19.21261818,0,12.3,438,Welbedacht,3
+1104,2,Well Protected,1330,S,-32.43689317,19.21252199,1,12.3,438,Welbedacht,3
+1104,3,Well Protected,1330,S,-32.43685045,19.21249248,0,12.3,438,Welbedacht,3
+1104,4,Well Protected,1330,S,-32.4368675,19.21240774,1,12.3,438,Welbedacht,3
+1104,5,Rocky,1330,S,-32.43678877,19.21233804,0,12.3,438,Welbedacht,3
+1104,6,Rocky,1330,S,-32.43656921,19.21250709,1,12.3,438,Welbedacht,3
+1105,1,Open,1330,S,-32.43738855,19.21350774,0,12.3,438,Welbedacht,3
+1105,2,Rocky,1330,S,-32.43738579,19.21325174,1,12.3,438,Welbedacht,3
+1105,3,Rocky,1330,S,-32.43729001,19.21302083,1,12.3,438,Welbedacht,3
+1105,4,Rocky,1330,S,-32.43725993,19.2129079,1,12.3,438,Welbedacht,3
+1105,5,Rocky,1330,S,-32.437241,19.21280814,1,12.3,438,Welbedacht,3
+1105,6,Rocky,1330,S,-32.43718608,19.21273837,0,12.3,438,Welbedacht,3
+1105,7,Rocky,1330,S,-32.43653158,19.21251594,1,12.3,438,Welbedacht,3
+1107,1,Rocky,1426,W,-32.40110563,19.15898258,1,11.7,463,Welbedacht,3
+1107,2,Rocky,1426,W,-32.40114779,19.15899817,0,11.7,463,Welbedacht,3
+1108,1,Well Protected,1409,W,-32.4025593,19.15977007,0,11.7,463,Welbedacht,3
+1108,2,Well Protected,1409,W,-32.40260496,19.15958534,1,11.7,463,Welbedacht,3
+1108,3,Well Protected,1409,W,-32.40266425,19.15987723,0,11.7,463,Welbedacht,3
+1108,4,Well Protected,1409,W,-32.40262597,19.16004058,1,11.7,463,Welbedacht,3
+1108,5,Well Protected,1409,W,-32.40271497,19.15975836,1,11.7,463,Welbedacht,3
+1108,6,Well Protected,1409,W,-32.40277332,19.1597223,1,11.7,463,Welbedacht,3
+1108,7,Well Protected,1409,W,-32.4028832,19.15997774,0,11.7,463,Welbedacht,3
+1108,8,Well Protected,1409,W,-32.40288547,19.16014912,0,11.7,463,Welbedacht,3
+1108,9,Well Protected,1409,W,-32.40299119,19.16001953,1,11.7,463,Welbedacht,3
+1108,10,Well Protected,1409,W,-32.40316326,19.16020043,0,11.7,463,Welbedacht,3
+1108,11,Well Protected,1409,W,-32.40311342,19.15999858,0,11.7,463,Welbedacht,3
+1108,12,Well Protected,1409,W,-32.40288321,19.15978619,1,11.7,463,Welbedacht,3
+1108,13,Well Protected,1409,W,-32.40294191,19.15975283,0,11.7,463,Welbedacht,3
+1108,14,Well Protected,1409,W,-32.40281804,19.15964596,0,11.7,463,Welbedacht,3
+1108,15,Rocky,1409,W,-32.40288762,19.15947207,0,11.7,463,Welbedacht,3
+1108,16,Well Protected,1409,W,-32.40256148,19.15880495,1,11.7,463,Welbedacht,3
+1108,17,Well Protected,1409,W,-32.40322665,19.15975048,1,11.7,463,Welbedacht,3
+1108,18,Well Protected,1409,W,-32.40340681,19.15995188,0,11.7,463,Welbedacht,3
+1108,19,Well Protected,1409,W,-32.40321274,19.15990084,0,11.7,463,Welbedacht,3
+1108,20,Well Protected,1409,W,-32.4034846,19.16025325,1,11.7,463,Welbedacht,3
+1108,21,Well Protected,1409,W,-32.40333049,19.16018948,0,11.7,463,Welbedacht,3
+1113,1,Open,1378,S,-32.40661912,19.17714998,1,12.2,449,Welbedacht,3
+1113,2,Open,1378,S,-32.40667556,19.17728259,1,12.2,449,Welbedacht,3
+1113,3,Open,1378,S,-32.40679567,19.17772098,0,12.2,449,Welbedacht,3
+1114,1,Open,1386,W,-32.40886309,19.18225273,1,11.8,456,Welbedacht,3
+1114,2,Open,1386,W,-32.40871526,19.18215513,1,11.8,456,Welbedacht,3
+1114,3,Rocky,1386,W,-32.40839453,19.18207378,1,11.8,456,Welbedacht,3
+1114,4,Open,1386,W,-32.40861186,19.18182103,1,11.8,456,Welbedacht,3
+1115,1,Rocky,1387,W,-32.40812026,19.1789472,0,11.8,456,Welbedacht,3
+1115,2,Rocky,1387,W,-32.40799091,19.17873397,1,11.8,456,Welbedacht,3
+1115,3,Rocky,1387,W,-32.40772669,19.17888368,1,11.8,456,Welbedacht,3
+1115,4,Rocky,1387,W,-32.40783729,19.1791436,1,11.8,456,Welbedacht,3
+1116,1,Rocky,1086,S,-32.41256152,19.17012467,0,13.6,418,Welbedacht,4
+1116,2,Rocky,1086,S,-32.41265852,19.17012412,1,13.6,418,Welbedacht,4
+1117,1,Rocky,1086,S,-32.41256766,19.17010868,0,13.6,418,Welbedacht,4
+1117,2,Rocky,1086,S,-32.41266737,19.17009441,1,13.6,418,Welbedacht,4
+1119,1,Open,947,E,-32.21121507,19.09332109,1,14.7,386,Heuningvlei,4
+1119,2,Open,947,E,-32.21126731,19.09333901,1,14.7,386,Heuningvlei,4
+1119,3,Open,947,E,-32.21130723,19.09335774,1,14.7,386,Heuningvlei,4
+1119,4,Open,947,E,-32.21135142,19.09338092,1,14.7,386,Heuningvlei,4
+1119,5,Open,947,E,-32.21140347,19.09339876,1,14.7,386,Heuningvlei,4
+1119,6,Open,947,E,-32.2114449,19.09341017,1,14.7,386,Heuningvlei,4
+1119,7,Open,947,E,-32.21150567,19.09344162,1,14.7,386,Heuningvlei,4
+1119,8,Open,947,E,-32.21156495,19.09348499,1,14.7,386,Heuningvlei,4
+1119,9,Open,947,E,-32.2116191,19.09350967,1,14.7,386,Heuningvlei,4
+1119,10,Open,947,E,-32.21219769,19.09388154,1,14.7,386,Heuningvlei,4
+1119,11,Open,947,E,-32.21227874,19.09389628,1,14.7,386,Heuningvlei,4
+1119,12,Open,947,E,-32.21239254,19.09393486,1,14.7,386,Heuningvlei,4
+1119,13,Open,947,E,-32.21248319,19.09395942,0,14.7,386,Heuningvlei,4
+1119,14,Open,947,E,-32.21256213,19.09401132,0,14.7,386,Heuningvlei,4
+1119,15,Open,947,E,-32.21264886,19.09404154,0,14.7,386,Heuningvlei,4
+1119,16,Open,947,E,-32.21272818,19.09409356,0,14.7,386,Heuningvlei,4
+1119,17,Open,947,E,-32.21280578,19.09411406,0,14.7,386,Heuningvlei,4
+1119,18,Open,967,E,-32.21589264,19.09105493,1,14.6,391,Heuningvlei,4
+1119,19,Open,967,E,-32.2160134,19.09112275,1,14.6,391,Heuningvlei,4
+1119,20,Open,967,E,-32.2159972,19.09094484,1,14.6,391,Heuningvlei,4
+1119,21,Open,967,E,-32.21612393,19.09111775,1,14.6,391,Heuningvlei,4
+1119,22,Open,967,E,-32.21575612,19.09199321,1,14.6,391,Heuningvlei,4
+1119,23,Open,967,E,-32.21583488,19.09192614,1,14.6,391,Heuningvlei,4
+1119,24,Open,967,E,-32.21588811,19.09186075,1,14.6,391,Heuningvlei,4
+1119,25,Open,967,E,-32.21593464,19.09179219,1,14.6,391,Heuningvlei,4
+1119,26,Open,967,E,-32.21600353,19.09176059,1,14.6,391,Heuningvlei,4
+1119,27,Open,967,E,-32.21604289,19.09185081,1,14.6,391,Heuningvlei,4
+1119,28,Open,967,E,-32.21598185,19.09195363,1,14.6,391,Heuningvlei,4
+1119,29,Open,967,E,-32.21592506,19.09197475,1,14.6,391,Heuningvlei,4
+1119,30,Open,967,E,-32.21586155,19.09202973,1,14.6,391,Heuningvlei,4
+1119,31,Open,967,E,-32.2158006,19.09210111,1,14.6,391,Heuningvlei,4
+1119,32,Open,967,E,-32.21580217,19.09219585,1,14.6,391,Heuningvlei,4
+1119,33,Open,967,E,-32.21589283,19.09213962,1,14.6,391,Heuningvlei,4
+1119,34,Open,967,E,-32.21598131,19.09203934,1,14.6,391,Heuningvlei,4
+1119,35,Open,967,E,-32.21608691,19.09198394,1,14.6,391,Heuningvlei,4
+1119,36,Open,967,E,-32.21612245,19.09204259,1,14.6,391,Heuningvlei,4
+1119,37,Open,967,E,-32.21605579,19.09209815,1,14.6,391,Heuningvlei,4
+1119,38,Open,967,E,-32.21598717,19.09219232,1,14.6,391,Heuningvlei,4
+1119,39,Open,967,E,-32.21589457,19.09228368,1,14.6,391,Heuningvlei,4
+1119,40,Open,967,E,-32.21591442,19.09241438,1,14.6,391,Heuningvlei,4
+1119,41,Open,967,E,-32.21603658,19.09232677,1,14.6,391,Heuningvlei,4
+1119,42,Open,967,E,-32.21576816,19.09244028,1,14.6,391,Heuningvlei,4
+1119,43,Open,967,E,-32.2157699,19.09263276,1,14.6,391,Heuningvlei,4
+1119,44,Open,967,E,-32.21588686,19.09253324,1,14.6,391,Heuningvlei,4
+1119,45,Open,967,E,-32.21601869,19.09244513,1,14.6,391,Heuningvlei,4
+1119,46,Open,967,E,-32.21615048,19.09233966,1,14.6,391,Heuningvlei,4
+1119,47,Open,967,E,-32.21612754,19.0925559,1,14.6,391,Heuningvlei,4
+1119,48,Open,967,E,-32.21623008,19.09258189,1,14.6,391,Heuningvlei,4
+1119,49,Open,967,E,-32.2161246,19.09278953,1,14.6,391,Heuningvlei,4
+1119,50,Open,967,E,-32.21599674,19.09271206,1,14.6,391,Heuningvlei,4
+1119,51,Open,967,E,-32.21587137,19.09282168,1,14.6,391,Heuningvlei,4
+1119,52,Open,967,E,-32.21595115,19.09291829,1,14.6,391,Heuningvlei,4
+1119,53,Open,967,E,-32.21579006,19.09301648,1,14.6,391,Heuningvlei,4
+1119,54,Open,967,E,-32.21607138,19.09297159,1,14.6,391,Heuningvlei,4
+1119,55,Open,967,E,-32.21618282,19.09286873,1,14.6,391,Heuningvlei,4
+1119,56,Open,967,E,-32.21628336,19.09271931,1,14.6,391,Heuningvlei,4
+1119,57,Open,967,E,-32.21631289,19.09295017,1,14.6,391,Heuningvlei,4
+1119,58,Open,967,E,-32.21619567,19.09305423,1,14.6,391,Heuningvlei,4
+1119,59,Open,967,E,-32.21599977,19.09315193,1,14.6,391,Heuningvlei,4
+1119,60,Open,967,E,-32.21638462,19.09278668,1,14.6,391,Heuningvlei,4
+1119,61,Open,967,E,-32.21638695,19.09312082,1,14.6,391,Heuningvlei,4
+1119,62,Open,967,E,-32.21625714,19.09318161,1,14.6,391,Heuningvlei,4
+1119,63,Open,967,E,-32.21610869,19.09324935,1,14.6,391,Heuningvlei,4
+1119,64,Open,967,E,-32.21601237,19.0932778,1,14.6,391,Heuningvlei,4
+1119,65,Open,967,E,-32.21583434,19.0933395,1,14.6,391,Heuningvlei,4
+1119,66,Open,967,E,-32.21588108,19.0935283,1,14.6,391,Heuningvlei,4
+1119,67,Open,967,E,-32.21602368,19.09345226,1,14.6,391,Heuningvlei,4
+1119,68,Open,967,E,-32.21616842,19.093336,1,14.6,391,Heuningvlei,4
+1119,69,Open,967,E,-32.2163559,19.09335562,1,14.6,391,Heuningvlei,4
+1119,70,Open,967,E,-32.21651616,19.09313107,1,14.6,391,Heuningvlei,4
+1119,71,Open,967,E,-32.21651552,19.09328543,1,14.6,391,Heuningvlei,4
+1119,72,Open,967,E,-32.21653726,19.09287724,1,14.6,391,Heuningvlei,4
+1119,73,Open,967,E,-32.2164716,19.09345963,1,14.6,391,Heuningvlei,4
+1119,74,Open,967,E,-32.21628478,19.09356936,1,14.6,391,Heuningvlei,4
+1119,75,Open,967,E,-32.21615231,19.09364305,1,14.6,391,Heuningvlei,4
+1119,76,Open,967,E,-32.21599136,19.09368274,1,14.6,391,Heuningvlei,4
+1119,77,Open,967,E,-32.21665574,19.09331421,1,14.6,391,Heuningvlei,4
+1119,78,Open,967,E,-32.21658241,19.09348771,1,14.6,391,Heuningvlei,4
+1119,79,Open,967,E,-32.21640943,19.09369041,1,14.6,391,Heuningvlei,4
+1119,80,Open,967,E,-32.216282,19.09377737,1,14.6,391,Heuningvlei,4
+1119,81,Open,967,E,-32.21615234,19.09385683,1,14.6,391,Heuningvlei,4
+1119,82,Open,967,E,-32.21599304,19.09395991,1,14.6,391,Heuningvlei,4
+1119,83,Open,967,E,-32.21647289,19.0938286,1,14.6,391,Heuningvlei,4
+1119,84,Open,967,E,-32.21633912,19.09392662,1,14.6,391,Heuningvlei,4
+1119,85,Open,967,E,-32.21621516,19.09397995,1,14.6,391,Heuningvlei,4
+1119,86,Open,967,E,-32.21606929,19.09405473,1,14.6,391,Heuningvlei,4
+1119,87,Open,967,E,-32.21619039,19.09421244,1,14.6,391,Heuningvlei,4
+1119,88,Open,967,E,-32.21571965,19.09635279,1,14.6,391,Heuningvlei,4
+1119,89,Open,967,E,-32.2155665,19.09606261,1,14.6,391,Heuningvlei,4
+1119,90,Open,967,E,-32.21540257,19.0960339,1,14.6,391,Heuningvlei,4
+1119,91,Open,967,E,-32.21532484,19.09581219,1,14.6,391,Heuningvlei,4
+1119,92,Open,967,E,-32.2151365,19.09581608,1,14.6,391,Heuningvlei,4
+1119,93,Open,967,E,-32.2152759,19.09606319,1,14.6,391,Heuningvlei,4
+1119,94,Open,967,E,-32.21492052,19.09577618,1,14.6,391,Heuningvlei,4
+1119,95,Open,967,E,-32.21502703,19.09551682,1,14.6,391,Heuningvlei,4
+1119,96,Open,967,E,-32.21479564,19.09549838,1,14.6,391,Heuningvlei,4
+1119,97,Open,967,E,-32.21474386,19.09569961,1,14.6,391,Heuningvlei,4
+1119,98,Open,967,E,-32.21461945,19.09554773,1,14.6,391,Heuningvlei,4
+1119,99,Open,967,E,-32.21465186,19.09536631,1,14.6,391,Heuningvlei,4
+1119,100,Open,967,E,-32.21446358,19.09540356,1,14.6,391,Heuningvlei,4
+1119,101,Open,967,E,-32.21490395,19.095359,0,14.6,391,Heuningvlei,4
+1119,102,Open,967,E,-32.21521382,19.09558489,0,14.6,391,Heuningvlei,4
+1120,1,Open,1077,E,-32.22118109,19.08521919,0,14.1,406,Heuningvlei,4
+1120,2,Open,1077,E,-32.22117391,19.08518687,0,14.1,406,Heuningvlei,4
+1120,3,Open,1077,E,-32.22113313,19.0851968,0,14.1,406,Heuningvlei,4
+1120,4,Open,1077,E,-32.2211358,19.0851472,0,14.1,406,Heuningvlei,4
+1120,5,Open,1077,E,-32.22109619,19.08516415,0,14.1,406,Heuningvlei,4
+1120,6,Open,1077,E,-32.22107978,19.08511258,0,14.1,406,Heuningvlei,4
+1120,7,Open,1077,E,-32.22111966,19.08511218,0,14.1,406,Heuningvlei,4
+1120,8,Open,1077,E,-32.2211417,19.08506762,0,14.1,406,Heuningvlei,4
+1120,9,Open,1077,E,-32.22109036,19.08506758,0,14.1,406,Heuningvlei,4
+1120,10,Open,1077,E,-32.22113874,19.08502518,0,14.1,406,Heuningvlei,4
+1120,11,Open,1077,E,-32.22109567,19.08503544,0,14.1,406,Heuningvlei,4
+1120,12,Open,1077,E,-32.22114011,19.08499781,0,14.1,406,Heuningvlei,4
+1120,13,Open,1077,E,-32.22109589,19.08500801,0,14.1,406,Heuningvlei,4
+1120,14,Open,1077,E,-32.22111905,19.08498391,0,14.1,406,Heuningvlei,4
+1120,15,Open,1077,E,-32.22114324,19.08497607,0,14.1,406,Heuningvlei,4
+1120,16,Open,1077,E,-32.22110562,19.08495507,0,14.1,406,Heuningvlei,4
+1120,17,Open,1077,E,-32.22115035,19.08495571,0,14.1,406,Heuningvlei,4
+1120,18,Open,1077,E,-32.22113473,19.08493589,0,14.1,406,Heuningvlei,4
+1120,19,Open,1077,E,-32.22110133,19.08492959,0,14.1,406,Heuningvlei,4
+1120,20,Open,1077,E,-32.22115104,19.08491861,0,14.1,406,Heuningvlei,4
+1120,21,Open,1077,E,-32.22112343,19.08490325,0,14.1,406,Heuningvlei,4
+1120,22,Open,1077,E,-32.22110369,19.08488576,0,14.1,406,Heuningvlei,4
+1120,23,Open,1077,E,-32.22114913,19.08488734,0,14.1,406,Heuningvlei,4
+1120,24,Open,1077,E,-32.22115873,19.08512113,0,14.1,406,Heuningvlei,4
+1120,25,Open,1077,E,-32.2211562,19.08486702,0,14.1,406,Heuningvlei,4
+1120,26,Open,1077,E,-32.22111771,19.08486475,0,14.1,406,Heuningvlei,4
+1120,27,Open,1077,E,-32.22112853,19.08483945,0,14.1,406,Heuningvlei,4
+1120,28,Open,1077,E,-32.22117223,19.08484451,0,14.1,406,Heuningvlei,4
+1120,29,Open,1077,E,-32.22112706,19.08481367,0,14.1,406,Heuningvlei,4
+1120,30,Open,1077,E,-32.22117261,19.08481571,0,14.1,406,Heuningvlei,4
+1120,31,Open,1077,E,-32.22114347,19.08479464,0,14.1,406,Heuningvlei,4
+1120,32,Open,1077,E,-32.22118098,19.08478925,0,14.1,406,Heuningvlei,4
+1120,33,Open,1077,E,-32.22115384,19.08477295,0,14.1,406,Heuningvlei,4
+1120,34,Open,1077,E,-32.22118308,19.08476504,0,14.1,406,Heuningvlei,4
+1120,35,Open,1077,E,-32.22114715,19.0847501,0,14.1,406,Heuningvlei,4
+1120,36,Open,1077,E,-32.22119163,19.08473812,0,14.1,406,Heuningvlei,4
+1120,37,Open,1077,E,-32.22116736,19.08474282,0,14.1,406,Heuningvlei,4
+1120,38,Open,1077,E,-32.22119016,19.08471015,0,14.1,406,Heuningvlei,4
+1120,39,Open,1077,E,-32.22115415,19.08471669,0,14.1,406,Heuningvlei,4
+1120,40,Open,1077,E,-32.22121979,19.08521314,1,14.1,406,Heuningvlei,4
+1120,41,Open,1077,E,-32.22120585,19.08517001,1,14.1,406,Heuningvlei,4
+1120,42,Open,1077,E,-32.22118763,19.08513444,1,14.1,406,Heuningvlei,4
+1121,1,Open,1077,E,-32.22115625,19.08469389,0,14.1,406,Heuningvlei,4
+1121,2,Open,1077,E,-32.22119755,19.08468721,0,14.1,406,Heuningvlei,4
+1121,3,Open,1077,E,-32.22115174,19.08467366,0,14.1,406,Heuningvlei,4
+1121,4,Open,1077,E,-32.22118706,19.08466612,0,14.1,406,Heuningvlei,4
+1121,5,Open,1077,E,-32.22116732,19.0846549,0,14.1,406,Heuningvlei,4
+1121,6,Open,1077,E,-32.22119192,19.08464284,0,14.1,406,Heuningvlei,4
+1121,7,Open,1077,E,-32.22116009,19.08463372,0,14.1,406,Heuningvlei,4
+1121,8,Open,1077,E,-32.22118817,19.08461127,0,14.1,406,Heuningvlei,4
+1121,9,Open,1077,E,-32.22115815,19.08460149,0,14.1,406,Heuningvlei,4
+1121,10,Open,1077,E,-32.22119204,19.08459273,0,14.1,406,Heuningvlei,4
+1121,11,Open,1077,E,-32.22116461,19.08457752,0,14.1,406,Heuningvlei,4
+1121,12,Open,1077,E,-32.22119591,19.08457419,0,14.1,406,Heuningvlei,4
+1121,13,Open,1077,E,-32.22116405,19.08455262,0,14.1,406,Heuningvlei,4
+1121,14,Open,1077,E,-32.22119721,19.08453983,0,14.1,406,Heuningvlei,4
+1121,15,Open,1077,E,-32.22117082,19.08452716,0,14.1,406,Heuningvlei,4
+1121,16,Open,1077,E,-32.22119651,19.08450822,0,14.1,406,Heuningvlei,4
+1121,17,Open,1077,E,-32.22117153,19.08449633,0,14.1,406,Heuningvlei,4
+1121,18,Open,1077,E,-32.22119349,19.08448091,0,14.1,406,Heuningvlei,4
+1121,19,Open,1077,E,-32.22116867,19.08447581,0,14.1,406,Heuningvlei,4
+1121,20,Open,1077,E,-32.22119662,19.08445904,0,14.1,406,Heuningvlei,4
+1121,21,Open,1077,E,-32.22117014,19.0844552,0,14.1,406,Heuningvlei,4
+1121,22,Open,1077,E,-32.22119472,19.08444047,0,14.1,406,Heuningvlei,4
+1121,23,Open,1077,E,-32.22117648,19.08442488,0,14.1,406,Heuningvlei,4
+1121,24,Open,1077,E,-32.2211983,19.08443023,0,14.1,406,Heuningvlei,4
+1121,25,Open,1077,E,-32.22119275,19.08441547,0,14.1,406,Heuningvlei,4
+1121,26,Open,1077,E,-32.22117014,19.08442124,0,14.1,406,Heuningvlei,4
+1121,27,Open,1077,E,-32.22120038,19.0844065,0,14.1,406,Heuningvlei,4
+1121,28,Open,1077,E,-32.22118149,19.08439418,0,14.1,406,Heuningvlei,4
+1121,29,Open,1077,E,-32.22120118,19.08438891,0,14.1,406,Heuningvlei,4
+1121,30,Open,1077,E,-32.22117546,19.0843891,0,14.1,406,Heuningvlei,4
+1121,31,Open,1077,E,-32.22119389,19.08436895,0,14.1,406,Heuningvlei,4
+1121,32,Open,1077,E,-32.22117951,19.08436305,0,14.1,406,Heuningvlei,4
+1121,33,Open,1077,E,-32.22119834,19.08434773,0,14.1,406,Heuningvlei,4
+1121,34,Open,1077,E,-32.22118247,19.08434072,0,14.1,406,Heuningvlei,4
+1121,35,Open,1077,E,-32.22120239,19.08434223,0,14.1,406,Heuningvlei,4
+1121,36,Open,1077,E,-32.22120477,19.08432691,0,14.1,406,Heuningvlei,4
+1121,37,Open,1077,E,-32.22118104,19.08432276,0,14.1,406,Heuningvlei,4
+1121,38,Open,1077,E,-32.22119905,19.08431229,0,14.1,406,Heuningvlei,4
+1121,39,Open,1077,E,-32.22118724,19.0843095,0,14.1,406,Heuningvlei,4
+1121,40,Open,1077,E,-32.22120608,19.08429747,0,14.1,406,Heuningvlei,4
+1121,41,Open,1077,E,-32.22118889,19.08429497,0,14.1,406,Heuningvlei,4
+1121,42,Open,1077,E,-32.22120374,19.08428249,0,14.1,406,Heuningvlei,4
+1121,43,Open,1077,E,-32.22119024,19.08427501,0,14.1,406,Heuningvlei,4
+1121,44,Open,1077,E,-32.22120545,19.08426714,0,14.1,406,Heuningvlei,4
+1121,45,Open,1077,E,-32.22120863,19.08425967,0,14.1,406,Heuningvlei,4
+1121,46,Open,1077,E,-32.22118976,19.0842611,0,14.1,406,Heuningvlei,4
+1121,47,Open,1077,E,-32.22121011,19.08424665,0,14.1,406,Heuningvlei,4
+1121,48,Open,1077,E,-32.22119184,19.08424898,0,14.1,406,Heuningvlei,4
+1121,49,Open,1077,E,-32.22120788,19.08423876,0,14.1,406,Heuningvlei,4
+1121,50,Open,1077,E,-32.22119657,19.08423709,0,14.1,406,Heuningvlei,4
+1121,51,Open,1077,E,-32.22121515,19.08423007,0,14.1,406,Heuningvlei,4
+1121,52,Open,1077,E,-32.22119922,19.08422656,1,14.1,406,Heuningvlei,4
+1121,53,Open,1077,E,-32.22121471,19.08421465,1,14.1,406,Heuningvlei,4
+1121,54,Open,1077,E,-32.22119996,19.08421438,1,14.1,406,Heuningvlei,4
+1121,55,Open,1077,E,-32.22120842,19.08420732,1,14.1,406,Heuningvlei,4
+1121,56,Open,1077,E,-32.22121975,19.0841981,1,14.1,406,Heuningvlei,4
+1121,57,Open,1077,E,-32.22120345,19.08420087,1,14.1,406,Heuningvlei,4
+1121,58,Open,1077,E,-32.22121993,19.08418357,1,14.1,406,Heuningvlei,4
+1121,59,Open,1077,E,-32.22120232,19.08418633,1,14.1,406,Heuningvlei,4
+1121,60,Open,1077,E,-32.22121511,19.08417413,1,14.1,406,Heuningvlei,4
+1121,61,Open,1077,E,-32.22120861,19.08417074,1,14.1,406,Heuningvlei,4
+1121,62,Open,1077,E,-32.22122191,19.08416155,1,14.1,406,Heuningvlei,4
+1121,63,Open,1077,E,-32.22120929,19.0841594,1,14.1,406,Heuningvlei,4
+1121,64,Open,1077,E,-32.22122684,19.08414657,1,14.1,406,Heuningvlei,4
+1121,65,Open,1077,E,-32.22121109,19.08414057,1,14.1,406,Heuningvlei,4
+1121,66,Open,1077,E,-32.22122517,19.08412905,1,14.1,406,Heuningvlei,4
+1121,67,Open,1077,E,-32.22121755,19.08412197,1,14.1,406,Heuningvlei,4
+1121,68,Open,1077,E,-32.2212291,19.08410802,1,14.1,406,Heuningvlei,4
+1121,69,Open,1077,E,-32.22121995,19.08410399,1,14.1,406,Heuningvlei,4
+1121,70,Open,1077,E,-32.22123787,19.08408489,1,14.1,406,Heuningvlei,4
+1121,71,Open,1077,E,-32.22121451,19.08408363,1,14.1,406,Heuningvlei,4
+1121,72,Open,1082,E,-32.2234826,19.08526865,0,13.7,417,Heuningvlei,4
+1121,73,Open,1082,E,-32.22347008,19.08523829,0,13.7,417,Heuningvlei,4
+1121,74,Open,1082,E,-32.22347175,19.08519183,0,13.7,417,Heuningvlei,4
+1121,75,Open,1082,E,-32.22346748,19.08515795,0,13.7,417,Heuningvlei,4
+1121,76,Open,1082,E,-32.22346619,19.08511794,0,13.7,417,Heuningvlei,4
+1121,77,Open,1082,E,-32.22346561,19.08509441,0,13.7,417,Heuningvlei,4
+1121,78,Open,1082,E,-32.2234602,19.08506575,0,13.7,417,Heuningvlei,4
+1121,79,Open,1082,E,-32.22345993,19.0850281,0,13.7,417,Heuningvlei,4
+1121,80,Open,1082,E,-32.22346262,19.08498439,0,13.7,417,Heuningvlei,4
+1121,81,Open,1082,E,-32.22345139,19.08494872,0,13.7,417,Heuningvlei,4
+1121,82,Open,1082,E,-32.22346474,19.08491754,0,13.7,417,Heuningvlei,4
+1121,83,Open,1082,E,-32.22348473,19.08487086,0,13.7,417,Heuningvlei,4
+1121,84,Open,1082,E,-32.22348342,19.08483158,0,13.7,417,Heuningvlei,4
+1121,85,Open,1082,E,-32.22349205,19.08479611,0,13.7,417,Heuningvlei,4
+1121,86,Open,1082,E,-32.22349198,19.08476413,0,13.7,417,Heuningvlei,4
+1121,87,Open,1082,E,-32.22350097,19.08471921,0,13.7,417,Heuningvlei,4
+1121,88,Open,1082,E,-32.22350761,19.08468429,0,13.7,417,Heuningvlei,4
+1121,89,Open,1082,E,-32.22353176,19.08463221,0,13.7,417,Heuningvlei,4
+1121,90,Open,1082,E,-32.22354469,19.08459655,0,13.7,417,Heuningvlei,4
+1121,91,Open,1082,E,-32.22355081,19.0845702,0,13.7,417,Heuningvlei,4
+1121,92,Open,1082,E,-32.22356274,19.08453171,0,13.7,417,Heuningvlei,4
+1121,93,Open,1082,E,-32.22357815,19.08449099,0,13.7,417,Heuningvlei,4
+1121,94,Open,1082,E,-32.22359553,19.0844353,1,13.7,417,Heuningvlei,4
+1121,95,Open,1082,E,-32.2236106,19.08438956,1,13.7,417,Heuningvlei,4
+1121,96,Open,1082,E,-32.22361342,19.08434534,1,13.7,417,Heuningvlei,4
+1121,97,Open,1082,E,-32.22362988,19.08429351,1,13.7,417,Heuningvlei,4
+1121,98,Open,1082,E,-32.22363991,19.08425022,1,13.7,417,Heuningvlei,4
+1121,99,Open,1082,E,-32.22364742,19.08421145,1,13.7,417,Heuningvlei,4
+1121,100,Open,1082,E,-32.22365756,19.08418044,1,13.7,417,Heuningvlei,4
+1121,101,Open,1082,E,-32.22367152,19.08414557,1,13.7,417,Heuningvlei,4
+1121,102,Open,1082,E,-32.2236768,19.08411008,1,13.7,417,Heuningvlei,4
+1121,103,Open,1082,E,-32.22368136,19.08407769,1,13.7,417,Heuningvlei,4
+1121,104,Open,1082,E,-32.22368974,19.0840415,1,13.7,417,Heuningvlei,4
+1121,105,Open,1082,E,-32.22369955,19.08399915,1,13.7,417,Heuningvlei,4
+1121,106,Open,1082,E,-32.22370514,19.08396242,1,13.7,417,Heuningvlei,4
+1121,107,Open,1082,E,-32.22371203,19.08393274,1,13.7,417,Heuningvlei,4
+1121,108,Open,1082,E,-32.22373236,19.08388317,1,13.7,417,Heuningvlei,4
+1121,109,Open,1082,E,-32.22391709,19.08386152,1,13.7,417,Heuningvlei,4
+1121,110,Open,1082,E,-32.22390207,19.08394148,1,13.7,417,Heuningvlei,4
+1121,111,Open,1082,E,-32.22390581,19.08402277,1,13.7,417,Heuningvlei,4
+1121,112,Open,1082,E,-32.22388952,19.08412088,1,13.7,417,Heuningvlei,4
+1121,113,Open,1082,E,-32.22387977,19.08419345,1,13.7,417,Heuningvlei,4
+1121,114,Open,1082,E,-32.22385953,19.0842941,1,13.7,417,Heuningvlei,4
+1121,115,Open,1082,E,-32.22384618,19.08436595,1,13.7,417,Heuningvlei,4
+1121,116,Open,1082,E,-32.22382478,19.08447138,1,13.7,417,Heuningvlei,4
+1121,117,Open,1082,E,-32.22382952,19.08456336,1,13.7,417,Heuningvlei,4
+1121,118,Open,1082,E,-32.22381002,19.08466099,1,13.7,417,Heuningvlei,4
+1121,119,Open,1082,E,-32.22381065,19.08473841,1,13.7,417,Heuningvlei,4
+1121,120,Open,1082,E,-32.22376899,19.08480737,1,13.7,417,Heuningvlei,4
+1121,121,Open,1082,E,-32.22377299,19.08487521,1,13.7,417,Heuningvlei,4
+1121,122,Open,1082,E,-32.22376708,19.08495334,1,13.7,417,Heuningvlei,4
+1121,123,Open,1082,E,-32.2237659,19.08501995,1,13.7,417,Heuningvlei,4
+1121,124,Open,1082,E,-32.22374987,19.08507049,1,13.7,417,Heuningvlei,4
+1121,125,Open,1082,E,-32.22368398,19.08513312,1,13.7,417,Heuningvlei,4
+1121,126,Open,1082,E,-32.22374137,19.08515976,1,13.7,417,Heuningvlei,4
+1121,127,Open,1082,E,-32.22373645,19.08520327,1,13.7,417,Heuningvlei,4
+1121,128,Open,1082,E,-32.22370861,19.08525712,1,13.7,417,Heuningvlei,4
+1121,129,Open,1082,E,-32.22372722,19.08531862,1,13.7,417,Heuningvlei,4
+1121,130,Open,1082,E,-32.22371957,19.08541898,1,13.7,417,Heuningvlei,4
+1121,131,Open,1082,E,-32.22395502,19.08551991,1,13.7,417,Heuningvlei,4
+1121,132,Open,1082,E,-32.22394466,19.08544238,1,13.7,417,Heuningvlei,4
+1121,133,Open,1082,E,-32.22397522,19.08538664,1,13.7,417,Heuningvlei,4
+1121,134,Open,1082,E,-32.22396654,19.08533567,1,13.7,417,Heuningvlei,4
+1121,135,Open,1082,E,-32.22397505,19.08529196,1,13.7,417,Heuningvlei,4
+1121,136,Open,1082,E,-32.22396954,19.08523499,1,13.7,417,Heuningvlei,4
+1121,137,Open,1082,E,-32.22396835,19.08518885,1,13.7,417,Heuningvlei,4
+1121,138,Open,1082,E,-32.22397546,19.08515037,1,13.7,417,Heuningvlei,4
+1121,139,Open,1082,E,-32.22397057,19.08510568,1,13.7,417,Heuningvlei,4
+1121,140,Open,1082,E,-32.22398399,19.08506501,1,13.7,417,Heuningvlei,4
+1121,141,Open,1082,E,-32.22398855,19.08499674,1,13.7,417,Heuningvlei,4
+1121,142,Open,1082,E,-32.22398948,19.0849522,1,13.7,417,Heuningvlei,4
+1121,143,Open,1082,E,-32.22399306,19.08488856,1,13.7,417,Heuningvlei,4
+1121,144,Open,1082,E,-32.2240089,19.08483172,1,13.7,417,Heuningvlei,4
+1121,145,Open,1082,E,-32.22401396,19.08478598,1,13.7,417,Heuningvlei,4
+1121,146,Open,1082,E,-32.22401704,19.08474868,1,13.7,417,Heuningvlei,4
+1121,147,Open,1082,E,-32.22400834,19.08469254,1,13.7,417,Heuningvlei,4
+1121,148,Open,1082,E,-32.22401034,19.08462,1,13.7,417,Heuningvlei,4
+1121,149,Open,1082,E,-32.22401513,19.08455206,1,13.7,417,Heuningvlei,4
+1121,150,Open,1082,E,-32.22401248,19.08450998,1,13.7,417,Heuningvlei,4
+1121,151,Open,1082,E,-32.22401609,19.08446416,1,13.7,417,Heuningvlei,4
+1121,152,Open,1082,E,-32.22401666,19.08441365,1,13.7,417,Heuningvlei,4
+1121,153,Open,1082,E,-32.22401425,19.08436402,1,13.7,417,Heuningvlei,4
+1121,154,Open,1082,E,-32.22402637,19.08432464,1,13.7,417,Heuningvlei,4
+1121,155,Open,1082,E,-32.22401948,19.08427056,1,13.7,417,Heuningvlei,4
+1121,156,Open,1082,E,-32.22403061,19.0842295,1,13.7,417,Heuningvlei,4
+1121,157,Open,1082,E,-32.22403461,19.08419195,1,13.7,417,Heuningvlei,4
+1121,158,Open,1082,E,-32.22403894,19.084153,1,13.7,417,Heuningvlei,4
+1121,159,Open,1082,E,-32.22404643,19.08410953,1,13.7,417,Heuningvlei,4
+1121,160,Open,1082,E,-32.2240445,19.0840648,1,13.7,417,Heuningvlei,4
+1121,161,Open,1082,E,-32.22404172,19.08402976,1,13.7,417,Heuningvlei,4
+1121,162,Open,1082,E,-32.22404566,19.08398411,1,13.7,417,Heuningvlei,4
+1121,163,Open,1082,E,-32.22404701,19.08393787,1,13.7,417,Heuningvlei,4
+1121,164,Open,1082,E,-32.22405461,19.08387748,1,13.7,417,Heuningvlei,4
+1121,165,Open,1082,E,-32.2240636,19.08381134,1,13.7,417,Heuningvlei,4
+1121,166,Open,1082,E,-32.22430483,19.08376885,1,13.7,417,Heuningvlei,4
+1121,167,Open,1082,E,-32.22430269,19.08383554,1,13.7,417,Heuningvlei,4
+1121,168,Open,1082,E,-32.22430549,19.08391584,1,13.7,417,Heuningvlei,4
+1121,169,Open,1082,E,-32.22429001,19.08399724,1,13.7,417,Heuningvlei,4
+1121,170,Open,1082,E,-32.22429478,19.08406685,1,13.7,417,Heuningvlei,4
+1121,171,Open,1082,E,-32.22428168,19.08413785,1,13.7,417,Heuningvlei,4
+1121,172,Open,1082,E,-32.22428066,19.0842157,1,13.7,417,Heuningvlei,4
+1121,173,Open,1082,E,-32.22427513,19.08428975,1,13.7,417,Heuningvlei,4
+1121,174,Open,1082,E,-32.22426694,19.08435122,1,13.7,417,Heuningvlei,4
+1121,175,Open,1082,E,-32.22426454,19.08442406,1,13.7,417,Heuningvlei,4
+1121,176,Open,1082,E,-32.22425888,19.08449941,1,13.7,417,Heuningvlei,4
+1121,177,Open,1082,E,-32.2242396,19.08458609,1,13.7,417,Heuningvlei,4
+1121,178,Open,1082,E,-32.22423269,19.08466056,1,13.7,417,Heuningvlei,4
+1121,179,Open,1082,E,-32.22422089,19.08475753,1,13.7,417,Heuningvlei,4
+1121,180,Open,1082,E,-32.22421273,19.08484334,1,13.7,417,Heuningvlei,4
+1121,181,Open,1082,E,-32.22421046,19.08494072,1,13.7,417,Heuningvlei,4
+1121,182,Open,1082,E,-32.22420812,19.08502659,1,13.7,417,Heuningvlei,4
+1121,183,Open,1082,E,-32.2241919,19.08511173,1,13.7,417,Heuningvlei,4
+1121,184,Open,1082,E,-32.22416704,19.08518488,1,13.7,417,Heuningvlei,4
+1121,185,Open,1082,E,-32.22416055,19.08526456,1,13.7,417,Heuningvlei,4
+1121,186,Open,1082,E,-32.22414678,19.08535165,1,13.7,417,Heuningvlei,4
+1121,187,Open,1082,E,-32.2241329,19.08543807,1,13.7,417,Heuningvlei,4
+1121,188,Open,1082,E,-32.2241296,19.08551596,1,13.7,417,Heuningvlei,4
+1121,189,Open,1082,E,-32.22412032,19.08562099,1,13.7,417,Heuningvlei,4
+1121,190,Open,1082,E,-32.224532,19.08575591,1,13.7,417,Heuningvlei,4
+1121,191,Open,1082,E,-32.22453162,19.08562964,1,13.7,417,Heuningvlei,4
+1121,192,Open,1082,E,-32.22456922,19.08551125,1,13.7,417,Heuningvlei,4
+1121,193,Open,1082,E,-32.22456785,19.08537747,1,13.7,417,Heuningvlei,4
+1121,194,Open,1082,E,-32.22465091,19.08525794,1,13.7,417,Heuningvlei,4
+1121,195,Open,1082,E,-32.22464294,19.08514036,1,13.7,417,Heuningvlei,4
+1121,196,Open,1082,E,-32.22469186,19.08498264,1,13.7,417,Heuningvlei,4
+1123,2,Open,1119,E,-32.22183293,19.07734137,1,13.7,418,Heuningvlei,4
+1123,3,Open,1119,E,-32.22181614,19.07743877,1,13.7,418,Heuningvlei,4
+1123,4,Open,1119,E,-32.22185895,19.07751361,1,13.7,418,Heuningvlei,4
+1123,5,Open,1119,E,-32.22188654,19.07759232,1,13.7,418,Heuningvlei,4
+1123,6,Open,1119,E,-32.22192965,19.07765724,1,13.7,418,Heuningvlei,4
+1123,7,Open,1119,E,-32.22198691,19.07774149,1,13.7,418,Heuningvlei,4
+1123,8,Open,1119,E,-32.22203143,19.0778304,1,13.7,418,Heuningvlei,4
+1123,9,Open,1119,E,-32.22209656,19.07788707,1,13.7,418,Heuningvlei,4
+1123,10,Open,1119,E,-32.22214251,19.0778451,1,13.7,418,Heuningvlei,4
+1123,11,Open,1119,E,-32.22208282,19.07777045,1,13.7,418,Heuningvlei,4
+1123,12,Open,1119,E,-32.22203333,19.07767944,1,13.7,418,Heuningvlei,4
+1123,13,Open,1119,E,-32.22197293,19.07758736,1,13.7,418,Heuningvlei,4
+1123,14,Open,1119,E,-32.22192415,19.07751355,1,13.7,418,Heuningvlei,4
+1123,15,Open,1119,E,-32.22187865,19.07744782,1,13.7,418,Heuningvlei,4
+1123,16,Open,1119,E,-32.22186667,19.07735582,1,13.7,418,Heuningvlei,4
+1123,17,Open,1119,E,-32.22191365,19.07736864,1,13.7,418,Heuningvlei,4
+1123,18,Open,1119,E,-32.22193213,19.07742973,1,13.7,418,Heuningvlei,4
+1123,19,Open,1119,E,-32.22196411,19.07749313,1,13.7,418,Heuningvlei,4
+1123,20,Open,1119,E,-32.22197362,19.07753727,1,13.7,418,Heuningvlei,4
+1123,21,Open,1119,E,-32.22200535,19.07759387,1,13.7,418,Heuningvlei,4
+1123,22,Open,1119,E,-32.22201377,19.07763556,1,13.7,418,Heuningvlei,4
+1123,23,Open,1119,E,-32.22208239,19.07772337,1,13.7,418,Heuningvlei,4
+1123,24,Open,1119,E,-32.22210249,19.07775485,1,13.7,418,Heuningvlei,4
+1123,25,Open,1119,E,-32.22211762,19.07778155,1,13.7,418,Heuningvlei,4
+1123,26,Open,1119,E,-32.22215111,19.07780329,1,13.7,418,Heuningvlei,4
+1123,27,Open,1119,E,-32.22215759,19.07776806,1,13.7,418,Heuningvlei,4
+1123,28,Open,1119,E,-32.22212037,19.07774463,1,13.7,418,Heuningvlei,4
+1123,29,Open,1119,E,-32.22209127,19.07769408,1,13.7,418,Heuningvlei,4
+1123,30,Open,1119,E,-32.22205796,19.07763668,1,13.7,418,Heuningvlei,4
+1123,31,Open,1119,E,-32.22208281,19.07762451,1,13.7,418,Heuningvlei,4
+1123,32,Open,1119,E,-32.22204782,19.07758673,1,13.7,418,Heuningvlei,4
+1123,33,Open,1119,E,-32.22201163,19.07754591,1,13.7,418,Heuningvlei,4
+1123,34,Open,1119,E,-32.22199743,19.07750947,1,13.7,418,Heuningvlei,4
+1123,35,Open,1119,E,-32.22198304,19.07748056,1,13.7,418,Heuningvlei,4
+1123,36,Open,1119,E,-32.22196345,19.07743431,1,13.7,418,Heuningvlei,4
+1123,37,Open,1119,E,-32.22195227,19.07738169,1,13.7,418,Heuningvlei,4
+1123,38,Open,1119,E,-32.22214565,19.07770967,1,13.7,418,Heuningvlei,4
+1123,39,Open,1119,E,-32.22212017,19.07764051,1,13.7,418,Heuningvlei,4
+1123,40,Open,1119,E,-32.22208501,19.07758994,1,13.7,418,Heuningvlei,4
+1123,41,Open,1119,E,-32.22205268,19.07753879,1,13.7,418,Heuningvlei,4
+1123,42,Open,1119,E,-32.2220333,19.07748468,1,13.7,418,Heuningvlei,4
+1123,43,Open,1119,E,-32.22200738,19.07743637,1,13.7,418,Heuningvlei,4
+1123,44,Open,1119,E,-32.22198773,19.07736802,1,13.7,418,Heuningvlei,4
+1123,45,Open,1119,E,-32.22202139,19.07739114,1,13.7,418,Heuningvlei,4
+1123,46,Open,1119,E,-32.22183568,19.07748285,1,13.7,418,Heuningvlei,4
+1123,47,Open,1119,E,-32.22192729,19.07758558,1,13.7,418,Heuningvlei,4
+1123,48,Open,1119,E,-32.22209631,19.07741223,1,13.7,418,Heuningvlei,4
+1123,49,Open,1119,E,-32.22208839,19.07747707,1,13.7,418,Heuningvlei,4
+1123,50,Open,1119,E,-32.22213752,19.07750398,1,13.7,418,Heuningvlei,4
+1123,51,Open,1119,E,-32.22214388,19.07756947,1,13.7,418,Heuningvlei,4
+1123,52,Open,1119,E,-32.22216449,19.07763553,1,13.7,418,Heuningvlei,4
+1123,53,Open,1119,E,-32.22219382,19.07762524,1,13.7,418,Heuningvlei,4
+1123,54,Open,1119,E,-32.22220392,19.07768682,1,13.7,418,Heuningvlei,4
+1123,55,Open,1119,E,-32.22220445,19.07776458,1,13.7,418,Heuningvlei,4
+1123,56,Open,1119,E,-32.22225736,19.0777833,1,13.7,418,Heuningvlei,4
+1123,57,Open,1119,E,-32.22227246,19.07771507,1,13.7,418,Heuningvlei,4
+1123,58,Open,1119,E,-32.22224215,19.07762846,1,13.7,418,Heuningvlei,4
+1123,59,Open,1119,E,-32.22221282,19.0775621,1,13.7,418,Heuningvlei,4
+1123,60,Open,1119,E,-32.22218226,19.07746649,1,13.7,418,Heuningvlei,4
+1123,61,Open,1119,E,-32.22214072,19.07739181,1,13.7,418,Heuningvlei,4
+1123,62,Open,1119,E,-32.22221758,19.077428,1,13.7,418,Heuningvlei,4
+1123,63,Open,1119,E,-32.22224999,19.07750693,1,13.7,418,Heuningvlei,4
+1123,64,Open,1119,E,-32.22226239,19.07758294,1,13.7,418,Heuningvlei,4
+1123,65,Open,1119,E,-32.22229355,19.0776498,1,13.7,418,Heuningvlei,4
+1123,66,Open,1119,E,-32.2223097,19.07772191,1,13.7,418,Heuningvlei,4
+1125,1,Open,1082,E,-32.21987053,19.0829726,1,14.1,406,Heuningvlei,5
+1125,2,Open,1082,E,-32.21979637,19.08293133,1,14.1,406,Heuningvlei,5
+1125,3,Open,1082,E,-32.2198343,19.08294604,1,14.1,406,Heuningvlei,5
+1125,4,Open,1082,E,-32.2197727,19.08291897,1,14.1,406,Heuningvlei,5
+1125,5,Open,1082,E,-32.21974855,19.08290741,1,14.1,406,Heuningvlei,5
+1125,6,Open,1082,E,-32.2197279,19.08290534,1,14.1,406,Heuningvlei,5
+1125,7,Open,1082,E,-32.21970664,19.08289819,1,14.1,406,Heuningvlei,5
+1125,8,Open,1082,E,-32.21971309,19.0829443,1,14.1,406,Heuningvlei,5
+1125,9,Open,1082,E,-32.21973994,19.08294493,1,14.1,406,Heuningvlei,5
+1125,10,Open,1082,E,-32.21977608,19.08295779,1,14.1,406,Heuningvlei,5
+1125,11,Open,1082,E,-32.21980842,19.08296104,1,14.1,406,Heuningvlei,5
+1125,12,Open,1082,E,-32.21981873,19.08298453,1,14.1,406,Heuningvlei,5
+1125,13,Open,1082,E,-32.21985594,19.08299251,1,14.1,406,Heuningvlei,5
+1125,14,Open,1082,E,-32.21988577,19.08300047,1,14.1,406,Heuningvlei,5
+1125,15,Open,1082,E,-32.21990065,19.0830362,1,14.1,406,Heuningvlei,5
+1125,16,Open,1082,E,-32.21987259,19.08302841,1,14.1,406,Heuningvlei,5
+1125,17,Open,1082,E,-32.21983634,19.08301183,1,14.1,406,Heuningvlei,5
+1125,18,Open,1082,E,-32.21980117,19.08299035,1,14.1,406,Heuningvlei,5
+1125,19,Open,1082,E,-32.21976658,19.08297662,1,14.1,406,Heuningvlei,5
+1125,20,Open,1082,E,-32.21977758,19.08300234,1,14.1,406,Heuningvlei,5
+1125,21,Open,1082,E,-32.21973844,19.0829871,1,14.1,406,Heuningvlei,5
+1125,22,Open,1082,E,-32.21970201,19.08296924,1,14.1,406,Heuningvlei,5
+1125,23,Open,1082,E,-32.21971154,19.08300729,1,14.1,406,Heuningvlei,5
+1125,24,Open,1082,E,-32.21973374,19.08301348,1,14.1,406,Heuningvlei,5
+1125,25,Open,1082,E,-32.21976464,19.08302134,1,14.1,406,Heuningvlei,5
+1125,26,Open,1082,E,-32.219792,19.0830247,1,14.1,406,Heuningvlei,5
+1125,27,Open,1082,E,-32.21981978,19.0830368,1,14.1,406,Heuningvlei,5
+1125,28,Open,1082,E,-32.21984206,19.08304036,1,14.1,406,Heuningvlei,5
+1125,29,Open,1082,E,-32.21986475,19.08305235,1,14.1,406,Heuningvlei,5
+1125,30,Open,1082,E,-32.21988429,19.0830639,1,14.1,406,Heuningvlei,5
+1125,31,Open,1082,E,-32.21988635,19.08309412,1,14.1,406,Heuningvlei,5
+1125,32,Open,1082,E,-32.21984467,19.08309844,1,14.1,406,Heuningvlei,5
+1125,33,Open,1082,E,-32.21979595,19.08306942,1,14.1,406,Heuningvlei,5
+1125,34,Open,1082,E,-32.21976284,19.08306025,1,14.1,406,Heuningvlei,5
+1125,35,Open,1082,E,-32.21973286,19.08305535,1,14.1,406,Heuningvlei,5
+1125,36,Open,1082,E,-32.2197098,19.0830603,1,14.1,406,Heuningvlei,5
+1125,37,Open,1082,E,-32.21970433,19.08309577,1,14.1,406,Heuningvlei,5
+1125,38,Open,1082,E,-32.21974735,19.08310357,1,14.1,406,Heuningvlei,5
+1125,39,Open,1082,E,-32.21978036,19.08311423,1,14.1,406,Heuningvlei,5
+1125,40,Open,1082,E,-32.21981533,19.0831202,1,14.1,406,Heuningvlei,5
+1125,41,Open,1082,E,-32.21985431,19.08313529,1,14.1,406,Heuningvlei,5
+1125,42,Open,1082,E,-32.21988471,19.08314197,1,14.1,406,Heuningvlei,5
+1125,43,Open,1082,E,-32.21987491,19.08318138,1,14.1,406,Heuningvlei,5
+1125,44,Open,1082,E,-32.21984696,19.08316764,1,14.1,406,Heuningvlei,5
+1125,45,Open,1082,E,-32.2198186,19.08316152,1,14.1,406,Heuningvlei,5
+1125,46,Open,1082,E,-32.2197873,19.08315657,1,14.1,406,Heuningvlei,5
+1125,47,Open,1082,E,-32.21975198,19.08314439,1,14.1,406,Heuningvlei,5
+1125,48,Open,1082,E,-32.21971665,19.08313256,1,14.1,406,Heuningvlei,5
+1125,49,Open,1082,E,-32.21968543,19.08312615,1,14.1,406,Heuningvlei,5
+1125,50,Open,1082,E,-32.21968949,19.0831663,1,14.1,406,Heuningvlei,5
+1125,51,Open,1082,E,-32.21973009,19.08317598,1,14.1,406,Heuningvlei,5
+1125,52,Open,1082,E,-32.21976623,19.08318091,1,14.1,406,Heuningvlei,5
+1125,53,Open,1082,E,-32.21980518,19.08319686,1,14.1,406,Heuningvlei,5
+1125,54,Open,1082,E,-32.21983502,19.08319977,1,14.1,406,Heuningvlei,5
+1125,55,Open,1082,E,-32.21987314,19.08321865,1,14.1,406,Heuningvlei,5
+1125,56,Open,1082,E,-32.21986471,19.08325218,1,14.1,406,Heuningvlei,5
+1125,57,Open,1082,E,-32.21983022,19.08323572,1,14.1,406,Heuningvlei,5
+1125,58,Open,1082,E,-32.21979012,19.08322315,1,14.1,406,Heuningvlei,5
+1125,59,Open,1082,E,-32.21975798,19.08322948,1,14.1,406,Heuningvlei,5
+1125,60,Open,1082,E,-32.2197225,19.08321077,1,14.1,406,Heuningvlei,5
+1125,61,Open,1082,E,-32.21969238,19.08320797,1,14.1,406,Heuningvlei,5
+1125,62,Open,1082,E,-32.21968716,19.08324121,1,14.1,406,Heuningvlei,5
+1125,63,Open,1082,E,-32.21972792,19.08325913,1,14.1,406,Heuningvlei,5
+1125,64,Open,1082,E,-32.21976327,19.08326702,1,14.1,406,Heuningvlei,5
+1125,65,Open,1082,E,-32.21980257,19.08326615,1,14.1,406,Heuningvlei,5
+1125,66,Open,1082,E,-32.21983335,19.0832791,1,14.1,406,Heuningvlei,5
+1125,67,Open,1082,E,-32.21986034,19.08329155,1,14.1,406,Heuningvlei,5
+1125,68,Open,1082,E,-32.2198487,19.08332791,1,14.1,406,Heuningvlei,5
+1125,69,Open,1082,E,-32.21981406,19.08331655,1,14.1,406,Heuningvlei,5
+1125,70,Open,1082,E,-32.21977689,19.08330741,1,14.1,406,Heuningvlei,5
+1125,71,Open,1082,E,-32.21974302,19.08330891,1,14.1,406,Heuningvlei,5
+1125,72,Open,1082,E,-32.21970887,19.08330761,1,14.1,406,Heuningvlei,5
+1125,73,Open,1082,E,-32.21966843,19.08327562,1,14.1,406,Heuningvlei,5
+1125,74,Open,1082,E,-32.21965964,19.08332168,1,14.1,406,Heuningvlei,5
+1125,75,Open,1082,E,-32.21970097,19.08333994,1,14.1,406,Heuningvlei,5
+1125,76,Open,1082,E,-32.21974328,19.0833444,1,14.1,406,Heuningvlei,5
+1125,77,Open,1082,E,-32.21977765,19.08335351,1,14.1,406,Heuningvlei,5
+1125,78,Open,1082,E,-32.21981399,19.08335569,1,14.1,406,Heuningvlei,5
+1125,79,Open,1082,E,-32.21984466,19.0833686,1,14.1,406,Heuningvlei,5
+1125,80,Open,1082,E,-32.21964451,19.08335821,1,14.1,406,Heuningvlei,5
+1125,81,Open,1082,E,-32.21968547,19.08336926,1,14.1,406,Heuningvlei,5
+1125,82,Open,1082,E,-32.21973637,19.0833804,0,14.1,406,Heuningvlei,5
+1126,1,Rocky,1083,N,-32.22001193,19.08371099,1,14.1,406,Heuningvlei,5
+1126,2,Rocky,1083,N,-32.22008908,19.08378688,1,14.1,406,Heuningvlei,5
+1126,3,Rocky,1083,N,-32.22001855,19.08386849,1,14.1,406,Heuningvlei,5
+1126,4,Rocky,1083,N,-32.22014758,19.08389896,0,14.1,406,Heuningvlei,5
+1126,5,Rocky,1083,N,-32.22010387,19.08406993,0,14.1,406,Heuningvlei,5
