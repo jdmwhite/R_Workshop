@@ -2,6 +2,11 @@
 title: "Github and Rmarkdown"
 output:
   html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 3
     theme: paper
     highlight: tango
 ---
@@ -14,6 +19,21 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 xaringanExtra::use_clipboard()
 ```
 
-# Github
+## Background
 
-# Rmarkdown
+In this topic, we will cover:
+
+* What is Github?
+* Why should you use Github?
+* What is Rmarkdown?
+* (and you guessed it) Why should you use Rmarkdown?
+
+Neither of these platforms/tools are essential to moving along the R experience ladder. The reason I decided to include them in a beginners R workshop is because they allow for some extremely valuable workflows related to sharing and collaboration. So, I think at least a little bit of exposure to these is useful early on in your RStudio journey.
+
+## What is Github?
+
+## Why should you use Github?
+
+## What is Rmarkdown?
+
+## Why should you use Rmarkdown?
