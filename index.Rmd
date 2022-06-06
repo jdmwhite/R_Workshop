@@ -5,25 +5,15 @@ output:
     theme: paper
 ---
 
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-
 # Background
 
 This short workshop will introduce you to the basics of R and go over some fundamentals that you may have previously missed. 
 
 It is aimed at R beginners, though many lessons will likely be useful to those who have been using R for several years with bad ingrained practices. 
+
+```{r out.width='50%', out.extra='style="float:right; padding:10px"', echo = FALSE}
+knitr::include_graphics("images/logo.png")
+```
 
 ## We will cover four topics:
 
@@ -60,11 +50,3 @@ Once you have download and installed both, all you need is to open R Studio. The
 # Additional Resources
 
 See the [Additional Resources](https://jdmwhite.github.io/R_Workshop/Resources.html) page for lots of helpful links related to R.
-
-</div>
-<div class="col-sm-6">
-
-<a href = "">
-![](images/logo.png)
-</a>
-</div>
