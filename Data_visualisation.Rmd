@@ -91,7 +91,9 @@ Here we rename the columns with *culmen* to *bill* and change the *date* column 
 ```{r}
 # select columns to work on & clean names
 names(penguins_clean_1)
-penguins_clean_1 %>% select(species, island, bill_length_mm = culmen_length_mm, bill_depth_mm = culmen_depth_mm, flipper_length_mm, body_mass_g, sex, year = date_egg) -> penguins_clean_2
+penguins_clean_1 %>% select(species, island, bill_length_mm = culmen_length_mm, 
+                            bill_depth_mm = culmen_depth_mm, flipper_length_mm, 
+                            body_mass_g, sex, year = date_egg) -> penguins_clean_2
 ```
 
 The date column was previously stored as string. Let's extract only the year using the `lubridate::year()` function.
@@ -410,7 +412,8 @@ This requires the `ggsave()` function. `ggsave()` will automatically save the la
 ```{r, eval = FALSE}
 #### Save your plot ----
 # using ggsave()
-ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
+ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'white', 
+       width = 120, height = 80, units = 'mm', dpi = 320)
 ```
 
 # Part 2: Different geometries
@@ -475,7 +478,8 @@ penguins %>%
   ggplot() +
   geom_col(aes(x = species, y = flipper_mean),
            fill = c('darkorange','purple','cyan4')) +
-  geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd, ymin = flipper_mean - flipper_sd), width = 0.5) +
+  geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd,
+                    ymin = flipper_mean - flipper_sd), width = 0.5) +
   labs(x = "Penguin species", y = 'Flipper length (mm)') +
   theme_minimal()
 ```
@@ -547,7 +551,8 @@ As a bonus we can also add on labels using the `ggrepel` package. In this case w
 penguins %>% filter(species == 'Chinstrap') %>% select(flipper_length_mm) %>% median_qi(na.rm = T)
 
 ggplot() +
-  stat_halfeye(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), point_interval = 'median_qi', side = 'left', scale = 0.5, adjust = 0.75) +
+  stat_halfeye(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), 
+               point_interval = 'median_qi', side = 'left', scale = 0.5, adjust = 0.75) +
   stat_dots(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), scale = 0.5) +
   scale_fill_manual(values = colorspace::lighten(c('darkorange', 'purple', 'cyan4'), 0.75), guide = 'none') +
   scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'), guide = 'none') +
