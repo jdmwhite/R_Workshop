@@ -2,19 +2,13 @@
 title: "R Workshop"
 author: 
 - Joseph White & Refilwe Kai
-date: "13 June 2022"
+date: "13th-14th June 2022"
 output: 
   html_document:
     theme: paper
 ---
 
-### Background
-
-This short workshop will introduce you to the basics of R and go over some fundamentals that you may have previously missed. It is aimed at R beginners, though many lessons will likely be useful to those who have been using R for several years with bad ingrained practices. 
-
-```{r out.width='50%', out.extra='style="float:right; padding:10px"', echo = FALSE}
-knitr::include_graphics("images/logo.png")
-```
+This short workshop will introduce you to the basics of R and go over some fundamentals that you may have previously missed. It is aimed at R beginners, though many lessons will likely be useful to those who have been using R for several years with bad ingrained practices. Use this website together with the [slides](), [R scripts]() and [video recordings](). 
 
 #### We will cover four topics:
 
@@ -38,16 +32,17 @@ Once you have download and installed both, all you need is to open R Studio. The
 
 #### R Studio Cloud
 
-Go to [R Studio Cloud](https://rstudio.cloud/). Either **Sign Up** or as you have already run a practical here before, **Log In** to your account. 
+Go to [R Studio Cloud](https://rstudio.cloud/). Either **Sign Up** or as you have already run a practical here before, **Log In** to your account. Once you have logged in, click on **New Project** in the top right corner. Select **New Project from Git Repository**. Copy and paste this link into the open space: 
 
-Once you have logged in, click on **New Project** in the top right corner. Select **New Project from Git Repository**. Copy and paste this link into the open space: https://github.com/jdmwhite/R_workshop
+https://github.com/jdmwhite/R_workshop
 
-Wait for the project to deploy (this may take a couple of minutes). Once it has opened, open the **scripts** folder and then click on any `.R` file to explore the code. 
-
-You can now run the code, either using (CONTROL + ENTER/CMD + ENTER) or click the **Run** button in the top middle of your screen.
-
-Make sure to **LOG OUT** of your R Studio Cloud session when you are finished using the platform. You are granted 25 free hours per month. But these hours will be depleted quickly if you don't log out!
+Wait for the project to deploy (this may take a couple of minutes). Once it has opened, open the **scripts** folder and then click on any `.R` file to explore the code. You can now run the code, either using (CONTROL + ENTER/CMD + ENTER) or click the **Run** button in the top middle of your screen. Make sure to **LOG OUT** of your R Studio Cloud session when you are finished using the platform. You are granted 25 free hours per month. But these hours will be depleted quickly if you don't log out!
 
 ### Additional Resources
 
 See the [Additional Resources](https://jdmwhite.github.io/R_Workshop/Resources.html) page for lots of helpful links related to R.
+
+```{r out.width='80%', echo = FALSE}
+knitr::include_graphics("images/logo.png")
+```
+
