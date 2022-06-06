@@ -80,7 +80,7 @@ penguins_clean_1 <- clean_names(penguins_raw)
 names(penguins_clean_1)
 ```
 
-We then select the columns that we'd like to work with. In the `dplyr` package, we have previously used the `rename()` function. However, we can use `select()` to both select the columns of interest and rename the columns. 
+We then select the columns that we'd like to work with. In the `dplyr` package, we have previously used the `rename()` function. However, we can use `select()` to both select the columns of interest and rename the columns.
 
 Here we rename the columns with *culmen* to *bill* and change the *date* column to *year*.
 
@@ -139,23 +139,22 @@ plot(penguins)
 
 From this plot, we can see that **body mass** and **bill length** look strongly correlated. Let's use these two variables to build a plot.
 
-In this workshop, we will be using the `ggplot2` package for *most* of our data visualisation. There are several different R and non-R options for plotting data, so why chose `ggplot2`? 
+In this workshop, we will be using the `ggplot2` package for *most* of our data visualisation. There are several different R and non-R options for plotting data, so why chose `ggplot2`?
 
-* It is like building lego blocks (each geom is a layer)
-* The syntax is *relatively* simple
-* Easy use of themes & colour palettes
-* Wide adoption (so easy to find similar queries online)
-* Facets! (easily produce several subplots based on a factor)
-* Combine plots seamlessly (there are several packages for this, but we'll explore `patchwork`. Also look up `cowplot` or the `egg` package)
-* `gganimate()`: easily turn your plot into an animation (we don't explore this function here, but take a look at the [great examples!](https://gganimate.com/))
-* `ggplot2` is a part of the `tidyverse` group of R packages. This means that it is well integrated with some of the other packages we have learnt so far, like `dplyr`. 
+-   It is like building lego blocks (each geom is a layer)
+-   The syntax is *relatively* simple
+-   Easy use of themes & colour palettes
+-   Wide adoption (so easy to find similar queries online)
+-   Facets! (easily produce several subplots based on a factor)
+-   Combine plots seamlessly (there are several packages for this, but we'll explore `patchwork`. Also look up `cowplot` or the `egg` package)
+-   `gganimate()`: easily turn your plot into an animation (we don't explore this function here, but take a look at the [great examples!](https://gganimate.com/))
+-   `ggplot2` is a part of the `tidyverse` group of R packages. This means that it is well integrated with some of the other packages we have learnt so far, like `dplyr`.
 
 Ok, those are a few reasons. However, always do what's easiest for youm whether it's using base R functions, excel charts, plotnine/seaborn/matplotlib in Python or whatever else. `ggplot2` is just one of these options and the most important thing is to get the job done.
 
 The primary function we will use is `ggplot()` (don't forget to remove the 2!). The core template used in `ggplot2` graphics requires the `data.frame`, the variables of interest and the type of plot you want. This is the template:
 
 `ggplot(data = DATA, mapping = aes(VARIABLES OF INTEREST)) + geom_()`
-
 
 `ggplot2` works similarly to `dplyr`'s `%>%` (pipe) function, but instead we use a `+` to add on additional functions. Find the `ggplot2` cheatsheet [HERE](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf).
 
@@ -183,7 +182,7 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
   geom_point()
 ```
 
-There's your first `ggplot()`! However, there are several options to start customising it to our liking, so let's explore those. Another option, is the place the `data = ` and `mapping = ` arguments within the `geom_()`. 
+There's your first `ggplot()`! However, there are several options to start customising it to our liking, so let's explore those. Another option, is the place the `data =` and `mapping =` arguments within the `geom_()`.
 
 ```{r}
 # add the data and mapping arguments to the geom
@@ -191,7 +190,7 @@ ggplot() +
   geom_point(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm))
 ```
 
-We can also do a mix of the two, as shown below. Note that if our arguments are in the correct place, we can also remove the calls to `data = ` and `mapping = `. This helps to shorten and clean up our code:
+We can also do a mix of the two, as shown below. Note that if our arguments are in the correct place, we can also remove the calls to `data =` and `mapping =`. This helps to shorten and clean up our code:
 
 ```{r}
 # keep the data in ggplot() and mapping aesthetics in the geom_
@@ -201,7 +200,7 @@ ggplot(penguins) +
 
 ### Add in colour
 
-Let's now add a 3rd variable `species` as the **colour** using `col = `. 
+Let's now add a 3rd variable `species` as the **colour** using `col =`.
 
 ```{r}
 # add in a 3rd variable as colour
@@ -211,7 +210,7 @@ ggplot(penguins) +
 
 ### Add in shape
 
-Notice that `ggplot()` automatically adds in a legend! We can double up, and also change the shape of each point based on the `species` using `shape = `.
+Notice that `ggplot()` automatically adds in a legend! We can double up, and also change the shape of each point based on the `species` using `shape =`.
 
 ```{r}
 # add in a 3rd variable as colour and shape
@@ -221,7 +220,7 @@ ggplot(penguins) +
 
 ### Change opacity
 
-Note that these two aesthetics are placed within the same mapping aesthetics as the x and the y variables. This is **very important**. If we placed them outside of the `aes()` call, it would not work. Anything outside of the `aes()` call will be applied to all points! See the example below on changing the opacity using `alpha = `. Changing the opacity helps to show points, which may be overlapping with others. 
+Note that these two aesthetics are placed within the same mapping aesthetics as the x and the y variables. This is **very important**. If we placed them outside of the `aes()` call, it would not work. Anything outside of the `aes()` call will be applied to all points! See the example below on changing the opacity using `alpha =`. Changing the opacity helps to show points, which may be overlapping with others.
 
 ```{r}
 # change the opacity of the points
@@ -235,7 +234,7 @@ Let's further customise our plot by changing the default colours to those we wou
 
 To change the colours we use the `scale_` functions. Importantly, `scale_` can be used for many purposes, including changing axes limits or breaks or transforming your axes. We will use it to change the shape and colours of our plots.
 
-If you are using the `col =` in your `geom_`, then we need to use `scale_colour_` in our `scale_` function. The same applies to `shape = ` and `fill = ` (which we will use later...). The last part of our `scale_colour` function is to chose whether it's a *discrete* or *continuous* variable. In our case, we have a discrete variable, but instead of using `scale_colour_discrete()`, we will use `scale_colour_manual()`, so that we can manually select our colour values.
+If you are using the `col =` in your `geom_`, then we need to use `scale_colour_` in our `scale_` function. The same applies to `shape =` and `fill =` (which we will use later...). The last part of our `scale_colour` function is to chose whether it's a *discrete* or *continuous* variable. In our case, we have a discrete variable, but instead of using `scale_colour_discrete()`, we will use `scale_colour_manual()`, so that we can manually select our colour values.
 
 We also use the `labs()` function to change the legend title. If we only do this for colour, then the shape aesthetic will still use the original title and the `ggplot()` will plot two separate legends. We don't want this, so we specify both titles, which then combines our legends together:
 
@@ -306,11 +305,11 @@ ggplot(penguins) +
   theme(legend.position = c(0.8,0.2))
 ```
 
-In my books, this is a complete and ready to publish figure! We could save it to file at this point. But before we do that, let's explore a few more `ggplot2` fundamentals. 
+In my books, this is a complete and ready to publish figure! We could save it to file at this point. But before we do that, let's explore a few more `ggplot2` fundamentals.
 
 ### Facets
 
-One of the powerful features of `ggplot2` is the ability to facet a plot by one of your discrete variables (i.e. factors). This means we can use the same plot recipe as used above, but adding just one more line of code, we can split it up into several subplots using the `facet_grid()` or `facet_wrap()` functions. Here, we split our plot into two subplots by `sex` and stack them next to each other using `cols = vars(sex)`. If we want them on top of one another, we would use `rows = `. 
+One of the powerful features of `ggplot2` is the ability to facet a plot by one of your discrete variables (i.e. factors). This means we can use the same plot recipe as used above, but adding just one more line of code, we can split it up into several subplots using the `facet_grid()` or `facet_wrap()` functions. Here, we split our plot into two subplots by `sex` and stack them next to each other using `cols = vars(sex)`. If we want them on top of one another, we would use `rows =`.
 
 We can also tweak the theme by using `theme_bw()`, which works nicely with facets.
 
@@ -329,10 +328,10 @@ ggplot(penguins %>% drop_na()) +
 
 So facets can help us visualise several subplots based on a factor, but what if we want to plot two completely separate plots next to one another?
 
-There are several packages which could help us here, but let's explore a more recent and extremely useful one called `patchwork`. `patchwork` uses a basic syntax to combine plots together. 
+There are several packages which could help us here, but let's explore a more recent and extremely useful one called `patchwork`. `patchwork` uses a basic syntax to combine plots together.
 
-* To add plots as columns use `+`
-* To add plots as rows use `/`
+-   To add plots as columns use `+`
+-   To add plots as rows use `/`
 
 There is a huge variety of ways to patch plots together, so take a look at the [patchwork website](https://patchwork.data-imaginist.com/index.html).
 
@@ -402,7 +401,7 @@ combined_plot +
 
 Now that we have our publication ready plot(s), we can save our ggplot!
 
-This requires the `ggsave()` function. `ggsave()` will automatically save the last plot we have plotted in our plot window. This means we just need to specify the file directory and the device (i.e. what type of output would you like). However, there are some valuable additions to this function. For example, if we use `.png`, we may want to specify the background colour using `bg = `. Importantly, we can also choose our plot dimensions. This is crucial if you creating plots for a publication, where many of them have size and format requirements! Change the units to mm using `units = 'mm'` and then chose your width and height. 
+This requires the `ggsave()` function. `ggsave()` will automatically save the last plot we have plotted in our plot window. This means we just need to specify the file directory and the device (i.e. what type of output would you like). However, there are some valuable additions to this function. For example, if we use `.png`, we may want to specify the background colour using `bg =`. Importantly, we can also choose our plot dimensions. This is crucial if you creating plots for a publication, where many of them have size and format requirements! Change the units to mm using `units = 'mm'` and then chose your width and height.
 
 ```{r, eval = FALSE}
 #### Save your plot ----
@@ -412,7 +411,7 @@ ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'wh
 
 # Part 2: Different geometries
 
-In Part 2, we will explore the range of different plots available in `ggplot2`. We have already looked at a type of correlation plot using `geom_point()` (i.e. scatterplots). In this section, we will explore a range of distribution plots (boxplots, histograms and density plots) and ranking plots (barplots and lollipop plots). There are many more ways to plot your data and the [r-graph-gallery](https://r-graph-gallery.com/index.html) or following the [#TidyTuesday challenge on Twitter](https://twitter.com/search?q=%23TidyTuesday&src=typeahead_click) are good places to look for inspiration. 
+In Part 2, we will explore the range of different plots available in `ggplot2`. We have already looked at a type of correlation plot using `geom_point()` (i.e. scatterplots). In this section, we will explore a range of distribution plots (boxplots, histograms and density plots) and ranking plots (barplots and lollipop plots). There are many more ways to plot your data and the [r-graph-gallery](https://r-graph-gallery.com/index.html) or following the [#TidyTuesday challenge on Twitter](https://twitter.com/search?q=%23TidyTuesday&src=typeahead_click) are good places to look for inspiration.
 
 Again, we start by installing & loading our packages:
 
@@ -440,7 +439,7 @@ penguins <- palmerpenguins::penguins
 str(penguins)
 ```
 
-Using the same plot as before, let's now add linear trendlines to each of our species. Notice that we have used the function `drop_na()` to remove any `NA` values in our penguin data. To add our trendlines, we use `geom_smooth()`. The default `method = ` for `geom_smooth()` is `loess`, which provides a smoothed loess curve to each species. To change this, we select `method = 'lm'`:
+Using the same plot as before, let's now add linear trendlines to each of our species. Notice that we have used the function `drop_na()` to remove any `NA` values in our penguin data. To add our trendlines, we use `geom_smooth()`. The default `method =` for `geom_smooth()` is `loess`, which provides a smoothed loess curve to each species. To change this, we select `method = 'lm'`:
 
 ```{r}
 #### Line charts ----
@@ -453,9 +452,9 @@ ggplot(data = drop_na(penguins), aes(body_mass_g, bill_length_mm, col = species,
   theme_bw() 
 ```
 
-A plot type you'll all be familiar with is a barplot. A barplot requires summarised data. So let's do some quick data manipulation. First, `group_by(species)` and then summarise **flipper_length_mm** by `mean()` and `sd()`. Notice we use `na.rm = TRUE` to remove the 2 rows with missing data. 
+A plot type you'll all be familiar with is a barplot. A barplot requires summarised data. So let's do some quick data manipulation. First, `group_by(species)` and then summarise **flipper_length_mm** by `mean()` and `sd()`. Notice we use `na.rm = TRUE` to remove the 2 rows with missing data.
 
-We can then `%>%` (pipe) our summarised dataset directly into a `ggplot()`! To produce a barplot, we use `geom_col()` and we add our errorbars (SD) by providing an `x` value, as well as a `ymax` and `ymin` value. We need to calculate these on the fly, so we take the `flipper_mean` and then `+` or `-` the `flipper_sd` values, respectively. It's worth adjusting the `width = ` of the errorbars to produce a more pleasing appearance:
+We can then `%>%` (pipe) our summarised dataset directly into a `ggplot()`! To produce a barplot, we use `geom_col()` and we add our errorbars (SD) by providing an `x` value, as well as a `ymax` and `ymin` value. We need to calculate these on the fly, so we take the `flipper_mean` and then `+` or `-` the `flipper_sd` values, respectively. It's worth adjusting the `width =` of the errorbars to produce a more pleasing appearance:
 
 ```{r}
 #### Barplot with SD ----
@@ -471,19 +470,9 @@ penguins %>%
   theme_minimal()
 ```
 
-```{r}
-#### Mean points with SD ----
-penguins %>% 
-  group_by(species) %>% 
-  summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
-            flipper_sd = sd(flipper_length_mm, na.rm = T)) %>% 
-  ggplot() +
-  geom_point(aes(x = species, y = flipper_mean, col = species)) +
-  geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd, ymin = flipper_mean - flipper_sd, col = species), width = 0.5) +
-  scale_colour_manual(values = c('darkorange','purple','cyan4'), guide = 'none') +
-  labs(x = "Penguin species", y = 'Flipper length (mm)') +
-  theme_minimal()
-```
+Barplots aren't great. They tend to hide the underlying distribution of the data, which is what most people are actually interested in. The only time you should use them is when you only have a single value for each variable (i.e. no variability). But even then, there are far more interesting options ([HERE](https://towardsdatascience.com/anything-but-bars-the-10-best-alternatives-to-bar-graphs-fecb2aaee53a) and [HERE](https://www.r-bloggers.com/2017/06/bar-plots-and-modern-alternatives/)). Read more about why to avoid them [HERE](https://paulvanderlaken.com/2018/12/17/avoid-bar-plots-for-continuous-data-do-this-instead/).
+
+We do have variation in our data, so let's look at better alternatives. First, we have the classic box-and-whisker plots. These start to give us a better idea of our distribution:
 
 ```{r}
 #### Boxplot ----
@@ -494,6 +483,8 @@ ggplot(penguins) +
   theme_minimal() 
 ```
 
+We're still not quite there. Histograms are an excellent tool to show us the distribution of our data clearly. In the `geom_histogram()` geom, select `position = 'identity` and `alpha = 0.6` to avoid stacked frequency bars and to make overlaps more obvious:
+
 ```{r}
 #### Histograms ----
 ggplot(penguins) +
@@ -503,6 +494,8 @@ ggplot(penguins) +
   theme_minimal()
 ```
 
+We could also use density plots, which essentially show a smoothed histogram output:
+
 ```{r}
 #### Density ----
 ggplot(penguins) +
@@ -511,6 +504,8 @@ ggplot(penguins) +
   labs(x = 'Flipper length (mm)', y = 'Density') +
   theme_minimal()
 ```
+
+There are several R packages which work together with `ggplot2`. In this example, we use the `geom_density_ridges()` function from the `ggridges` package. This places each density ridge on its own line:
 
 ```{r}
 #### Ridges ----
@@ -545,4 +540,3 @@ ggplot() +
         legend.position = 'top') +
   geom_text_repel(aes(x = 1.5, y = flipper_mean_all, label = 'overall mean'), nudge_x = 0.5, nudge_y = 7.5, segment.curvature = -0.1, size = 3, segment.size = 0.2)
 ```
-

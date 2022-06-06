@@ -23,7 +23,7 @@ ggplot(data = drop_na(penguins), aes(body_mass_g, bill_length_mm, col = species,
   labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
   theme_bw() 
 
-#### Barplot/Points with SD ----
+#### Barplot with SD ----
 penguins %>% 
   group_by(species) %>% 
   summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
@@ -35,11 +35,7 @@ penguins %>%
   labs(x = "Penguin species", y = 'Flipper length (mm)') +
   theme_minimal()
 
-penguins %>% 
-  group_by(species) %>% 
-  summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
-            flipper_sd = sd(flipper_length_mm, na.rm = T)) %>% 
-  ggplot() +
+ggplot() +
   geom_point(aes(x = species, y = flipper_mean, col = species)) +
   geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd, ymin = flipper_mean - flipper_sd, col = species), width = 0.5) +
   scale_colour_manual(values = c('darkorange','purple','cyan4'), guide = 'none') +
