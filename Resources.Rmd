@@ -10,6 +10,10 @@ output:
     theme: paper
 ---
 
+### Access all lecture slides here:
+
+[Google slides](https://drive.google.com/drive/folders/1tj-U-fIvpd65yP8J6OoC0TrBGkAveaLa?usp=sharing)
+
 ### Where to ask questions?
 * The best place to find answers to your R problems is the internet. However, finding the most appropriate answer quickly is also a skill and will improve as your understanding of R grows. 
 * So start with Google. Craft your questions to only have a few key words that may help refine your search. For example: "select columns in R" or "select columns in R dplyr" if you want something `tidyverse` related.
