@@ -1,10 +1,10 @@
 #### Install packages ----
-install.packages('tidyverse')
-install.packages('janitor')
-install.packages('lubridate')
-install.packages('stringr')
-install.packages('patchwork')
-install.packages('palmerpenguins')
+install.packages('tidyverse') # dplyr and ggplot2
+install.packages('janitor') # cleaning names
+install.packages('lubridate') # extracting dates
+install.packages('stringr') # extracting strings
+install.packages('patchwork') # combining plots
+install.packages('palmerpenguins') # the penguin data!
 
 #### Load libraries ----
 library(tidyverse)
@@ -27,6 +27,7 @@ str(penguins)
 #### Wrangle data ----
 # clean the column names
 penguins_clean_1 <- clean_names(penguins_raw)
+names(penguins_clean_1)
 
 # select columns to work on & clean names
 names(penguins_clean_1)

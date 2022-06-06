@@ -1,7 +1,12 @@
 ---
 title: "Data visualisation"
 output:
-  html_document:
+  html_document:    
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 3
     theme: paper
     highlight: tango
 ---
@@ -10,4 +15,394 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-# ggplot2
+# Part 1
+
+In Part 1, we will work on building one good, publication ready figure.
+
+Install the required packages. Each package has a comment next to it with a brief reason why we're using it.
+
+```{r eval=FALSE}
+#### Install packages ----
+install.packages('tidyverse') # dplyr and ggplot2
+install.packages('janitor') # cleaning names
+install.packages('lubridate') # extracting dates
+install.packages('stringr') # extracting strings
+install.packages('patchwork') # combining plots
+install.packages('palmerpenguins') # the penguin data!
+```
+
+Load your libraries:
+
+```{r, message = FALSE, warning=FALSE}
+#### Load libraries ----
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(stringr)
+library(patchwork)
+library(palmerpenguins)
+```
+
+## Explore the data
+
+The penguin package has a great collection of data, in both raw and processed formats. Let's take a look at it:
+
+```{r}
+#### Load data ----
+data(package = 'palmerpenguins')
+```
+
+First let's explore the raw data:
+
+```{r}
+#### Explore data ----
+penguins_raw <- palmerpenguins::penguins_raw
+str(penguins_raw)
+```
+
+Second, take a look at the processed data:
+
+```{r}
+penguins <- palmerpenguins::penguins
+str(penguins)
+```
+
+## Wrangle the data
+
+We will start working on the raw data and process it so that it looks just like the clean.
+
+```{r}
+#### Wrangle data ----
+# clean the column names
+penguins_clean_1 <- clean_names(penguins_raw)
+names(penguins_clean_1)
+```
+
+```{r}
+# select columns to work on & clean names
+names(penguins_clean_1)
+penguins_clean_1 %>% select(species, island, bill_length_mm = culmen_length_mm, bill_depth_mm = culmen_depth_mm, flipper_length_mm, body_mass_g, sex, year = date_egg) -> penguins_clean_2
+```
+
+```{r}
+# select only year from dates
+penguins_clean_2$year <- year(penguins_clean_2$year)
+```
+
+```{r}
+# check that they are the same
+str(penguins)
+str(penguins_clean_2)
+```
+
+```{r}
+# select only first name from species list and convert to factor
+penguins_clean_2$species <- as.factor(word(penguins_clean_2$species, 1))
+```
+
+```{r}
+# change sex to lower case
+penguins_clean_2$sex <- as.factor(tolower((penguins_clean_2$sex)))
+```
+
+```{r}
+# final check
+str(penguins_clean_2)
+penguins <- penguins_clean_2
+```
+
+```{r}
+#### Data visualisation ----
+# correlation plot with all variables
+plot(penguins)
+```
+
+```{r}
+# ggplot
+ggplot()
+```
+
+```{r}
+# chose the data
+ggplot(data = penguins)
+```
+
+```{r}
+# add in mapping aesthetics
+ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm))
+```
+
+```{r}
+# chose a geometry to plot
+ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
+  geom_point()
+```
+
+```{r}
+# add the data and mapping arguments to the geom
+ggplot() +
+  geom_point(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm))
+```
+
+```{r}
+# add in a 3rd variable as colour
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species))
+```
+
+```{r}
+# add in a 3rd variable as colour and shape
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species))
+```
+
+```{r}
+# change the opacity of the points
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8)
+```
+
+```{r}
+# change the colour of the points and the legend name (for both scales)
+# use c('darkorange', 'purple', 'cyan4')
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species')
+```
+
+```{r}
+# change the labels of the x and y axes
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)') 
+```
+
+```{r}
+# change the limits and breaks of the x and y axes
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  scale_x_continuous(limits = c(2500, 6500), breaks = seq(2500,6500,1000)) +
+  scale_y_continuous(limits = c(30,60), breaks = c(30,40,50,60))
+```
+
+```{r}
+# change the default theme
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  theme_minimal() 
+```
+
+```{r}
+# change the legend position
+# ?theme
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  theme_minimal() +
+  theme(legend.position = c(0.8,0.2))
+```
+
+```{r, eval = FALSE}
+#### Save your plot ----
+# using ggsave()
+ggsave("output/figs/peng_mass_bill_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
+```
+
+```{r}
+#### Facets ----
+ggplot(penguins %>% drop_na()) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  theme_bw() +
+  facet_grid(cols = vars(sex))
+```
+
+```{r}
+#### Patchwork ----
+plot1 <- ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)')
+
+plot2 <- ggplot(penguins) +
+  geom_point(aes(body_mass_g, flipper_length_mm, col = species, shape = species), alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  labs(x = 'Body mass (g)', y = 'Flipper length (mm)')
+
+# combine plots (cols and rows)
+plot1 + plot2 # cols
+plot1 / plot2 # rows
+```
+
+```{r}
+combined_plot <- plot1 + plot2 
+combined_plot
+```
+
+```{r}
+# add annotation
+combined_plot + plot_annotation(tag_levels = 'a', tag_suffix = ')')
+```
+
+```{r}
+# control the guides
+combined_plot + plot_layout(guides = 'collect')
+```
+
+```{r}
+# add theme style to all plots
+combined_plot  &
+  theme_minimal() &
+  theme(legend.position = 'bottom')
+```
+
+```{r}
+# bring it all together
+combined_plot + 
+  plot_annotation(tag_levels = 'a', tag_suffix = ')') + 
+  plot_layout(guides = 'collect') &
+  theme_minimal() &
+  theme(legend.position = 'bottom')
+```
+
+# Part 2
+
+In Part 2, we will explore the range of different plots available in `ggplot2`.
+
+```{r, eval=FALSE}
+#### Install packages ----
+install.packages('tidyverse')
+install.packages('palmerpenguins')
+install.packages('ggrepel')
+install.packages('ggridges')
+```
+
+```{r}
+#### Load libraries ----
+library(tidyverse)
+library(palmerpenguins)
+library(ggrepel)
+library(ggridges)
+```
+
+```{r}
+#### Explore data ----
+penguins <- palmerpenguins::penguins
+str(penguins)
+```
+
+```{r}
+#### Line charts ----
+ggplot(data = drop_na(penguins), aes(body_mass_g, bill_length_mm, col = species, shape = species)) +
+  geom_point(alpha = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
+  scale_shape(name = 'Penguin species') +
+  geom_smooth(method = 'lm') +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  theme_bw() 
+```
+
+```{r}
+#### Barplot/Points with SD ----
+penguins %>% 
+  group_by(species) %>% 
+  summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
+            flipper_sd = sd(flipper_length_mm, na.rm = T)) %>% 
+  arrange(flipper_mean) %>%
+  ggplot() +
+  geom_col(aes(x = species, y = flipper_mean),
+           fill = c('darkorange','purple','cyan4')) +
+  geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd, ymin = flipper_mean - flipper_sd), width = 0.5) +
+  labs(x = "Penguin species", y = 'Flipper length (mm)') +
+  theme_minimal()
+```
+
+```{r}
+penguins %>% 
+  group_by(species) %>% 
+  summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
+            flipper_sd = sd(flipper_length_mm, na.rm = T)) %>% 
+  ggplot() +
+  geom_point(aes(x = species, y = flipper_mean, col = species)) +
+  geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd, ymin = flipper_mean - flipper_sd, col = species), width = 0.5) +
+  scale_colour_manual(values = c('darkorange','purple','cyan4'), guide = 'none') +
+  labs(x = "Penguin species", y = 'Flipper length (mm)') +
+  theme_minimal()
+```
+
+```{r}
+#### Boxplot ----
+ggplot(penguins) +
+  geom_boxplot(aes(x = species, y = flipper_length_mm),
+               col = c('darkorange','purple','cyan4')) +
+  labs(x = "Penguin species", y = 'Flipper length (mm)') +
+  theme_minimal() 
+```
+
+```{r}
+#### Histograms ----
+ggplot(penguins) +
+  geom_histogram(aes(x = flipper_length_mm, fill = species), position = 'identity', alpha = 0.6) +
+  scale_fill_manual(values = c('darkorange','purple','cyan4')) +
+  labs(x = 'Flipper length (mm)', y = 'Frequency') +
+  theme_minimal()
+```
+
+```{r}
+#### Density ----
+ggplot(penguins) +
+  geom_density(aes(x = flipper_length_mm, fill = species), col = NA, alpha = 0.6) +
+  scale_fill_manual(values = c('darkorange','purple','cyan4')) +
+  labs(x = 'Flipper length (mm)', y = 'Density') +
+  theme_minimal()
+```
+
+```{r}
+#### Ridges ----
+ggplot(penguins) +
+  geom_density_ridges(aes(x = flipper_length_mm, y = species, fill = species), col = NA, alpha = 0.6) +
+  scale_fill_manual(values = c('darkorange','purple','cyan4')) +
+  labs(x = 'Flipper length (mm)', y = 'Density') +
+  theme_minimal()
+```
+
+```{r}
+#### Lollipop chart ----
+flipper_mean_all <- mean(penguins$flipper_length_mm, na.rm = T)
+
+peng_summary <- penguins %>% 
+  group_by(species) %>% 
+  summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
+            flipper_sd = sd(flipper_length_mm, na.rm = T)) 
+
+ggplot() +
+   geom_segment(data = peng_summary, aes(x = species, xend = species,
+                    y = flipper_mean_all, yend = flipper_mean, col = species)) +
+  geom_point(data = peng_summary, aes(x = species, y = flipper_mean, col = species)) +
+  scale_color_manual(values = c('darkorange','purple','cyan4'), name = 'Penguin species') +
+  geom_hline(aes(yintercept = flipper_mean_all), lty = 2) +
+  labs(x = '', y = 'Mean flipper length (mm)') +
+  coord_flip() +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        legend.position = 'top') +
+  geom_text_repel(aes(x = 1.5, y = flipper_mean_all, label = 'overall mean'), nudge_x = 0.5, nudge_y = 7.5, segment.curvature = -0.1, size = 3, segment.size = 0.2)
+```
+
