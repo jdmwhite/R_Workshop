@@ -12,7 +12,7 @@ output:
 
 ### Additional R resources
 
-* Getting started
+#### Getting started
 
   + [Download R](https://cran.r-project.org/)
   + [Download R Studio](https://www.rstudio.com/products/rstudio/download/#download)
@@ -21,18 +21,18 @@ output:
   + [File naming]()
   + [Script comments]()
 
-* Data wrangling
+#### Data wrangling
 
-* Data visualisation
+#### Data visualisation
 
   + `ggplot2` cheatsheet: https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf
   + graph inspiration: https://r-graph-gallery.com/index.html
   + facets: https://ggplot2.tidyverse.org/reference/facet_grid.html
   + combining plots with `patchwork`: https://patchwork.data-imaginist.com/index.html
 
-* Data analysis
+#### Data analysis
 
-* Github & Rmarkdown
+#### Github & Rmarkdown
 
   + This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
 
