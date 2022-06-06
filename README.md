@@ -1,5 +1,5 @@
-Joseph White & Refilwe Kai
-13th-14th June 2022
+#### Joseph White & Refilwe Kai
+#### 13th-14th June 2022
 
 # R Workshop
 
