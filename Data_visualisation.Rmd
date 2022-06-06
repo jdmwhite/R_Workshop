@@ -71,6 +71,8 @@ str(penguins)
 
 We will start working on the raw data and process it so that it looks just like the clean.
 
+Start by using the `janitor::clean_names()` function to remove any spaces in the column names.
+
 ```{r}
 #### Wrangle data ----
 # clean the column names
@@ -78,16 +80,24 @@ penguins_clean_1 <- clean_names(penguins_raw)
 names(penguins_clean_1)
 ```
 
+We then select the columns that we'd like to work with. In the `dplyr` package, we have previously used the `rename()` function. However, we can use `select()` to both select the columns of interest and rename the columns. 
+
+Here we rename the columns with *culmen* to *bill* and change the *date* column to *year*.
+
 ```{r}
 # select columns to work on & clean names
 names(penguins_clean_1)
 penguins_clean_1 %>% select(species, island, bill_length_mm = culmen_length_mm, bill_depth_mm = culmen_depth_mm, flipper_length_mm, body_mass_g, sex, year = date_egg) -> penguins_clean_2
 ```
 
+The date column was previously stored as string. Let's extract only the year using the `lubridate::year()` function.
+
 ```{r}
 # select only year from dates
 penguins_clean_2$year <- year(penguins_clean_2$year)
 ```
+
+We're getting close to the processed data. Take another look at the data structures:
 
 ```{r}
 # check that they are the same
@@ -95,15 +105,21 @@ str(penguins)
 str(penguins_clean_2)
 ```
 
+To clean the species column, we need to select only the first word from the string. To do this, we use the `stringr::word()` function and specify the 1st word. We also wrap this in the `as.factor()` function to convert the column from character to factor.
+
 ```{r}
 # select only first name from species list and convert to factor
 penguins_clean_2$species <- as.factor(word(penguins_clean_2$species, 1))
 ```
 
+Lastly, let's convert the *sex* column values to lower case using the base R function `tolower()`. Again, convert this to a factor.
+
 ```{r}
 # change sex to lower case
 penguins_clean_2$sex <- as.factor(tolower((penguins_clean_2$sex)))
 ```
+
+And then a final check. Save the cleaned data over the processed data that we loaded in earlier.
 
 ```{r}
 # final check
@@ -111,26 +127,50 @@ str(penguins_clean_2)
 penguins <- penguins_clean_2
 ```
 
+## Data visualisation
+
+Now that our data is cleaned, we can begin plotting. Let's first look at the broad relationships between all of the variables in our data. We can simply use the base R `plot()` to explore all of the correlations in our data.
+
 ```{r}
 #### Data visualisation ----
 # correlation plot with all variables
 plot(penguins)
 ```
 
-```{r}
-# ggplot
-ggplot()
-```
+From this plot, we can see that **body mass** and **bill length** look strongly correlated. Let's use these two variables to build a plot.
+
+In this workshop, we will be using the `ggplot2` package for *most* of our data visualisation. There are several different R and non-R options for plotting data, so why chose `ggplot2`? 
+
+* It is like building lego blocks (each geom is a layer)
+* The syntax is *relatively* simple
+* Easy use of themes & colour palettes
+* Wide adoption (so easy to find similar queries online)
+* Facets! (easily produce several subplots based on a factor)
+* Combine plots seamlessly (there are several packages for this, but we'll explore `patchwork`. Also look up `cowplot` or the `egg` package)
+* `gganimate()`: easily turn your plot into an animation (we don't explore this function here, but take a look at the [great examples!](https://gganimate.com/))
+* `ggplot2` is a part of the `tidyverse` group of R packages. This means that it is well integrated with some of the other packages we have learnt so far, like `dplyr`. 
+
+Ok, those are a few reasons. However, always do what's easiest for youm whether it's using base R functions, excel charts, plotnine/seaborn/matplotlib in Python or whatever else. `ggplot2` is just one of these options and the most important thing is to get the job done.
+
+The primary function we will use is `ggplot()` (don't forget to remove the 2!). The core template used in `ggplot2` graphics requires the `data.frame`, the variables of interest and the type of plot you want. This is the template:
+
+`ggplot(data = DATA, mapping = aes(VARIABLES OF INTEREST)) + geom_()`
+
+Let's get started, by select the dataset we want to work with:
 
 ```{r}
 # chose the data
 ggplot(data = penguins)
 ```
 
+This doesn't show us anything, because we have not yet chosen our variables. We then chose our variables of interest inside our mapping aesthetics. Here we want `body_mass_g` on the x-axis and `bill_length_g` on the y-axis.
+
 ```{r}
 # add in mapping aesthetics
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm))
 ```
+
+Our axis are set up! Let's now fill the plot by choosing a `geom_()` function, short for **geometry**. We will use `geom_point()`, which plots a scatterplot.
 
 ```{r}
 # chose a geometry to plot
@@ -138,11 +178,23 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
   geom_point()
 ```
 
+There's your first `ggplot()`! However, there are several options to start customising it to our liking, so let's explore those. Another option, is the place the `data = ` and `mapping = ` arguments within the `geom_()`. 
+
 ```{r}
 # add the data and mapping arguments to the geom
 ggplot() +
   geom_point(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm))
 ```
+
+We can also do a mix of the two, as shown below. Note that if our arguments are in the correct place, we can also remove the calls to `data = ` and `mapping = `. This helps to shorten and clean up our code:
+
+```{r}
+# keep the data in ggplot() and mapping aesthetics in the geom_
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species))
+```
+
+Let's now add a 3rd variable `species` as the **colour** using `col = `. 
 
 ```{r}
 # add in a 3rd variable as colour
@@ -150,11 +202,15 @@ ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species))
 ```
 
+Notice that `ggplot()` automatically adds in a legend! We can double up, and also change the shape of each point based on the `species` using `shape = `.
+
 ```{r}
 # add in a 3rd variable as colour and shape
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species))
 ```
+
+Note that these two aesthetics are placed within the same mapping aesthetics as the x and the y variables. This is **very important**. If we placed them outside of the `aes()` call, it would not work. Anything outside of the `aes()` call will be applied to all points! See the example below on changing the opacity using `alpha = `. Changing the opacity helps to show points, which may be overlapping with others. 
 
 ```{r}
 # change the opacity of the points

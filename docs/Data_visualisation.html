@@ -524,6 +524,8 @@ processed formats. Let’s take a look at it:</p>
 <h2>Wrangle the data</h2>
 <p>We will start working on the raw data and process it so that it looks
 just like the clean.</p>
+<p>Start by using the <code>janitor::clean_names()</code> function to
+remove any spaces in the column names.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Wrangle data ----</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># clean the column names</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>penguins_clean_1 <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(penguins_raw)</span>
@@ -534,6 +536,13 @@ just like the clean.</p>
 ## [10] &quot;culmen_length_mm&quot;  &quot;culmen_depth_mm&quot;   &quot;flipper_length_mm&quot;
 ## [13] &quot;body_mass_g&quot;       &quot;sex&quot;               &quot;delta_15_n_o_oo&quot;  
 ## [16] &quot;delta_13_c_o_oo&quot;   &quot;comments&quot;</code></pre>
+<p>We then select the columns that we’d like to work with. In the
+<code>dplyr</code> package, we have previously used the
+<code>rename()</code> function. However, we can use
+<code>select()</code> to both select the columns of interest and rename
+the columns.</p>
+<p>Here we rename the columns with <em>culmen</em> to <em>bill</em> and
+change the <em>date</em> column to <em>year</em>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns to work on &amp; clean names</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(penguins_clean_1)</span></code></pre></div>
 <pre><code>##  [1] &quot;study_name&quot;        &quot;sample_number&quot;     &quot;species&quot;          
@@ -543,8 +552,12 @@ just like the clean.</p>
 ## [13] &quot;body_mass_g&quot;       &quot;sex&quot;               &quot;delta_15_n_o_oo&quot;  
 ## [16] &quot;delta_13_c_o_oo&quot;   &quot;comments&quot;</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>penguins_clean_1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(species, island, <span class="at">bill_length_mm =</span> culmen_length_mm, <span class="at">bill_depth_mm =</span> culmen_depth_mm, flipper_length_mm, body_mass_g, sex, <span class="at">year =</span> date_egg) <span class="ot">-&gt;</span> penguins_clean_2</span></code></pre></div>
+<p>The date column was previously stored as string. Let’s extract only
+the year using the <code>lubridate::year()</code> function.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select only year from dates</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>penguins_clean_2<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(penguins_clean_2<span class="sc">$</span>year)</span></code></pre></div>
+<p>We’re getting close to the processed data. Take another look at the
+data structures:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check that they are the same</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins)</span></code></pre></div>
 <pre><code>## tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
@@ -586,10 +599,20 @@ just like the clean.</p>
 ##   ..   `Delta 13 C (o/oo)` = col_double(),
 ##   ..   Comments = col_character()
 ##   .. )</code></pre>
+<p>To clean the species column, we need to select only the first word
+from the string. To do this, we use the <code>stringr::word()</code>
+function and specify the 1st word. We also wrap this in the
+<code>as.factor()</code> function to convert the column from character
+to factor.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select only first name from species list and convert to factor</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>penguins_clean_2<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">word</span>(penguins_clean_2<span class="sc">$</span>species, <span class="dv">1</span>))</span></code></pre></div>
+<p>Lastly, let’s convert the <em>sex</em> column values to lower case
+using the base R function <code>tolower()</code>. Again, convert this to
+a factor.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change sex to lower case</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>penguins_clean_2<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">tolower</span>((penguins_clean_2<span class="sc">$</span>sex)))</span></code></pre></div>
+<p>And then a final check. Save the cleaned data over the processed data
+that we loaded in earlier.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># final check</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins_clean_2)</span></code></pre></div>
 <pre><code>## tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
@@ -622,35 +645,104 @@ just like the clean.</p>
 ##   ..   Comments = col_character()
 ##   .. )</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins_clean_2</span></code></pre></div>
+</div>
+<div id="data-visualisation" class="section level2">
+<h2>Data visualisation</h2>
+<p>Now that our data is cleaned, we can begin plotting. Let’s first look
+at the broad relationships between all of the variables in our data. We
+can simply use the base R <code>plot()</code> to explore all of the
+correlations in our data.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Data visualisation ----</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation plot with all variables</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(penguins)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
+<p>From this plot, we can see that <strong>body mass</strong> and
+<strong>bill length</strong> look strongly correlated. Let’s use these
+two variables to build a plot.</p>
+<p>In this workshop, we will be using the <code>ggplot2</code> package
+for <em>most</em> of our data visualisation. There are several different
+R and non-R options for plotting data, so why chose
+<code>ggplot2</code>?</p>
+<ul>
+<li>It is like building lego blocks (each geom is a layer)</li>
+<li>The syntax is <em>relatively</em> simple</li>
+<li>Easy use of themes &amp; colour palettes</li>
+<li>Wide adoption (so easy to find similar queries online)</li>
+<li>Facets! (easily produce several subplots based on a factor)</li>
+<li>Combine plots seamlessly (there are several packages for this, but
+we’ll explore <code>patchwork</code>. Also look up <code>cowplot</code>
+or the <code>egg</code> package)</li>
+<li><code>gganimate()</code>: easily turn your plot into an animation
+(we don’t explore this function here, but take a look at the <a
+href="https://gganimate.com/">great examples!</a>)</li>
+<li><code>ggplot2</code> is a part of the <code>tidyverse</code> group
+of R packages. This means that it is well integrated with some of the
+other packages we have learnt so far, like <code>dplyr</code>.</li>
+</ul>
+<p>Ok, those are a few reasons. However, always do what’s easiest for
+youm whether it’s using base R functions, excel charts,
+plotnine/seaborn/matplotlib in Python or whatever else.
+<code>ggplot2</code> is just one of these options and the most important
+thing is to get the job done.</p>
+<p>The primary function we will use is <code>ggplot()</code> (don’t
+forget to remove the 2!). The core template used in <code>ggplot2</code>
+graphics requires the <code>data.frame</code>, the variables of interest
+and the type of plot you want. This is the template:</p>
+<p><code>ggplot(data = DATA, mapping = aes(VARIABLES OF INTEREST)) + geom_()</code></p>
+<p>Let’s get started, by select the dataset we want to work with:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chose the data</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chose the data</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins)</span></code></pre></div>
+<p>This doesn’t show us anything, because we have not yet chosen our
+variables. We then chose our variables of interest inside our mapping
+aesthetics. Here we want <code>body_mass_g</code> on the x-axis and
+<code>bill_length_g</code> on the y-axis.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in mapping aesthetics</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in mapping aesthetics</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm))</span></code></pre></div>
+<p>Our axis are set up! Let’s now fill the plot by choosing a
+<code>geom_()</code> function, short for <strong>geometry</strong>. We
+will use <code>geom_point()</code>, which plots a scatterplot.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chose a geometry to plot</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chose a geometry to plot</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p>There’s your first <code>ggplot()</code>! However, there are several
+options to start customising it to our liking, so let’s explore those.
+Another option, is the place the <code>data =</code> and
+<code>mapping =</code> arguments within the <code>geom_()</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the data and mapping arguments to the geom</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the data and mapping arguments to the geom</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm))</span></code></pre></div>
+<p>We can also do a mix of the two, as shown below. Note that if our
+arguments are in the correct place, we can also remove the calls to
+<code>data =</code> and <code>mapping =</code>. This helps to shorten
+and clean up our code:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep the data in ggplot() and mapping aesthetics in the geom_</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Let’s now add a 3rd variable <code>species</code> as the
+<strong>colour</strong> using <code>col =</code>.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in a 3rd variable as colour</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Notice that <code>ggplot()</code> automatically adds in a legend! We
+can double up, and also change the shape of each point based on the
+<code>species</code> using <code>shape =</code>.</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in a 3rd variable as colour and shape</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Note that these two aesthetics are placed within the same mapping
+aesthetics as the x and the y variables. This is <strong>very
+important</strong>. If we placed them outside of the <code>aes()</code>
+call, it would not work. Anything outside of the <code>aes()</code> call
+will be applied to all points! See the example below on changing the
+opacity using <code>alpha =</code>. Changing the opacity helps to show
+points, which may be overlapping with others.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the opacity of the points</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code></pre></div>
