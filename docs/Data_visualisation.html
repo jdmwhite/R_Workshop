@@ -689,6 +689,8 @@ forget to remove the 2!). The core template used in <code>ggplot2</code>
 graphics requires the <code>data.frame</code>, the variables of interest
 and the type of plot you want. This is the template:</p>
 <p><code>ggplot(data = DATA, mapping = aes(VARIABLES OF INTEREST)) + geom_()</code></p>
+<p>Find the <code>ggplot2</code> cheatsheet <a
+href="https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf">HERE</a>.</p>
 <p>Let’s get started, by select the dataset we want to work with:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chose the data</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins)</span></code></pre></div>
@@ -700,6 +702,8 @@ aesthetics. Here we want <code>body_mass_g</code> on the x-axis and
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in mapping aesthetics</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> bill_length_mm))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div id="basic-plot" class="section level3">
+<h3>Basic plot</h3>
 <p>Our axis are set up! Let’s now fill the plot by choosing a
 <code>geom_()</code> function, short for <strong>geometry</strong>. We
 will use <code>geom_point()</code>, which plots a scatterplot.</p>
@@ -721,14 +725,20 @@ arguments are in the correct place, we can also remove the calls to
 and clean up our code:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep the data in ggplot() and mapping aesthetics in the geom_</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species))</span></code></pre></div>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<div id="add-in-colour" class="section level3">
+<h3>Add in colour</h3>
 <p>Let’s now add a 3rd variable <code>species</code> as the
 <strong>colour</strong> using <code>col =</code>.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add in a 3rd variable as colour</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="add-in-shape" class="section level3">
+<h3>Add in shape</h3>
 <p>Notice that <code>ggplot()</code> automatically adds in a legend! We
 can double up, and also change the shape of each point based on the
 <code>species</code> using <code>shape =</code>.</p>
@@ -736,6 +746,9 @@ can double up, and also change the shape of each point based on the
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="change-opacity" class="section level3">
+<h3>Change opacity</h3>
 <p>Note that these two aesthetics are placed within the same mapping
 aesthetics as the x and the y variables. This is <strong>very
 important</strong>. If we placed them outside of the <code>aes()</code>
@@ -747,98 +760,163 @@ points, which may be overlapping with others.</p>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="change-the-colours" class="section level3">
+<h3>Change the colours</h3>
+<p>Let’s further customise our plot by changing the default colours to
+those we would like to use. To select colours, we can specify colour
+names (e.g. ‘blue’) or use a hex colour code. See a list of the colour
+names found in R <a
+href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">HERE</a>.
+There are several useful tools to select hex colour codes, <a
+href="https://htmlcolorcodes.com/">HERE</a> is one example.</p>
+<p>To change the colours we use the <code>scale_</code> functions.
+Importantly, <code>scale_</code> can be used for many purposes,
+including changing axes limits or breaks or transforming your axes. We
+will use it to change the shape and colours of our plots.</p>
+<p>If you are using the <code>col =</code> in your <code>geom_</code>,
+then we need to use <code>scale_colour_</code> in our
+<code>scale_</code> function. The same applies to <code>shape =</code>
+and <code>fill =</code> (which we will use later…). The last part of our
+<code>scale_colour</code> function is to chose whether it’s a
+<em>discrete</em> or <em>continuous</em> variable. In our case, we have
+a discrete variable, but instead of using
+<code>scale_colour_discrete()</code>, we will use
+<code>scale_colour_manual()</code>, so that we can manually select our
+colour values.</p>
+<p>We also use the <code>labs()</code> function to change the legend
+title. If we only do this for colour, then the shape aesthetic will
+still use the original title and the <code>ggplot()</code> will plot two
+separate legends. We don’t want this, so we specify both titles, which
+then combines our legends together:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the colour of the points and the legend name (for both scales)</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># use c(&#39;darkorange&#39;, &#39;purple&#39;, &#39;cyan4&#39;)</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>)</span></code></pre></div>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="change-the-labels" class="section level3">
+<h3>Change the labels</h3>
+<p>In our <code>labs()</code> function, we can also add in our x- and
+y-axes labels:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the labels of the x and y axes</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>) </span></code></pre></div>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>) </span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="change-the-axes" class="section level3">
+<h3>Change the axes</h3>
+<p>As mentioned before, <code>scale_</code> can also be used to change
+our axes limits and breaks. If you have a discrete x-axis, you would use
+<code>scale_x_discrete()</code>, but in this case both of our axes are
+continuous, so we use <code>scale_x_continuous()</code>. Here is an
+example, which changes our limits using lower- and upper-bounds
+(i.e. the zoom-level) and our breaks (i.e. what tick marks would you
+like).</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the limits and breaks of the x and y axes</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>,<span class="dv">6500</span>,<span class="dv">1000</span>)) <span class="sc">+</span></span>
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">60</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="themes" class="section level3">
+<h3>Themes</h3>
+<p>One of my favourite features of <code>ggplot2</code>, is the easily
+editable themes. There are several built-in themes, which can quickly
+convert your plots into clean designs. All themes can be use with the
+basic call to <code>theme_</code>. Here will use the minimal theme
+<code>theme_minimal()</code>.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the default theme</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+<div id="legend-position" class="section level3">
+<h3>Legend position</h3>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the legend position</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?theme</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>,</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Save your plot ----</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using ggsave()</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;output/figs/peng_mass_bill_length.png&quot;</span>, <span class="at">device =</span> <span class="st">&#39;png&#39;</span>, <span class="at">bg =</span> <span class="st">&#39;white&#39;</span>, <span class="at">width =</span> <span class="dv">120</span>, <span class="at">height =</span> <span class="dv">80</span>, <span class="at">units =</span> <span class="st">&#39;mm&#39;</span>, <span class="at">dpi =</span> <span class="dv">320</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Facets ----</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()) <span class="sc">+</span></span>
+</div>
+<div id="facets" class="section level3">
+<h3>Facets</h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Facets ----</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(sex))</span></code></pre></div>
+<p><img src="Data_visualisation_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="combine-plots" class="section level3">
+<h3>Combine plots</h3>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Patchwork ----</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(sex))</span></code></pre></div>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>) </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, flipper_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Flipper length (mm)&#39;</span>,</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">colour =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;Penguin species&#39;</span>) </span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co"># combine plots (cols and rows)</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2 <span class="co"># cols</span></span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Patchwork ----</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, flipper_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>),<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Flipper length (mm)&#39;</span>)</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co"># combine plots (cols and rows)</span></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">+</span> plot2 <span class="co"># cols</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">/</span> plot2 <span class="co"># rows</span></span></code></pre></div>
+<p><img src="Data_visualisation_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> plot1 <span class="sc">+</span> plot2 </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>combined_plot</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">/</span> plot2 <span class="co"># rows</span></span></code></pre></div>
-<p><img src="Data_visualisation_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> plot1 <span class="sc">+</span> plot2 </span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>combined_plot</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add annotation</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;a&#39;</span>, <span class="at">tag_suffix =</span> <span class="st">&#39;)&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add annotation</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;a&#39;</span>, <span class="at">tag_suffix =</span> <span class="st">&#39;)&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># control the guides</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># control the guides</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add theme style to all plots</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>combined_plot  <span class="sc">&amp;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">&amp;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add theme style to all plots</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>combined_plot  <span class="sc">&amp;</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">&amp;</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bring it all together</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;a&#39;</span>, <span class="at">tag_suffix =</span> <span class="st">&#39;)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>) <span class="sc">&amp;</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">&amp;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bring it all together</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> </span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;a&#39;</span>, <span class="at">tag_suffix =</span> <span class="st">&#39;)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>) <span class="sc">&amp;</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">&amp;</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
-<p><img src="Data_visualisation_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+</div>
+</div>
+<div id="save-your-ggplot" class="section level2">
+<h2>Save your ggplot</h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Save your plot ----</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using ggsave()</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;output/figs/peng_mass_bill_length.png&quot;</span>, <span class="at">device =</span> <span class="st">&#39;png&#39;</span>, <span class="at">bg =</span> <span class="st">&#39;white&#39;</span>, <span class="at">width =</span> <span class="dv">120</span>, <span class="at">height =</span> <span class="dv">80</span>, <span class="at">units =</span> <span class="st">&#39;mm&#39;</span>, <span class="at">dpi =</span> <span class="dv">320</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="part-2" class="section level1">

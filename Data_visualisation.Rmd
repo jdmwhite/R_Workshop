@@ -156,6 +156,8 @@ The primary function we will use is `ggplot()` (don't forget to remove the 2!). 
 
 `ggplot(data = DATA, mapping = aes(VARIABLES OF INTEREST)) + geom_()`
 
+Find the `ggplot2` cheatsheet [HERE](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf).
+
 Let's get started, by select the dataset we want to work with:
 
 ```{r}
@@ -169,6 +171,8 @@ This doesn't show us anything, because we have not yet chosen our variables. We 
 # add in mapping aesthetics
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm))
 ```
+
+### Basic plot
 
 Our axis are set up! Let's now fill the plot by choosing a `geom_()` function, short for **geometry**. We will use `geom_point()`, which plots a scatterplot.
 
@@ -191,8 +195,10 @@ We can also do a mix of the two, as shown below. Note that if our arguments are 
 ```{r}
 # keep the data in ggplot() and mapping aesthetics in the geom_
 ggplot(penguins) +
-  geom_point(aes(body_mass_g, bill_length_mm, col = species))
+  geom_point(aes(body_mass_g, bill_length_mm))
 ```
+
+### Add in colour
 
 Let's now add a 3rd variable `species` as the **colour** using `col = `. 
 
@@ -202,6 +208,8 @@ ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species))
 ```
 
+### Add in shape
+
 Notice that `ggplot()` automatically adds in a legend! We can double up, and also change the shape of each point based on the `species` using `shape = `.
 
 ```{r}
@@ -209,6 +217,8 @@ Notice that `ggplot()` automatically adds in a legend! We can double up, and als
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species))
 ```
+
+### Change opacity
 
 Note that these two aesthetics are placed within the same mapping aesthetics as the x and the y variables. This is **very important**. If we placed them outside of the `aes()` call, it would not work. Anything outside of the `aes()` call will be applied to all points! See the example below on changing the opacity using `alpha = `. Changing the opacity helps to show points, which may be overlapping with others. 
 
@@ -218,87 +228,109 @@ ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8)
 ```
 
+### Change the colours
+
+Let's further customise our plot by changing the default colours to those we would like to use. To select colours, we can specify colour names (e.g. 'blue') or use a hex colour code. See a list of the colour names found in R [HERE](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf). There are several useful tools to select hex colour codes, [HERE](https://htmlcolorcodes.com/) is one example.
+
+To change the colours we use the `scale_` functions. Importantly, `scale_` can be used for many purposes, including changing axes limits or breaks or transforming your axes. We will use it to change the shape and colours of our plots.
+
+If you are using the `col =` in your `geom_`, then we need to use `scale_colour_` in our `scale_` function. The same applies to `shape = ` and `fill = ` (which we will use later...). The last part of our `scale_colour` function is to chose whether it's a *discrete* or *continuous* variable. In our case, we have a discrete variable, but instead of using `scale_colour_discrete()`, we will use `scale_colour_manual()`, so that we can manually select our colour values.
+
+We also use the `labs()` function to change the legend title. If we only do this for colour, then the shape aesthetic will still use the original title and the `ggplot()` will plot two separate legends. We don't want this, so we specify both titles, which then combines our legends together:
+
 ```{r}
 # change the colour of the points and the legend name (for both scales)
 # use c('darkorange', 'purple', 'cyan4')
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species')
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(colour = 'Penguin species', shape = 'Penguin species')
 ```
+
+### Change the labels
+
+In our `labs()` function, we can also add in our x- and y-axes labels:
 
 ```{r}
 # change the labels of the x and y axes
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') 
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') 
 ```
+
+### Change the axes
+
+As mentioned before, `scale_` can also be used to change our axes limits and breaks. If you have a discrete x-axis, you would use `scale_x_discrete()`, but in this case both of our axes are continuous, so we use `scale_x_continuous()`. Here is an example, which changes our limits using lower- and upper-bounds (i.e. the zoom-level) and our breaks (i.e. what tick marks would you like).
 
 ```{r}
 # change the limits and breaks of the x and y axes
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') +
   scale_x_continuous(limits = c(2500, 6500), breaks = seq(2500,6500,1000)) +
   scale_y_continuous(limits = c(30,60), breaks = c(30,40,50,60))
 ```
+
+### Themes
+
+One of my favourite features of `ggplot2`, is the easily editable themes. There are several built-in themes, which can quickly convert your plots into clean designs. All themes can be use with the basic call to `theme_`. Here will use the minimal theme `theme_minimal()`.
 
 ```{r}
 # change the default theme
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') +
   theme_minimal() 
 ```
+
+### Legend position
 
 ```{r}
 # change the legend position
 # ?theme
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') +
   theme_minimal() +
   theme(legend.position = c(0.8,0.2))
 ```
 
-```{r, eval = FALSE}
-#### Save your plot ----
-# using ggsave()
-ggsave("output/figs/peng_mass_bill_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
-```
+### Facets
 
 ```{r}
 #### Facets ----
 ggplot(penguins %>% drop_na()) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') +
   theme_bw() +
   facet_grid(cols = vars(sex))
 ```
+
+### Combine plots
 
 ```{r}
 #### Patchwork ----
 plot1 <- ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)')
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') 
 
 plot2 <- ggplot(penguins) +
   geom_point(aes(body_mass_g, flipper_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Flipper length (mm)')
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Flipper length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') 
 
 # combine plots (cols and rows)
 plot1 + plot2 # cols
@@ -335,6 +367,15 @@ combined_plot +
   theme_minimal() &
   theme(legend.position = 'bottom')
 ```
+
+## Save your ggplot
+
+```{r, eval = FALSE}
+#### Save your plot ----
+# using ggsave()
+ggsave("output/figs/peng_mass_bill_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
+```
+
 
 # Part 2
 

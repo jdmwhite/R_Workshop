@@ -87,68 +87,61 @@ ggplot(penguins) +
 # use c('darkorange', 'purple', 'cyan4')
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species')
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(colour = 'Penguin species', shape = 'Penguin species')
 
 # change the labels of the x and y axes
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') 
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') 
 
 # change the limits and breaks of the x and y axes
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') +
   scale_x_continuous(limits = c(2500, 6500), breaks = seq(2500,6500,1000)) +
   scale_y_continuous(limits = c(30,60), breaks = c(30,40,50,60))
 
 # change the default theme
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
-  theme_minimal() 
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') +  theme_minimal() 
 
 # change the legend position
 # ?theme
 ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
-  theme_minimal() +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') + theme_minimal() +
   theme(legend.position = c(0.8,0.2))
-
-#### Save your plot ----
-# using ggsave()
-ggsave("output/figs/peng_mass_bill_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
 
 #### Facets ----
 ggplot(penguins %>% drop_na()) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
-  theme_bw() +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') +  theme_bw() +
   facet_grid(cols = vars(sex))
 
 #### Patchwork ----
 plot1 <- ggplot(penguins) +
   geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Bill length (mm)')
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species') 
 
 plot2 <- ggplot(penguins) +
   geom_point(aes(body_mass_g, flipper_length_mm, col = species, shape = species), alpha = 0.8) +
-  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'),name = 'Penguin species') +
-  scale_shape(name = 'Penguin species') +
-  labs(x = 'Body mass (g)', y = 'Flipper length (mm)')
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Flipper length (mm)',
+       colour = 'Penguin species', shape = 'Penguin species')  
 
 # combine plots (cols and rows)
 combined_plot <- plot1 + plot2
@@ -172,3 +165,6 @@ combined_plot +
   theme_minimal() &
   theme(legend.position = 'bottom')
 
+#### Save your plot ----
+# using ggsave()
+ggsave("output/figs/peng_mass_bill_flipper_length_by.png", device = 'png', bg = 'white', width = 180, height = 80, units = 'mm', dpi = 320)
