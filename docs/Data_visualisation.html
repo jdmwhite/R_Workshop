@@ -33,6 +33,10 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/clipboard-2.0.6/clipboard.min.js"></script>
+<link href="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+<script src="site_libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+<script>window.xaringanExtraClipboard(null, {"button":"Copy Code","success":"Copied!","error":"Press Ctrl+C to Copy"})</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -1003,12 +1007,14 @@ challenge on Twitter</a> are good places to look for inspiration.</p>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>) <span class="co"># for dplyr and ggplot2</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;palmerpenguins&#39;</span>) <span class="co"># our penguin data!</span></span>
 <span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;ggrepel&#39;</span>) <span class="co"># for repelled text labels</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;ggridges&#39;</span>) <span class="co"># for interesting density plots</span></span></code></pre></div>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;ggridges&#39;</span>) <span class="co"># for interesting density plots</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;ggdist&#39;</span>) <span class="co"># for more detailed distribution plots</span></span></code></pre></div>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load libraries ----</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span></code></pre></div>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist)</span></code></pre></div>
 <p>We will use the pre-processed penguin data this time:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Explore data ----</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
@@ -1022,6 +1028,8 @@ challenge on Twitter</a> are good places to look for inspiration.</p>
 ##  $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
 ##  $ sex              : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 1 NA 1 2 1 2 NA NA ...
 ##  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
+<div id="line-charts" class="section level2">
+<h2>Line charts</h2>
 <p>Using the same plot as before, let’s now add linear trendlines to
 each of our species. Notice that we have used the function
 <code>drop_na()</code> to remove any <code>NA</code> values in our
@@ -1038,6 +1046,9 @@ species. To change this, we select <code>method = 'lm'</code>:</p>
 <span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Body mass (g)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Bill length (mm)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+</div>
+<div id="barplots" class="section level2">
+<h2>Barplots</h2>
 <p>A plot type you’ll all be familiar with is a barplot. A barplot
 requires summarised data. So let’s do some quick data manipulation.
 First, <code>group_by(species)</code> and then summarise
@@ -1075,6 +1086,9 @@ and <a
 href="https://www.r-bloggers.com/2017/06/bar-plots-and-modern-alternatives/">HERE</a>).
 Read more about why to avoid them <a
 href="https://paulvanderlaken.com/2018/12/17/avoid-bar-plots-for-continuous-data-do-this-instead/">HERE</a>.</p>
+</div>
+<div id="boxplots" class="section level2">
+<h2>Boxplots</h2>
 <p>We do have variation in our data, so let’s look at better
 alternatives. First, we have the classic box-and-whisker plots. These
 start to give us a better idea of our distribution:</p>
@@ -1085,6 +1099,9 @@ start to give us a better idea of our distribution:</p>
 <span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Penguin species&quot;</span>, <span class="at">y =</span> <span class="st">&#39;Flipper length (mm)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+</div>
+<div id="histograms" class="section level2">
+<h2>Histograms</h2>
 <p>We’re still not quite there. Histograms are an excellent tool to show
 us the distribution of our data clearly. In the
 <code>geom_histogram()</code> geom, select
@@ -1097,6 +1114,9 @@ stacked frequency bars and to make overlaps more obvious:</p>
 <span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Flipper length (mm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Frequency&#39;</span>) <span class="sc">+</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+<div id="density-plots" class="section level2">
+<h2>Density plots</h2>
 <p>We could also use density plots, which essentially show a smoothed
 histogram output:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Density ----</span></span>
@@ -1106,6 +1126,9 @@ histogram output:</p>
 <span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Flipper length (mm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Density&#39;</span>) <span class="sc">+</span></span>
 <span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+</div>
+<div id="ridge-plots" class="section level2">
+<h2>Ridge plots</h2>
 <p>There are several R packages which work together with
 <code>ggplot2</code>. In this example, we use the
 <code>geom_density_ridges()</code> function from the
@@ -1118,29 +1141,57 @@ line:</p>
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Flipper length (mm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Density&#39;</span>) <span class="sc">+</span></span>
 <span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Lollipop chart ----</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>flipper_mean_all <span class="ot">&lt;-</span> <span class="fu">mean</span>(penguins<span class="sc">$</span>flipper_length_mm, <span class="at">na.rm =</span> T)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>peng_summary <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">flipper_mean =</span> <span class="fu">mean</span>(flipper_length_mm, <span class="at">na.rm =</span> T),</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">flipper_sd =</span> <span class="fu">sd</span>(flipper_length_mm, <span class="at">na.rm =</span> T)) </span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_segment</span>(<span class="at">data =</span> peng_summary, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">xend =</span> species,</span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> flipper_mean_all, <span class="at">yend =</span> flipper_mean, <span class="at">col =</span> species)) <span class="sc">+</span></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> peng_summary, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> flipper_mean, <span class="at">col =</span> species)) <span class="sc">+</span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>,<span class="st">&#39;purple&#39;</span>,<span class="st">&#39;cyan4&#39;</span>), <span class="at">name =</span> <span class="st">&#39;Penguin species&#39;</span>) <span class="sc">+</span></span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> flipper_mean_all), <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Mean flipper length (mm)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&#39;top&#39;</span>) <span class="sc">+</span></span>
-<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> flipper_mean_all, <span class="at">label =</span> <span class="st">&#39;overall mean&#39;</span>), <span class="at">nudge_x =</span> <span class="fl">0.5</span>, <span class="at">nudge_y =</span> <span class="fl">7.5</span>, <span class="at">segment.curvature =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">segment.size =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+</div>
+<div id="more-detailed-distribution-plots" class="section level2">
+<h2>More detailed distribution plots</h2>
+<p>In the best case scenario, we can provide the viewer with both the
+summarised data (e.g. median, mean, SD, etc.) and the raw distribution
+of the data. Here is an example of a plot which shows all of this
+together, while still staying <em>kind of</em> neat. It is not always
+required, but it can show you the power of <code>ggplot()</code> and its
+adjacent packages to create data visualisations.</p>
+<p>Here we plot the median, 50 and 95% confidence intervals, a density
+distribution and the raw points all together.</p>
+<p>As a bonus we can also add on labels using the <code>ggrepel</code>
+package. In this case we are using the text labels to describe the plot,
+but they can be extremely valuable when you want to draw the viewer’s
+eye to a particular part of your plot.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Extreme distribution plots ----</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&#39;Chinstrap&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(flipper_length_mm) <span class="sc">%&gt;%</span> <span class="fu">median_qi</span>(<span class="at">na.rm =</span> T)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 6
+##   flipper_length_mm .lower .upper .width .point .interval
+##               &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    
+## 1               196    181    210   0.95 median qi</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_halfeye</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(species, flipper_length_mm, <span class="at">fill =</span> species, <span class="at">col =</span> species), <span class="at">point_interval =</span> <span class="st">&#39;median_qi&#39;</span>, <span class="at">side =</span> <span class="st">&#39;left&#39;</span>, <span class="at">scale =</span> <span class="fl">0.5</span>, <span class="at">adjust =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_dots</span>(<span class="at">data =</span> penguins, <span class="fu">aes</span>(species, flipper_length_mm, <span class="at">fill =</span> species, <span class="at">col =</span> species), <span class="at">scale =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colorspace<span class="sc">::</span><span class="fu">lighten</span>(<span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>), <span class="fl">0.75</span>), <span class="at">guide =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&#39;darkorange&#39;</span>, <span class="st">&#39;purple&#39;</span>, <span class="st">&#39;cyan4&#39;</span>), <span class="at">guide =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Penguin species&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Flipper length (mm)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">0.8</span>, <span class="at">y =</span> <span class="dv">196</span>, <span class="at">label =</span> <span class="st">&#39;density&#39;</span>),</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nudge_y =</span> <span class="dv">22</span>, <span class="at">nudge_x =</span> <span class="sc">-</span><span class="fl">0.2</span>, </span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.curvature =</span> <span class="fl">0.1</span>,</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.size =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> <span class="dv">190</span>, <span class="at">label =</span> <span class="st">&#39;points&#39;</span>),</span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nudge_y =</span> <span class="dv">30</span>, <span class="at">nudge_x =</span> <span class="fl">0.2</span>, </span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.curvature =</span> <span class="sc">-</span><span class="fl">0.1</span>,</span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.size =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">186</span>, <span class="at">label =</span> <span class="st">&#39;95% interval&#39;</span>),</span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">nudge_x =</span> <span class="fl">0.75</span>, </span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.curvature =</span> <span class="fl">0.2</span>,</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.size =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">196</span>, <span class="at">label =</span> <span class="st">&#39;median&#39;</span>),</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">3</span>, <span class="at">nudge_x =</span> <span class="fl">0.95</span>, </span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.curvature =</span> <span class="fl">0.2</span>,</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.size =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">220</span>, <span class="at">label =</span> <span class="st">&#39;50% interval&#39;</span>),</span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nudge_y =</span> <span class="fl">7.5</span>, <span class="at">nudge_x =</span> <span class="sc">-</span><span class="fl">0.75</span>, </span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.curvature =</span> <span class="fl">0.2</span>,</span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a>                  <span class="at">segment.size =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+</div>
 </div>
 
 

@@ -15,6 +15,10 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
+```{r xaringanExtra-clipboard, echo=FALSE}
+xaringanExtra::use_clipboard()
+```
+
 # Part 1: Building a ggplot()
 
 In Part 1, we will work on building one good, publication ready figure.
@@ -421,6 +425,7 @@ install.packages('tidyverse') # for dplyr and ggplot2
 install.packages('palmerpenguins') # our penguin data!
 install.packages('ggrepel') # for repelled text labels
 install.packages('ggridges') # for interesting density plots
+install.packages('ggdist') # for more detailed distribution plots
 ```
 
 ```{r}
@@ -429,6 +434,7 @@ library(tidyverse)
 library(palmerpenguins)
 library(ggrepel)
 library(ggridges)
+library(ggdist)
 ```
 
 We will use the pre-processed penguin data this time:
@@ -438,6 +444,8 @@ We will use the pre-processed penguin data this time:
 penguins <- palmerpenguins::penguins
 str(penguins)
 ```
+
+## Line charts
 
 Using the same plot as before, let's now add linear trendlines to each of our species. Notice that we have used the function `drop_na()` to remove any `NA` values in our penguin data. To add our trendlines, we use `geom_smooth()`. The default `method =` for `geom_smooth()` is `loess`, which provides a smoothed loess curve to each species. To change this, we select `method = 'lm'`:
 
@@ -451,6 +459,8 @@ ggplot(data = drop_na(penguins), aes(body_mass_g, bill_length_mm, col = species,
   labs(x = 'Body mass (g)', y = 'Bill length (mm)') +
   theme_bw() 
 ```
+
+## Barplots
 
 A plot type you'll all be familiar with is a barplot. A barplot requires summarised data. So let's do some quick data manipulation. First, `group_by(species)` and then summarise **flipper_length_mm** by `mean()` and `sd()`. Notice we use `na.rm = TRUE` to remove the 2 rows with missing data.
 
@@ -472,6 +482,8 @@ penguins %>%
 
 Barplots aren't great. They tend to hide the underlying distribution of the data, which is what most people are actually interested in. The only time you should use them is when you only have a single value for each variable (i.e. no variability). But even then, there are far more interesting options ([HERE](https://towardsdatascience.com/anything-but-bars-the-10-best-alternatives-to-bar-graphs-fecb2aaee53a) and [HERE](https://www.r-bloggers.com/2017/06/bar-plots-and-modern-alternatives/)). Read more about why to avoid them [HERE](https://paulvanderlaken.com/2018/12/17/avoid-bar-plots-for-continuous-data-do-this-instead/).
 
+## Boxplots
+
 We do have variation in our data, so let's look at better alternatives. First, we have the classic box-and-whisker plots. These start to give us a better idea of our distribution:
 
 ```{r}
@@ -482,6 +494,8 @@ ggplot(penguins) +
   labs(x = "Penguin species", y = 'Flipper length (mm)') +
   theme_minimal() 
 ```
+
+## Histograms
 
 We're still not quite there. Histograms are an excellent tool to show us the distribution of our data clearly. In the `geom_histogram()` geom, select `position = 'identity` and `alpha = 0.6` to avoid stacked frequency bars and to make overlaps more obvious:
 
@@ -494,6 +508,8 @@ ggplot(penguins) +
   theme_minimal()
 ```
 
+## Density plots
+
 We could also use density plots, which essentially show a smoothed histogram output:
 
 ```{r}
@@ -504,6 +520,8 @@ ggplot(penguins) +
   labs(x = 'Flipper length (mm)', y = 'Density') +
   theme_minimal()
 ```
+
+## Ridge plots
 
 There are several R packages which work together with `ggplot2`. In this example, we use the `geom_density_ridges()` function from the `ggridges` package. This places each density ridge on its own line:
 
@@ -516,27 +534,44 @@ ggplot(penguins) +
   theme_minimal()
 ```
 
-```{r}
-#### Lollipop chart ----
-flipper_mean_all <- mean(penguins$flipper_length_mm, na.rm = T)
+## More detailed distribution plots
 
-peng_summary <- penguins %>% 
-  group_by(species) %>% 
-  summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
-            flipper_sd = sd(flipper_length_mm, na.rm = T)) 
+In the best case scenario, we can provide the viewer with both the summarised data (e.g. median, mean, SD, etc.) and the raw distribution of the data. Here is an example of a plot which shows all of this together, while still staying *kind of* neat. It is not always required, but it can show you the power of `ggplot()` and its adjacent packages to create data visualisations. 
+
+Here we plot the median, 50 and 95% confidence intervals, a density distribution and the raw points all together. 
+
+As a bonus we can also add on labels using the `ggrepel` package. In this case we are using the text labels to describe the plot, but they can be extremely valuable when you want to draw the viewer's eye to a particular part of your plot. 
+
+```{r}
+#### Extreme distribution plots ----
+penguins %>% filter(species == 'Chinstrap') %>% select(flipper_length_mm) %>% median_qi(na.rm = T)
 
 ggplot() +
-   geom_segment(data = peng_summary, aes(x = species, xend = species,
-                    y = flipper_mean_all, yend = flipper_mean, col = species)) +
-  geom_point(data = peng_summary, aes(x = species, y = flipper_mean, col = species)) +
-  scale_color_manual(values = c('darkorange','purple','cyan4'), name = 'Penguin species') +
-  geom_hline(aes(yintercept = flipper_mean_all), lty = 2) +
-  labs(x = '', y = 'Mean flipper length (mm)') +
-  coord_flip() +
+  stat_halfeye(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), point_interval = 'median_qi', side = 'left', scale = 0.5, adjust = 0.75) +
+  stat_dots(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), scale = 0.5) +
+  scale_fill_manual(values = colorspace::lighten(c('darkorange', 'purple', 'cyan4'), 0.75), guide = 'none') +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'), guide = 'none') +
+  labs(x = 'Penguin species', y = 'Flipper length (mm)') +
   theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        legend.position = 'top') +
-  geom_text_repel(aes(x = 1.5, y = flipper_mean_all, label = 'overall mean'), nudge_x = 0.5, nudge_y = 7.5, segment.curvature = -0.1, size = 3, segment.size = 0.2)
+  theme(panel.grid = element_blank()) +
+  geom_text_repel(aes(x = 0.8, y = 196, label = 'density'),
+                  nudge_y = 22, nudge_x = -0.2, 
+                  segment.curvature = 0.1,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 1.2, y = 190, label = 'points'),
+                  nudge_y = 30, nudge_x = 0.2, 
+                  segment.curvature = -0.1,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 2, y = 186, label = '95% interval'),
+                  nudge_y = -5, nudge_x = 0.75, 
+                  segment.curvature = 0.2,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 2, y = 196, label = 'median'),
+                  nudge_y = -3, nudge_x = 0.95, 
+                  segment.curvature = 0.2,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 3, y = 220, label = '50% interval'),
+                  nudge_y = 7.5, nudge_x = -0.75, 
+                  segment.curvature = 0.2,
+                  segment.size = 0.2, size = 3)
 ```

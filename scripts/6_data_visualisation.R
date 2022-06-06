@@ -3,12 +3,14 @@ install.packages('tidyverse')
 install.packages('palmerpenguins')
 install.packages('ggrepel')
 install.packages('ggridges')
+install.packages('ggdist')
 
 #### Load libraries ----
 library(tidyverse)
 library(palmerpenguins)
 library(ggrepel)
 library(ggridges)
+library(ggdist)
 
 #### Explore data ----
 penguins <- palmerpenguins::penguins
@@ -70,28 +72,37 @@ ggplot(penguins) +
   labs(x = 'Flipper length (mm)', y = 'Density') +
   theme_minimal()
 
-#### Lollipop chart ----
-flipper_mean_all <- mean(penguins$flipper_length_mm, na.rm = T)
-
-peng_summary <- penguins %>% 
-  group_by(species) %>% 
-  summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
-            flipper_sd = sd(flipper_length_mm, na.rm = T)) 
+#### Extreme distribution plots ----
+penguins %>% filter(species == 'Chinstrap') %>% select(flipper_length_mm) %>% median_qi(na.rm = T)
 
 ggplot() +
-   geom_segment(data = peng_summary, aes(x = species, xend = species,
-                    y = flipper_mean_all, yend = flipper_mean, col = species)) +
-  geom_point(data = peng_summary, aes(x = species, y = flipper_mean, col = species)) +
-  scale_color_manual(values = c('darkorange','purple','cyan4'), name = 'Penguin species') +
-  geom_hline(aes(yintercept = flipper_mean_all), lty = 2) +
-  labs(x = '', y = 'Mean flipper length (mm)') +
-  coord_flip() +
+  stat_halfeye(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), point_interval = 'median_qi', side = 'left', scale = 0.5, adjust = 0.75) +
+  stat_dots(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), scale = 0.5) +
+  scale_fill_manual(values = colorspace::lighten(c('darkorange', 'purple', 'cyan4'), 0.75), guide = 'none') +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4'), guide = 'none') +
+  labs(x = 'Penguin species', y = 'Flipper length (mm)') +
   theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        legend.position = 'top') +
-  geom_text_repel(aes(x = 1.5, y = flipper_mean_all, label = 'overall mean'), nudge_x = 0.5, nudge_y = 7.5, segment.curvature = -0.1, size = 3, segment.size = 0.2)
+  theme(panel.grid = element_blank()) +
+  geom_text_repel(aes(x = 0.8, y = 196, label = 'density'),
+                  nudge_y = 22, nudge_x = -0.2, 
+                  segment.curvature = 0.1,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 1.2, y = 190, label = 'points'),
+                  nudge_y = 30, nudge_x = 0.2, 
+                  segment.curvature = -0.1,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 2, y = 186, label = '95% interval'),
+                  nudge_y = -5, nudge_x = 0.75, 
+                  segment.curvature = 0.2,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 2, y = 196, label = 'median'),
+                  nudge_y = -3, nudge_x = 0.95, 
+                  segment.curvature = 0.2,
+                  segment.size = 0.2, size = 3) +
+  geom_text_repel(aes(x = 3, y = 220, label = '50% interval'),
+                  nudge_y = 7.5, nudge_x = -0.75, 
+                  segment.curvature = 0.2,
+                  segment.size = 0.2, size = 3)
 
 
 
