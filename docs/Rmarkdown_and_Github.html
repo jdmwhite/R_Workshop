@@ -470,7 +470,10 @@ RStudio
 <p>Using R Markdown, you are able to run code, share its output and
 provide commentary in the same document. This allows you to produce high
 quality R reports that you can share with an audience. For example, this
-entire R Workshop webpage was built using R Markdown.</p>
+entire R Workshop webpage was built using R Markdown. You are welcome to
+view and download the <a
+href="https://github.com/jdmwhite/R_Workshop">original R Markdown
+files</a> to see how it was put together.</p>
 <p>It is a format of markdown, which is a plain text format (as opposed
 to a rich text format like MS Word).</p>
 <p>The plain text format can make the barrier to entry for R Markdown a
@@ -479,11 +482,15 @@ out there and once you’ve tested it out you will get the hang of it
 quite quickly.</p>
 <p>There are 3 major components to an R Markdown file:</p>
 <ol style="list-style-type: decimal">
-<li><p>a YAML header denoted by the <code>---</code>s (this is
-optional)</p></li>
-<li><p>R code chunks denoted by <code>```</code>s</p></li>
-<li><p>Plain text combined with text formatting</p></li>
-<li><p>YAML header</p></li>
+<li>a YAML header denoted by the <code>---</code>s (this is
+optional)</li>
+<li>R code chunks denoted by <code>```</code>s</li>
+<li>Plain text combined with text formatting</li>
+</ol>
+<p>These three components are all you need to produce a high quality
+report in R. Here is how they are ‘coded’ in an R markdown file:</p>
+<ol style="list-style-type: decimal">
+<li>YAML header</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
@@ -521,6 +528,12 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><
 </div>
 <div id="why-should-you-use-r-markdown" class="section level2">
 <h2>Why should you use R Markdown?</h2>
+<ul>
+<li>Sharing work with collaborators</li>
+<li>Producing high quality reports that integrates R outputs with
+text</li>
+<li>For educators: coursework hand-ins</li>
+</ul>
 </div>
 <div id="r-markdown-resources" class="section level2">
 <h2>R Markdown resources</h2>

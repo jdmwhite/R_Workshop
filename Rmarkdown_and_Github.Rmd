@@ -37,7 +37,7 @@ Neither of these platforms/tools are essential to moving along the R experience 
 > "R Markdown provides an authoring framework for data science"
 `r tufte::quote_footer('RStudio')`
 
-Using R Markdown, you are able to run code, share its output and provide commentary in the same document. This allows you to produce high quality R reports that you can share with an audience. For example, this entire R Workshop webpage was built using R Markdown.
+Using R Markdown, you are able to run code, share its output and provide commentary in the same document. This allows you to produce high quality R reports that you can share with an audience. For example, this entire R Workshop webpage was built using R Markdown. You are welcome to view and download the [original R Markdown files](https://github.com/jdmwhite/R_Workshop) to see how it was put together. 
 
 It is a format of markdown, which is a plain text format (as opposed to a rich text format like MS Word).
 
@@ -49,6 +49,7 @@ There are 3 major components to an R Markdown file:
 2. R code chunks denoted by ` ``` `s
 3. Plain text combined with text formatting
 
+These three components are all you need to produce a high quality report in R. Here is how they are 'coded' in an R markdown file:
 
 1. YAML header
 ```yaml
@@ -95,8 +96,11 @@ plot(x = seq(1:10), y = seq(1:10))
 **bold**
 ```
 
-
 ## Why should you use R Markdown?
+
+* Sharing work with collaborators
+* Producing high quality reports that integrates R outputs with text
+* For educators: coursework hand-ins
 
 ## R Markdown resources
 
