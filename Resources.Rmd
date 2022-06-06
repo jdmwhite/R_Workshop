@@ -2,6 +2,11 @@
 title: "Additional Resources"
 output: 
   html_document:
+    toc: true
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 4
     theme: paper
 ---
 
@@ -25,10 +30,10 @@ output:
 
 #### Data visualisation
 
-  + `ggplot2` cheatsheet: https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf
-  + graph inspiration: https://r-graph-gallery.com/index.html
-  + facets: https://ggplot2.tidyverse.org/reference/facet_grid.html
-  + combining plots with `patchwork`: https://patchwork.data-imaginist.com/index.html
+  + [ggplot2 cheatsheet](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf) 
+  + [graph inspiration](https://r-graph-gallery.com/index.html)
+  + [facets](https://ggplot2.tidyverse.org/reference/facet_grid.html)
+  + [patchwork](https://patchwork.data-imaginist.com/index.html)
 
 #### Data analysis
 
