@@ -34,16 +34,75 @@ Neither of these platforms/tools are essential to moving along the R experience 
 
 ## What is R Markdown?
 
-> "Rmarkdown is file format for making dynamic documents with R"
-`r tufte::quote_footer('--- RStudio')`
+> "R Markdown provides an authoring framework for data science"
+`r tufte::quote_footer('RStudio')`
 
-It is a format of markdown, which is a plain text format (as opposed to a rich text format like MS Word)
+Using R Markdown, you are able to run code, share its output and provide commentary in the same document. This allows you to produce high quality R reports that you can share with an audience. For example, this entire R Workshop webpage was built using R Markdown.
+
+It is a format of markdown, which is a plain text format (as opposed to a rich text format like MS Word).
+
+The plain text format can make the barrier to entry for R Markdown a little bit tricky. But just like R scripts there are lots of examples out there and once you've tested it out you will get the hang of it quite quickly.
+
+There are 3 major components to an R Markdown file:
+
+1. a YAML header denoted by the `---`s (this is optional)
+2. R code chunks denoted by ` ``` `s
+3. Plain text combined with text formatting
+
+
+1. YAML header
+```yaml
+---
+title: "Title here"
+author: "Author here"
+output:
+    pdf_document
+---
+```
+
+2. R code chunk
+
+````markdown
+`r ''````{r}
+1 + 1
+```
+````
+
+```{r, echo = FALSE}
+1 + 1
+```
+
+````markdown
+`r ''````{r}
+plot(x = seq(1:10), y = seq(1:10))
+```
+````
+```{r, echo = FALSE}
+plot(x = seq(1:10), y = seq(1:10))
+```
+
+3. Plain text with formatting
+
+```markdown
+# First-level header
+
+## Second-level header
+
+### Third-level header
+
+*italics*
+
+**bold**
+```
+
 
 ## Why should you use R Markdown?
 
 ## R Markdown resources
 
 * [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
+* [R Markdown Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf)
+* [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
 ## What is Github?
 
