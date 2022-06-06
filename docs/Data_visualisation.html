@@ -1146,8 +1146,8 @@ line:</p>
 <span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 </div>
-<div id="more-detailed-distribution-plots" class="section level2">
-<h2>More detailed distribution plots</h2>
+<div id="advanced-distribution-plots" class="section level2">
+<h2>Advanced distribution plots</h2>
 <p>In the best case scenario, we can provide the viewer with both the
 summarised data (e.g. median, mean, SD, etc.) and the raw distribution
 of the data. Here is an example of a plot which shows all of this
@@ -1155,12 +1155,12 @@ together, while still staying <em>kind of</em> neat. It is not always
 required, but it can show you the power of <code>ggplot()</code> and its
 adjacent packages to create data visualisations.</p>
 <p>Here we plot the median, 50 and 95% confidence intervals, a density
-distribution and the raw points all together.</p>
-<p>As a bonus we can also add on labels using the <code>ggrepel</code>
-package. In this case we are using the text labels to describe the plot,
-but they can be extremely valuable when you want to draw the viewer’s
-eye to a particular part of your plot.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Extreme distribution plots ----</span></span>
+distribution and the raw points all together. As a bonus we can also add
+on labels using the <code>ggrepel</code> package. In this case we are
+using the text labels to describe the plot, but they can be extremely
+valuable when you want to draw the viewer’s eye to a particular part of
+your plot.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Advanced distribution plots ----</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">%&gt;%</span> <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&#39;Chinstrap&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(flipper_length_mm) <span class="sc">%&gt;%</span> <span class="fu">median_qi</span>(<span class="at">na.rm =</span> T)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 6
 ##   flipper_length_mm .lower .upper .width .point .interval

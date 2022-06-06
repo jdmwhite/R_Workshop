@@ -538,16 +538,14 @@ ggplot(penguins) +
   theme_minimal()
 ```
 
-## More detailed distribution plots
+## Advanced distribution plots
 
 In the best case scenario, we can provide the viewer with both the summarised data (e.g. median, mean, SD, etc.) and the raw distribution of the data. Here is an example of a plot which shows all of this together, while still staying *kind of* neat. It is not always required, but it can show you the power of `ggplot()` and its adjacent packages to create data visualisations. 
 
-Here we plot the median, 50 and 95% confidence intervals, a density distribution and the raw points all together. 
-
-As a bonus we can also add on labels using the `ggrepel` package. In this case we are using the text labels to describe the plot, but they can be extremely valuable when you want to draw the viewer's eye to a particular part of your plot. 
+Here we plot the median, 50 and 95% confidence intervals, a density distribution and the raw points all together. As a bonus we can also add on labels using the `ggrepel` package. In this case we are using the text labels to describe the plot, but they can be extremely valuable when you want to draw the viewer's eye to a particular part of your plot. 
 
 ```{r}
-#### Extreme distribution plots ----
+#### Advanced distribution plots ----
 penguins %>% filter(species == 'Chinstrap') %>% select(flipper_length_mm) %>% median_qi(na.rm = T)
 
 ggplot() +
