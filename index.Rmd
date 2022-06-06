@@ -45,7 +45,7 @@ Make sure to **LOG OUT** of your R Studio Cloud session when you are finished us
 
 * Step 2: Download R Studio: https://www.rstudio.com/products/rstudio/download/#download (select the correct operating system for your computer)
 
-Once you have download and installed both, all you need is to open R Studio. The next step is to go to https://github.com/jdmwhite/R_workshop, click **"Code"** in the top right corner and the click **"Download ZIP"**. Unzip this file, by double-clicking on it, and then open the **practical_13_biodiversity.Rproj** file. Make sure to open the file with the **.Rproj** file extension. This will automatically open R Studio and begin your session. Once it has opened, open the **scripts** folder and then click on any `.R` file. You can now run the code, either using (CONTROL + ENTER/CMD + ENTER) or click the **Run** button in the top middle of your screen (as shown above in the R Studio Cloud example).
+Once you have download and installed both, all you need is to open R Studio. The next step is to go to https://github.com/jdmwhite/R_workshop, click **"Code"** in the top right corner and the click **"Download ZIP"**. Unzip this file, by double-clicking on it, and then open the `R_workshop.Rproj` file. Make sure to open the file with the `.Rproj` file extension. This will automatically open R Studio and begin your session. Once it has opened, open the **scripts** folder and then click on any `.R` file. You can now run the code, either using (CONTROL + ENTER/CMD + ENTER) or click the **Run** button in the top middle of your screen (as shown above in the R Studio Cloud example).
 
 # Additional Resources
 

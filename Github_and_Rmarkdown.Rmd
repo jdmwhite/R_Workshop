@@ -1,0 +1,15 @@
+---
+title: "Github and Rmarkdown"
+output:
+  html_document:
+    theme: paper
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+# Github
+
+# Rmarkdown

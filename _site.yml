@@ -4,8 +4,14 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Basics of R"
-      href: Basics_of_R.html
+    - text: "Data wrangling"
+      href: Data_wrangling.html
+    - text: "Data visualisation"
+      href: Data_visualisation.html
+    - text: "Data analysis"
+      href: Data_analysis.html
+    - text: "Github & Rmarkdown"
+      href: Github_and_Rmarkdown.html
     - text: "Additional Resources"
       href: Resources.html
 output_dir: "docs"
