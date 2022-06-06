@@ -15,7 +15,7 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-# Part 1
+# Part 1: Building a ggplot()
 
 In Part 1, we will work on building one good, publication ready figure.
 
@@ -411,7 +411,7 @@ ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'wh
 ```
 
 
-# Part 2
+# Part 2: Different geometries
 
 In Part 2, we will explore the range of different plots available in `ggplot2`.
 
