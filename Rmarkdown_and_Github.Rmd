@@ -1,5 +1,5 @@
 ---
-title: "Rmarkdown and Github"
+title: "R Markdown and Github"
 output:
   html_document:
     toc: true
@@ -23,18 +23,33 @@ xaringanExtra::use_clipboard()
 
 In this topic, we will cover:
 
-* What is Rmarkdown?
-* Why should you use Rmarkdown?
+* What is R Markdown?
+* Why should you use R Markdown?
+* R Markdown resources
 * What is Github?
-* (and you guessed it) Why should you use Github?
+* Why should you use Github?
+* Github-RStudio resources
 
 Neither of these platforms/tools are essential to moving along the R experience ladder. The reason I decided to include them in a beginners R workshop is because they allow for some extremely valuable workflows related to sharing and collaboration. So, I think at least a little bit of exposure to these is useful early on in your RStudio journey.
 
-## What is Rmarkdown?
+## What is R Markdown?
 
-## Why should you use Rmarkdown?
+> "Rmarkdown is file format for making dynamic documents with R"
+`r tufte::quote_footer('--- RStudio')`
+
+It is a format of markdown, which is a plain text format (as opposed to a rich text format like MS Word)
+
+## Why should you use R Markdown?
+
+## R Markdown resources
+
+* [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
 
 ## What is Github?
 
 ## Why should you use Github?
 
+## Github-RStudio resources
+
+* https://happygitwithr.com/
+* https://resources.github.com/github-and-rstudio/

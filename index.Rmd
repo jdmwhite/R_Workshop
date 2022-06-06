@@ -24,7 +24,7 @@ knitr::include_graphics("images/logo.png")
 
 3. Data analysis
 
-4. Rmarkdown & Github
+4. R Markdown & Github
 
 ### Getting started
 
