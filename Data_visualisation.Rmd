@@ -156,7 +156,8 @@ The primary function we will use is `ggplot()` (don't forget to remove the 2!). 
 
 `ggplot(data = DATA, mapping = aes(VARIABLES OF INTEREST)) + geom_()`
 
-Find the `ggplot2` cheatsheet [HERE](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf).
+
+`ggplot2` works similarly to `dplyr`'s `%>%` (pipe) function, but instead we use a `+` to add on additional functions. Find the `ggplot2` cheatsheet [HERE](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf).
 
 Let's get started, by select the dataset we want to work with:
 
@@ -291,6 +292,8 @@ ggplot(penguins) +
 
 ### Legend position
 
+We can also edit where we put the legend. We change this (as well as many other customisable options) in the `theme()` function. We have a few default options for the legend, which include `"top"`,`"bottom"`,`"left"` and `"right"`. However, we can also specify the position *inside* the plot using a values for the x- and y-axes, respectively. These values fall between 0 and 1.
+
 ```{r}
 # change the legend position
 # ?theme
@@ -303,7 +306,13 @@ ggplot(penguins) +
   theme(legend.position = c(0.8,0.2))
 ```
 
+In my books, this is a complete and ready to publish figure! We could save it to file at this point. But before we do that, let's explore a few more `ggplot2` fundamentals. 
+
 ### Facets
+
+One of the powerful features of `ggplot2` is the ability to facet a plot by one of your discrete variables (i.e. factors). This means we can use the same plot recipe as used above, but adding just one more line of code, we can split it up into several subplots using the `facet_grid()` or `facet_wrap()` functions. Here, we split our plot into two subplots by `sex` and stack them next to each other using `cols = vars(sex)`. If we want them on top of one another, we would use `rows = `. 
+
+We can also tweak the theme by using `theme_bw()`, which works nicely with facets.
 
 ```{r}
 #### Facets ----
@@ -317,6 +326,17 @@ ggplot(penguins %>% drop_na()) +
 ```
 
 ### Combine plots
+
+So facets can help us visualise several subplots based on a factor, but what if we want to plot two completely separate plots next to one another?
+
+There are several packages which could help us here, but let's explore a more recent and extremely useful one called `patchwork`. `patchwork` uses a basic syntax to combine plots together. 
+
+* To add plots as columns use `+`
+* To add plots as rows use `/`
+
+There is a huge variety of ways to patch plots together, so take a look at the [patchwork website](https://patchwork.data-imaginist.com/index.html).
+
+We will create a new plot (body mass versus flipper length) and save each plot to an object (`plot1` and `plot2`).
 
 ```{r}
 #### Patchwork ----
@@ -337,20 +357,28 @@ plot1 + plot2 # cols
 plot1 / plot2 # rows
 ```
 
+We can then save our two patched together plots as a new object `combined_plot`.
+
 ```{r}
 combined_plot <- plot1 + plot2 
 combined_plot
 ```
+
+`patchwork` also offers some really valuable annotation and layout control options. For example, we can add plot annotations to give them clear labels:
 
 ```{r}
 # add annotation
 combined_plot + plot_annotation(tag_levels = 'a', tag_suffix = ')')
 ```
 
+Seeing as our plots have the same legend, we can also combine these together:
+
 ```{r}
 # control the guides
 combined_plot + plot_layout(guides = 'collect')
 ```
+
+A really useful helper, is to apply a theme to all of the plots. Note that we are now using `&` instead of `+`. This is because if we were to use `+` it would only change the theme for our last plot. `&` makes sure this applies to both/all plots:
 
 ```{r}
 # add theme style to all plots
@@ -358,6 +386,8 @@ combined_plot  &
   theme_minimal() &
   theme(legend.position = 'bottom')
 ```
+
+And now we can finally bring all of the patchwork edits together:
 
 ```{r}
 # bring it all together
@@ -370,10 +400,14 @@ combined_plot +
 
 ## Save your ggplot
 
+Now that we have our publication ready plot(s), we can save our ggplot!
+
+This requires the `ggsave()` function. `ggsave()` will automatically save the last plot we have plotted in our plot window. This means we just need to specify the file directory and the device (i.e. what type of output would you like). However, there are some valuable additions to this function. For example, if we use `.png`, we may want to specify the background colour using `bg = `. Importantly, we can also choose our plot dimensions. This is crucial if you creating plots for a publication, where many of them have size and format requirements! Change the units to mm using `units = 'mm'` and then chose your width and height. 
+
 ```{r, eval = FALSE}
 #### Save your plot ----
 # using ggsave()
-ggsave("output/figs/peng_mass_bill_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
+ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
 ```
 
 

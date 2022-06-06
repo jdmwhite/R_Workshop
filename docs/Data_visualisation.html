@@ -689,7 +689,10 @@ forget to remove the 2!). The core template used in <code>ggplot2</code>
 graphics requires the <code>data.frame</code>, the variables of interest
 and the type of plot you want. This is the template:</p>
 <p><code>ggplot(data = DATA, mapping = aes(VARIABLES OF INTEREST)) + geom_()</code></p>
-<p>Find the <code>ggplot2</code> cheatsheet <a
+<p><code>ggplot2</code> works similarly to <code>dplyr</code>’s
+<code>%&gt;%</code> (pipe) function, but instead we use a <code>+</code>
+to add on additional functions. Find the <code>ggplot2</code> cheatsheet
+<a
 href="https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf">HERE</a>.</p>
 <p>Let’s get started, by select the dataset we want to work with:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chose the data</span></span>
@@ -846,6 +849,13 @@ basic call to <code>theme_</code>. Here will use the minimal theme
 </div>
 <div id="legend-position" class="section level3">
 <h3>Legend position</h3>
+<p>We can also edit where we put the legend. We change this (as well as
+many other customisable options) in the <code>theme()</code> function.
+We have a few default options for the legend, which include
+<code>"top"</code>,<code>"bottom"</code>,<code>"left"</code> and
+<code>"right"</code>. However, we can also specify the position
+<em>inside</em> the plot using a values for the x- and y-axes,
+respectively. These values fall between 0 and 1.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the legend position</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ?theme</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
@@ -856,9 +866,22 @@ basic call to <code>theme_</code>. Here will use the minimal theme
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>))</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>In my books, this is a complete and ready to publish figure! We could
+save it to file at this point. But before we do that, let’s explore a
+few more <code>ggplot2</code> fundamentals.</p>
 </div>
 <div id="facets" class="section level3">
 <h3>Facets</h3>
+<p>One of the powerful features of <code>ggplot2</code> is the ability
+to facet a plot by one of your discrete variables (i.e. factors). This
+means we can use the same plot recipe as used above, but adding just one
+more line of code, we can split it up into several subplots using the
+<code>facet_grid()</code> or <code>facet_wrap()</code> functions. Here,
+we split our plot into two subplots by <code>sex</code> and stack them
+next to each other using <code>cols = vars(sex)</code>. If we want them
+on top of one another, we would use <code>rows =</code>.</p>
+<p>We can also tweak the theme by using <code>theme_bw()</code>, which
+works nicely with facets.</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Facets ----</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()) <span class="sc">+</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
@@ -871,6 +894,23 @@ basic call to <code>theme_</code>. Here will use the minimal theme
 </div>
 <div id="combine-plots" class="section level3">
 <h3>Combine plots</h3>
+<p>So facets can help us visualise several subplots based on a factor,
+but what if we want to plot two completely separate plots next to one
+another?</p>
+<p>There are several packages which could help us here, but let’s
+explore a more recent and extremely useful one called
+<code>patchwork</code>. <code>patchwork</code> uses a basic syntax to
+combine plots together.</p>
+<ul>
+<li>To add plots as columns use <code>+</code></li>
+<li>To add plots as rows use <code>/</code></li>
+</ul>
+<p>There is a huge variety of ways to patch plots together, so take a
+look at the <a
+href="https://patchwork.data-imaginist.com/index.html">patchwork
+website</a>.</p>
+<p>We will create a new plot (body mass versus flipper length) and save
+each plot to an object (<code>plot1</code> and <code>plot2</code>).</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Patchwork ----</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins) <span class="sc">+</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(body_mass_g, bill_length_mm, <span class="at">col =</span> species, <span class="at">shape =</span> species), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
@@ -889,20 +929,33 @@ basic call to <code>theme_</code>. Here will use the minimal theme
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="sc">/</span> plot2 <span class="co"># rows</span></span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+<p>We can then save our two patched together plots as a new object
+<code>combined_plot</code>.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> plot1 <span class="sc">+</span> plot2 </span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>combined_plot</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><code>patchwork</code> also offers some really valuable annotation
+and layout control options. For example, we can add plot annotations to
+give them clear labels:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add annotation</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;a&#39;</span>, <span class="at">tag_suffix =</span> <span class="st">&#39;)&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Seeing as our plots have the same legend, we can also combine these
+together:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># control the guides</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">&#39;collect&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>A really useful helper, is to apply a theme to all of the plots. Note
+that we are now using <code>&amp;</code> instead of <code>+</code>. This
+is because if we were to use <code>+</code> it would only change the
+theme for our last plot. <code>&amp;</code> makes sure this applies to
+both/all plots:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add theme style to all plots</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>combined_plot  <span class="sc">&amp;</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">&amp;</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;bottom&#39;</span>)</span></code></pre></div>
 <p><img src="Data_visualisation_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>And now we can finally bring all of the patchwork edits together:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bring it all together</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="sc">+</span> </span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&#39;a&#39;</span>, <span class="at">tag_suffix =</span> <span class="st">&#39;)&#39;</span>) <span class="sc">+</span> </span>
@@ -914,9 +967,22 @@ basic call to <code>theme_</code>. Here will use the minimal theme
 </div>
 <div id="save-your-ggplot" class="section level2">
 <h2>Save your ggplot</h2>
+<p>Now that we have our publication ready plot(s), we can save our
+ggplot!</p>
+<p>This requires the <code>ggsave()</code> function.
+<code>ggsave()</code> will automatically save the last plot we have
+plotted in our plot window. This means we just need to specify the file
+directory and the device (i.e. what type of output would you like).
+However, there are some valuable additions to this function. For
+example, if we use <code>.png</code>, we may want to specify the
+background colour using <code>bg =</code>. Importantly, we can also
+choose our plot dimensions. This is crucial if you creating plots for a
+publication, where many of them have size and format requirements!
+Change the units to mm using <code>units = 'mm'</code> and then chose
+your width and height.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Save your plot ----</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using ggsave()</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;output/figs/peng_mass_bill_length.png&quot;</span>, <span class="at">device =</span> <span class="st">&#39;png&#39;</span>, <span class="at">bg =</span> <span class="st">&#39;white&#39;</span>, <span class="at">width =</span> <span class="dv">120</span>, <span class="at">height =</span> <span class="dv">80</span>, <span class="at">units =</span> <span class="st">&#39;mm&#39;</span>, <span class="at">dpi =</span> <span class="dv">320</span>)</span></code></pre></div>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;output/figs/peng_mass_bill_flipper_length.png&quot;</span>, <span class="at">device =</span> <span class="st">&#39;png&#39;</span>, <span class="at">bg =</span> <span class="st">&#39;white&#39;</span>, <span class="at">width =</span> <span class="dv">120</span>, <span class="at">height =</span> <span class="dv">80</span>, <span class="at">units =</span> <span class="st">&#39;mm&#39;</span>, <span class="at">dpi =</span> <span class="dv">320</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="part-2" class="section level1">

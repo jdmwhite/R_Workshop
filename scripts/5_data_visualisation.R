@@ -167,4 +167,4 @@ combined_plot +
 
 #### Save your plot ----
 # using ggsave()
-ggsave("output/figs/peng_mass_bill_flipper_length_by.png", device = 'png', bg = 'white', width = 180, height = 80, units = 'mm', dpi = 320)
+ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'white', width = 180, height = 80, units = 'mm', dpi = 320)
