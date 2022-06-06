@@ -5,13 +5,34 @@ output:
     theme: paper
 ---
 
-### R and RStudio
-
-[R](http://www.r-project.org) is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is [RStudio](http://www.rstudio.com), that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.
+### Where to ask questions?
+* The best place to find answers to your R problems is the internet. However, finding the most appropriate answer quickly is also a skill and will improve as your understanding of R grows. 
+* So start with Google. Craft your questions to only have a few key words that may help refine your search. For example: "select columns in R" or "select columns in R dplyr" if you want something `tidyverse` related.
+* Many of your Google queries may take you to [Stackoverflow](https://stackoverflow.com). This is a community full of R users who are asking and answering all things R related. There is a very good change that your query has already been answered here.
 
 ### Additional R resources
 
-1. Google is great, Google your problem
-2. [Stackoverflow](https://stackoverflow.com) is great, google will often take you there because someone has already asked your question, and someone else has answered, usually many people have answered your question many ways.
-3. This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
+* Getting started
+
+  + [Download R](https://cran.r-project.org/)
+  + [Download R Studio](https://www.rstudio.com/products/rstudio/download/#download)
+  + [R Projects](https://www.tidyverse.org/blog/2017/12/workflow-vs-script)
+  + [Folder structures]()
+  + [File naming]()
+  + [Script comments]()
+
+* Data wrangling
+
+* Data visualisation
+
+  + `ggplot2` cheatsheet: https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf
+  + graph inspiration: https://r-graph-gallery.com/index.html
+  + facets: https://ggplot2.tidyverse.org/reference/facet_grid.html
+  + combining plots with `patchwork`: https://patchwork.data-imaginist.com/index.html
+
+* Data analysis
+
+* Github & Rmarkdown
+
+  + This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
 

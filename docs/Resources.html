@@ -13,8 +13,8 @@
 
 <title>Additional Resources</title>
 
-<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -60,6 +60,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -80,6 +81,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -232,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -267,17 +271,62 @@ $(document).ready(function () {
 </div>
 
 
-<div id="r-and-rstudio" class="section level3">
-<h3>R and RStudio</h3>
-<p><a href="http://www.r-project.org">R</a> is a free open-source programming language that can be used for statistical analysis, data-simulation, graphing, and lots of other stuff. Another free program is <a href="http://www.rstudio.com">RStudio</a>, that provides a nice graphic interface for R. Download R first, then download R-studio. Both can run on PCs, Macs or Linux.</p>
+<div id="where-to-ask-questions" class="section level3">
+<h3>Where to ask questions?</h3>
+<ul>
+<li>The best place to find answers to your R problems is the internet.
+However, finding the most appropriate answer quickly is also a skill and
+will improve as your understanding of R grows.</li>
+<li>So start with Google. Craft your questions to only have a few key
+words that may help refine your search. For example: “select columns in
+R” or “select columns in R dplyr” if you want something
+<code>tidyverse</code> related.</li>
+<li>Many of your Google queries may take you to <a
+href="https://stackoverflow.com">Stackoverflow</a>. This is a community
+full of R users who are asking and answering all things R related. There
+is a very good change that your query has already been answered
+here.</li>
+</ul>
 </div>
 <div id="additional-r-resources" class="section level3">
 <h3>Additional R resources</h3>
-<ol style="list-style-type: decimal">
-<li>Google is great, Google your problem</li>
-<li><a href="https://stackoverflow.com">Stackoverflow</a> is great, google will often take you there because someone has already asked your question, and someone else has answered, usually many people have answered your question many ways.</li>
-<li>This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): <a href="https://bookdown.org/yihui/rmarkdown/">https://bookdown.org/yihui/rmarkdown/</a></li>
-</ol>
+<ul>
+<li><p>Getting started</p>
+<ul>
+<li><a href="https://cran.r-project.org/">Download R</a></li>
+<li><a
+href="https://www.rstudio.com/products/rstudio/download/#download">Download
+R Studio</a></li>
+<li><a
+href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script">R
+Projects</a></li>
+<li><a href="">Folder structures</a></li>
+<li><a href="">File naming</a></li>
+<li><a href="">Script comments</a></li>
+</ul></li>
+<li><p>Data wrangling</p></li>
+<li><p>Data visualisation</p>
+<ul>
+<li><code>ggplot2</code> cheatsheet: <a
+href="https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf"
+class="uri">https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf</a></li>
+<li>graph inspiration: <a href="https://r-graph-gallery.com/index.html"
+class="uri">https://r-graph-gallery.com/index.html</a></li>
+<li>facets: <a
+href="https://ggplot2.tidyverse.org/reference/facet_grid.html"
+class="uri">https://ggplot2.tidyverse.org/reference/facet_grid.html</a></li>
+<li>combining plots with <code>patchwork</code>: <a
+href="https://patchwork.data-imaginist.com/index.html"
+class="uri">https://patchwork.data-imaginist.com/index.html</a></li>
+</ul></li>
+<li><p>Data analysis</p></li>
+<li><p>Github &amp; Rmarkdown</p>
+<ul>
+<li>This is the definitive guide for all things R Markdown (you will
+find this very useful as you get better at this skill): <a
+href="https://bookdown.org/yihui/rmarkdown/">https://bookdown.org/yihui/rmarkdown/</a></li>
+</ul></li>
+</ul>
 </div>
 
 
