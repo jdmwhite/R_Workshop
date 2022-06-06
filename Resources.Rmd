@@ -41,7 +41,7 @@ output:
 
 #### Data analysis
 
-#### Github & Rmarkdown
+#### Rmarkdown & Github
 
   + This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
 

@@ -10,8 +10,8 @@ navbar:
       href: Data_visualisation.html
     - text: "Data analysis"
       href: Data_analysis.html
-    - text: "Github & Rmarkdown"
-      href: Github_and_Rmarkdown.html
+    - text: "Rmarkdown & Github"
+      href: Rmarkdown_and_Github.html
     - text: "Additional Resources"
       href: Resources.html
 output_dir: "docs"

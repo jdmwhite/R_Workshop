@@ -1,5 +1,5 @@
 ---
-title: "Github and Rmarkdown"
+title: "Rmarkdown and Github"
 output:
   html_document:
     toc: true
@@ -23,17 +23,18 @@ xaringanExtra::use_clipboard()
 
 In this topic, we will cover:
 
-* What is Github?
-* Why should you use Github?
 * What is Rmarkdown?
-* (and you guessed it) Why should you use Rmarkdown?
+* Why should you use Rmarkdown?
+* What is Github?
+* (and you guessed it) Why should you use Github?
 
 Neither of these platforms/tools are essential to moving along the R experience ladder. The reason I decided to include them in a beginners R workshop is because they allow for some extremely valuable workflows related to sharing and collaboration. So, I think at least a little bit of exposure to these is useful early on in your RStudio journey.
+
+## What is Rmarkdown?
+
+## Why should you use Rmarkdown?
 
 ## What is Github?
 
 ## Why should you use Github?
 
-## What is Rmarkdown?
-
-## Why should you use Rmarkdown?
