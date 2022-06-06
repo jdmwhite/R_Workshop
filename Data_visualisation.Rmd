@@ -407,7 +407,7 @@ combined_plot +
 
 Now that we have our publication ready plot(s), we can save our ggplot!
 
-This requires the `ggsave()` function. `ggsave()` will automatically save the last plot we have plotted in our plot window. This means we just need to specify the file directory and the device (i.e. what type of output would you like). However, there are some valuable additions to this function. For example, if we use `.png`, we may want to specify the background colour using `bg =`. Importantly, we can also choose our plot dimensions. This is crucial if you creating plots for a publication, where many of them have size and format requirements! Change the units to mm using `units = 'mm'` and then chose your width and height.
+This requires the `ggsave()` function. `ggsave()` will automatically save the last plot we have plotted in our plot window. This means we just need to specify the file directory and the device (i.e. what type of output would you like). However, there are some valuable additions to this function. For example, if we use `.png`, we may want to specify the background colour using `bg =`. Importantly, we can also choose our plot dimensions. This is crucial if you are creating plots for a publication, where many journals have size and format requirements! Change the units to mm using `units = 'mm'` and then chose your width and height.
 
 ```{r, eval = FALSE}
 #### Save your plot ----
