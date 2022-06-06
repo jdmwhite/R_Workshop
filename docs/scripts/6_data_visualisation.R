@@ -28,7 +28,6 @@ penguins %>%
   group_by(species) %>% 
   summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
             flipper_sd = sd(flipper_length_mm, na.rm = T)) %>% 
-  arrange(flipper_mean) %>%
   ggplot() +
   geom_col(aes(x = species, y = flipper_mean),
            fill = c('darkorange','purple','cyan4')) +

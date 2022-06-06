@@ -159,14 +159,14 @@ The primary function we will use is `ggplot()` (don't forget to remove the 2!). 
 
 `ggplot2` works similarly to `dplyr`'s `%>%` (pipe) function, but instead we use a `+` to add on additional functions. Find the `ggplot2` cheatsheet [HERE](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf).
 
-Let's get started, by select the dataset we want to work with:
+Let's get started by first selecting the dataset we want to work with:
 
 ```{r}
 # chose the data
 ggplot(data = penguins)
 ```
 
-This doesn't show us anything, because we have not yet chosen our variables. We then chose our variables of interest inside our mapping aesthetics. Here we want `body_mass_g` on the x-axis and `bill_length_g` on the y-axis.
+This doesn't show us anything, because we have not yet chosen our variables. We then chose our variables of interest and place them inside our mapping aesthetics. Here we want `body_mass_g` on the x-axis and `bill_length_g` on the y-axis.
 
 ```{r}
 # add in mapping aesthetics
@@ -410,17 +410,18 @@ This requires the `ggsave()` function. `ggsave()` will automatically save the la
 ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'white', width = 120, height = 80, units = 'mm', dpi = 320)
 ```
 
-
 # Part 2: Different geometries
 
-In Part 2, we will explore the range of different plots available in `ggplot2`.
+In Part 2, we will explore the range of different plots available in `ggplot2`. We have already looked at a type of correlation plot using `geom_point()` (i.e. scatterplots). In this section, we will explore a range of distribution plots (boxplots, histograms and density plots) and ranking plots (barplots and lollipop plots). There are many more ways to plot your data and the [r-graph-gallery](https://r-graph-gallery.com/index.html) or following the [#TidyTuesday challenge on Twitter](https://twitter.com/search?q=%23TidyTuesday&src=typeahead_click) are good places to look for inspiration. 
+
+Again, we start by installing & loading our packages:
 
 ```{r, eval=FALSE}
 #### Install packages ----
-install.packages('tidyverse')
-install.packages('palmerpenguins')
-install.packages('ggrepel')
-install.packages('ggridges')
+install.packages('tidyverse') # for dplyr and ggplot2
+install.packages('palmerpenguins') # our penguin data!
+install.packages('ggrepel') # for repelled text labels
+install.packages('ggridges') # for interesting density plots
 ```
 
 ```{r}
@@ -431,11 +432,15 @@ library(ggrepel)
 library(ggridges)
 ```
 
+We will use the pre-processed penguin data this time:
+
 ```{r}
 #### Explore data ----
 penguins <- palmerpenguins::penguins
 str(penguins)
 ```
+
+Using the same plot as before, let's now add linear trendlines to each of our species. Notice that we have used the function `drop_na()` to remove any `NA` values in our penguin data. To add our trendlines, we use `geom_smooth()`. The default `method = ` for `geom_smooth()` is `loess`, which provides a smoothed loess curve to each species. To change this, we select `method = 'lm'`:
 
 ```{r}
 #### Line charts ----
@@ -448,13 +453,16 @@ ggplot(data = drop_na(penguins), aes(body_mass_g, bill_length_mm, col = species,
   theme_bw() 
 ```
 
+A plot type you'll all be familiar with is a barplot. A barplot requires summarised data. So let's do some quick data manipulation. First, `group_by(species)` and then summarise **flipper_length_mm** by `mean()` and `sd()`. Notice we use `na.rm = TRUE` to remove the 2 rows with missing data. 
+
+We can then `%>%` (pipe) our summarised dataset directly into a `ggplot()`! To produce a barplot, we use `geom_col()` and we add our errorbars (SD) by providing an `x` value, as well as a `ymax` and `ymin` value. We need to calculate these on the fly, so we take the `flipper_mean` and then `+` or `-` the `flipper_sd` values, respectively. It's worth adjusting the `width = ` of the errorbars to produce a more pleasing appearance:
+
 ```{r}
-#### Barplot/Points with SD ----
+#### Barplot with SD ----
 penguins %>% 
   group_by(species) %>% 
   summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
             flipper_sd = sd(flipper_length_mm, na.rm = T)) %>% 
-  arrange(flipper_mean) %>%
   ggplot() +
   geom_col(aes(x = species, y = flipper_mean),
            fill = c('darkorange','purple','cyan4')) +
@@ -464,6 +472,7 @@ penguins %>%
 ```
 
 ```{r}
+#### Mean points with SD ----
 penguins %>% 
   group_by(species) %>% 
   summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
