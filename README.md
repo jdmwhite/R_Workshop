@@ -1,8 +1,6 @@
 #### Joseph White & Refilwe Kai
 #### 13th-14th June 2022
 
-# R Workshop
-
 This short workshop will introduce you to the basics of R and go over some fundamentals that you may have previously missed. 
 
 It is aimed at R beginners, though many lessons will likely be useful to those who have been using R for several years with bad ingrained practices. 
