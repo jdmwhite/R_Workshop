@@ -152,7 +152,7 @@ You need to provide GitHub with credentials that are unique to your user ID. Thi
 
 To do this, either use https://github.com/settings/tokens or the `usethis` package function `create_github_token()`. This may ask you to **Generate token** or may take you directly to your GitHub page. 
 
-You can these set this PAT in your RStudio session using the `gitcreds` package function `gitcreds_set()`. 
+You can then set this PAT in your RStudio session using the `gitcreds` package function `gitcreds_set()`. 
 
 * Create a new GitHub repository
 
