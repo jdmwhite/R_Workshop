@@ -15,3 +15,5 @@ xaringanExtra::use_clipboard()
 ```
 
 # Linear models
+
+## dplyr, broom & stargazer
