@@ -1,5 +1,5 @@
 ---
-title: "Additional Resources"
+title: ""
 output: 
   html_document:
     toc: true
@@ -12,7 +12,7 @@ output:
 
 ### Access all lecture slides
 
-* [Google slides](https://drive.google.com/drive/folders/1tj-U-fIvpd65yP8J6OoC0TrBGkAveaLa?usp=sharing)
+* [Slides](https://drive.google.com/drive/folders/1tj-U-fIvpd65yP8J6OoC0TrBGkAveaLa?usp=sharing)
 
 ### Where to ask questions?
 * The best place to find answers to your R problems is the internet. However, finding the most appropriate answer quickly is also a skill and will improve as your understanding of R grows. 
