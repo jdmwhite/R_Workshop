@@ -114,6 +114,9 @@ To add a new code chunk either use the green button (+c) or the shortcut `CONTRO
 
 ## What is GitHub?
 
+> "GitHub is an online software development platform used for storing, tracking, and collaborating on software projects."
+`r tufte::quote_footer('Jamie Juliver')`
+
 GitHub is a website and cloud-based service that allows coders to store, manage, track, version control, collaborate on and share their code. Essentially it hosts source code of any type, and is currently the most popular host out there with >50 million developers using the site.
 
 There are two important components of GitHub that require more detail:
