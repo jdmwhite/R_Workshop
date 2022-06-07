@@ -19,8 +19,6 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 xaringanExtra::use_clipboard()
 ```
 
-## Background
-
 In this topic, we will cover:
 
 * What is R Markdown?
