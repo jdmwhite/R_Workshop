@@ -11,7 +11,7 @@
 
 
 
-<title>R Markdown and Github</title>
+<title>R Markdown and GitHub</title>
 
 <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -420,7 +420,7 @@ div.tocify {
   <a href="Data_analysis.html">Data analysis</a>
 </li>
 <li>
-  <a href="Rmarkdown_and_Github.html">R Markdown &amp; Github</a>
+  <a href="Rmarkdown_and_Github.html">R Markdown &amp; GitHub</a>
 </li>
 <li>
   <a href="Resources.html">Additional Resources</a>
@@ -437,7 +437,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">R Markdown and Github</h1>
+<h1 class="title toc-ignore">R Markdown and GitHub</h1>
 
 </div>
 
@@ -449,9 +449,9 @@ div.tocify {
 <li>What is R Markdown?</li>
 <li>Why should you use R Markdown?</li>
 <li>R Markdown resources</li>
-<li>What is Github?</li>
-<li>Why should you use Github?</li>
-<li>Github-RStudio resources</li>
+<li>What is GitHub?</li>
+<li>Why should you use GitHub with RStudio?</li>
+<li>GitHub-RStudio resources</li>
 </ul>
 <p>Neither of these platforms/tools are essential to moving along the R
 experience ladder. The reason I decided to include them in a beginners R
@@ -532,7 +532,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><
 <li>Sharing work with collaborators</li>
 <li>Producing high quality reports that integrates R outputs with
 text</li>
-<li>For educators: coursework hand-ins</li>
+<li>Reproducible reports through literate programming</li>
+<li>Cuts down time to re-do an analysis (all in one space)</li>
+<li>For educators: coursework hand-ins (no need to run R scripts)</li>
 </ul>
 </div>
 <div id="r-markdown-resources" class="section level2">
@@ -546,16 +548,143 @@ Markdown Cheatsheet</a></li>
 <li><a
 href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R
 Markdown Reference Guide</a></li>
+<li><a href="https://rmarkdown.rstudio.com/lesson-1.html">R Markdown
+lessons with RStudio</a></li>
 </ul>
 </div>
 <div id="what-is-github" class="section level2">
-<h2>What is Github?</h2>
+<h2>What is GitHub?</h2>
+<p>GitHub is a website and cloud-based service that allows coders to
+store, manage, track, version control, collaborate on and share their
+code. Essentially it hosts source code of any type, and is currently the
+most popular host out there with &gt;50 million developers using the
+site.</p>
+<p>There are two important components of GitHub that require more
+detail:</p>
+<ul>
+<li>Version control</li>
+<li>Git</li>
+</ul>
+<div id="version-control" class="section level3">
+<h3>Version control</h3>
+<p>Version control allows you to track all changes (additions/deletions)
+to a file or dataset. This means that you are able to return to an older
+version of your file (or R script) if you need to. This could be due to
+accidentally deleting something or because an alternative method you
+used did not work quite as well. This is particularly useful when you
+are collaborating with others on the same document.</p>
 </div>
-<div id="why-should-you-use-github" class="section level2">
-<h2>Why should you use Github?</h2>
+<div id="git" class="section level3">
+<h3>Git</h3>
+<p>Git is a version control system, which implements everything just
+mentioned above. So, GitHub is an online Git repository which provides a
+graphical user interface to your repositories.</p>
+</div>
+<div id="how-to-use-github-with-rstudio" class="section level3">
+<h3>How to use GitHub with RStudio?</h3>
+<p>This is a bit beyond this workshop, but I will outline the core steps
+and then link to great resources to allow you to do this yourself. The
+first port of call is to read <a
+href="https://happygitwithr.com/">happygitwithr.com</a>. This site has
+far better instructions than you’ll find here. But I’ll provide a brief
+overview.</p>
+<p>Here are some key steps to using GitHub with RStudio:</p>
+<ul>
+<li><p>Create a <a href="https://github.com/">GitHub</a>
+account</p></li>
+<li><p>Download Git</p></li>
+</ul>
+<p>If you’re using Windows follow this <a
+href="http://git-scm.com/downloads">link</a> to download Git. If you’re
+using Mac OS, Git should already be installed. Open a terminal and run
+<code>which git</code> and <code>git --version</code> to check that Git
+is installed. Alternatively follow <a href="">these steps</a> to use
+<em>Homebrew</em> to download Git.</p>
+<p>A useful alternative to running Git in the command line is to use a
+Git client. Read more about these at <a
+href="https://happygitwithr.com/git-client.html">happygitwithr</a></p>
+<ul>
+<li>Create a personal access token (PAT)</li>
+</ul>
+<p>You need to provide GitHub with credentials that are unique to your
+user ID. This is a layer of security to manage access to your (and
+others) code repositories.</p>
+<p>To do this, either use <a href="https://github.com/settings/tokens"
+class="uri">https://github.com/settings/tokens</a> or the
+<code>usethis</code> package function
+<code>create_github_token()</code>. This may ask you to <strong>Generate
+token</strong> or may take you directly to your GitHub page.</p>
+<p>You can these set this PAT in your RStudio session using the
+<code>gitcreds</code> package function <code>gitcreds_set()</code>.</p>
+<ul>
+<li>Create a new GitHub repository</li>
+</ul>
+<p>Login to your <a href="https://github.com">GitHub account</a> and
+create a new repository. Under your <strong>Repositories</strong> tab,
+find the big green button <strong>New</strong>. Provide a repository
+name (choose anything at this point such as “test_repo”), add a
+description (“first repo attempt”), select “Public” and <strong>turn
+on</strong> the Add README file. Lastly, click the next big green button
+<strong>Create repository</strong>.</p>
+<ul>
+<li>Open a new R Project</li>
+</ul>
+<p>Now go back to RStudio and start a new R Project (File –&gt; New
+Project). Select Version Control —&gt; Git.</p>
+<p>It will now ask you for a repository URL. You can find this by going
+to your test_repo site, clicking on the big green button
+<strong>Code</strong> and then copying the HTTPS link to your
+repository.</p>
+<p>Paste this in your New Project in RStudio and then select a Project
+directory name and subdirectory where you’d like to store it. Lastly,
+select <strong>Create Project</strong>. Well done! If you’ve made it
+this far, you have now connected your Github account to your local
+RStudio session.</p>
+<ul>
+<li>Commit, push, pull</li>
+</ul>
+<p>So how do we make RStudio transfer files to and from GitHub? Start by
+create a new R script and simply adding <code>1 + 1</code> in it. Save
+this as a new file (test.R) under a scripts folder within your R Project
+folder.</p>
+<p>In the top-right panel of RStudio, you should notice there is now a
+<strong>Git</strong> tab. This tab should show three files with yellow
+question marks (.gitignore, scripts/, test_repo.Rproj). Click on the
+open boxes under the <strong>Staged</strong> column and then click
+Commit. Commit prepares these files to be moved to GitHub. Add a Commit
+message (update test repo) and then click Commit. This will give you a
+brief summary of the changes you have made (e.g. file changes,
+insertions and deletions). Close this and then click
+<strong>Push</strong>. You have now sent your files to Github! Open your
+GitHub test_repo page and refresh to see if the files have been
+updated.</p>
+<p>Now in your GitHub test_repo page, click the small pencil icon in
+your README.md page at the bottom-right side of the page. Add some new
+text here (e.g. “14 June 2022”), scroll to the bottom of the page and
+click the big green button <strong>Commit changes</strong>. You should
+now see the changes in your README.md file.</p>
+<p>We now want to download this to our computer. Go back to RStudio. In
+the Git tab, click on the blue downward facing arrow. This is a
+<strong>Pull</strong> command - it will sync your local computer with
+any changes which may have happened online! Once you click it, it will
+again give a short summary of the file changes. Well done! You have now
+covered all of the basics of connecting your RStudio Project to
+GitHub.</p>
+</div>
+</div>
+<div id="why-should-you-use-github-with-rstudio" class="section level2">
+<h2>Why should you use GitHub with RStudio?</h2>
+<ul>
+<li>Back-up files</li>
+<li>Restore previous versions</li>
+<li>Collaborate</li>
+<li>Share your work (like this website!)</li>
+</ul>
 </div>
 <div id="github-rstudio-resources" class="section level2">
-<h2>Github-RStudio resources</h2>
+<h2>GitHub-RStudio resources</h2>
+<p>As this is a somewhat complicated process to setup, I want to only
+recommend two resources:</p>
 <ul>
 <li><a href="https://happygitwithr.com/"
 class="uri">https://happygitwithr.com/</a></li>

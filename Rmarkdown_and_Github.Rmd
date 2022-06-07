@@ -1,5 +1,5 @@
 ---
-title: "R Markdown and Github"
+title: "R Markdown and GitHub"
 output:
   html_document:
     toc: true
@@ -26,9 +26,9 @@ In this topic, we will cover:
 * What is R Markdown?
 * Why should you use R Markdown?
 * R Markdown resources
-* What is Github?
-* Why should you use Github?
-* Github-RStudio resources
+* What is GitHub?
+* Why should you use GitHub with RStudio?
+* GitHub-RStudio resources
 
 Neither of these platforms/tools are essential to moving along the R experience ladder. The reason I decided to include them in a beginners R workshop is because they allow for some extremely valuable workflows related to sharing and collaboration. So, I think at least a little bit of exposure to these is useful early on in your RStudio journey.
 
@@ -100,19 +100,88 @@ plot(x = seq(1:10), y = seq(1:10))
 
 * Sharing work with collaborators
 * Producing high quality reports that integrates R outputs with text
-* For educators: coursework hand-ins
+* Reproducible reports through literate programming
+* Cuts down time to re-do an analysis (all in one space)
+* For educators: coursework hand-ins (no need to run R scripts)
 
 ## R Markdown resources
 
 * [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
 * [R Markdown Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf)
 * [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+* [R Markdown lessons with RStudio](https://rmarkdown.rstudio.com/lesson-1.html)
 
-## What is Github?
+## What is GitHub?
 
-## Why should you use Github?
+GitHub is a website and cloud-based service that allows coders to store, manage, track, version control, collaborate on and share their code. Essentially it hosts source code of any type, and is currently the most popular host out there with >50 million developers using the site.
 
-## Github-RStudio resources
+There are two important components of GitHub that require more detail:
+
+* Version control
+* Git
+
+### Version control
+
+Version control allows you to track all changes (additions/deletions) to a file or dataset. This means that you are able to return to an older version of your file (or R script) if you need to. This could be due to accidentally deleting something or because an alternative method you used did not work quite as well. This is particularly useful when you are collaborating with others on the same document. 
+
+### Git
+
+Git is a version control system, which implements everything just mentioned above. So, GitHub is an online Git repository which provides a graphical user interface to your repositories. 
+
+### How to use GitHub with RStudio?
+
+This is a bit beyond this workshop, but I will outline the core steps and then link to great resources to allow you to do this yourself. The first port of call is to read [happygitwithr.com](https://happygitwithr.com/). This site has far better instructions than you'll find here. But I'll provide a brief overview.
+
+Here are some key steps to using GitHub with RStudio:
+
+* Create a [GitHub](https://github.com/) account
+
+* Download Git
+
+If you're using Windows follow this [link](http://git-scm.com/downloads) to download Git. If you're using Mac OS, Git should already be installed. Open a terminal and run `which git` and `git --version` to check that Git is installed. Alternatively follow [these steps]() to use *Homebrew* to download Git.
+
+A useful alternative to running Git in the command line is to use a Git client. Read more about these at [happygitwithr](https://happygitwithr.com/git-client.html)
+ 
+* Create a personal access token (PAT)
+
+You need to provide GitHub with credentials that are unique to your user ID. This is a layer of security to manage access to your (and others) code repositories.
+
+To do this, either use https://github.com/settings/tokens or the `usethis` package function `create_github_token()`. This may ask you to **Generate token** or may take you directly to your GitHub page. 
+
+You can these set this PAT in your RStudio session using the `gitcreds` package function `gitcreds_set()`. 
+
+* Create a new GitHub repository
+
+Login to your [GitHub account](https://github.com) and create a new repository. Under your **Repositories** tab, find the big green button **New**. Provide a repository name (choose anything at this point such as "test_repo"), add a description ("first repo attempt"), select "Public" and **turn on** the Add README file. Lastly, click the next big green button **Create repository**.
+
+* Open a new R Project
+
+Now go back to RStudio and start a new R Project (File --> New Project). Select Version Control —> Git. 
+
+It will now ask you for a repository URL. You can find this by going to your test_repo site, clicking on the big green button **Code** and then copying the HTTPS link to your repository.
+
+Paste this in your New Project in RStudio and then select a Project directory name and subdirectory where you’d like to store it. Lastly, select **Create Project**. Well done! If you’ve made it this far, you have now connected your Github account to your local RStudio session.
+
+* Commit, push, pull
+
+So how do we make RStudio transfer files to and from GitHub? Start by create a new R script and simply adding `1 + 1` in it. Save this as a new file (test.R) under a scripts folder within your R Project folder. 
+
+In the top-right panel of RStudio, you should notice there is now a **Git** tab. This tab should show three files with yellow question marks (.gitignore, scripts/, test_repo.Rproj). Click on the open boxes under the **Staged** column and then click Commit. Commit prepares these files to be moved to GitHub. Add a Commit message (update test repo) and then click Commit. This will give you a brief summary of the changes you have made (e.g. file changes, insertions and deletions). Close this and then click **Push**. You have now sent your files to Github! Open your GitHub test_repo page and refresh to see if the files have been updated. 
+
+Now in your GitHub test_repo page, click the small pencil icon in your README.md page at the bottom-right side of the page. Add some new text here (e.g. "14 June 2022"), scroll to the bottom of the page and click the big green button **Commit changes**. You should now see the changes in your README.md file. 
+
+We now want to download this to our computer. Go back to RStudio. In the Git tab, click on the blue downward facing arrow. This is a **Pull** command - it will sync your local computer with any changes which may have happened online! Once you click it, it will again give a short summary of the file changes. Well done! You have now covered all of the basics of connecting your RStudio Project to GitHub.
+
+## Why should you use GitHub with RStudio?
+
+* Back-up files
+* Restore previous versions
+* Collaborate
+* Share your work (like this website!)
+
+## GitHub-RStudio resources
+
+As this is a somewhat complicated process to setup, I want to only recommend two resources:
 
 * https://happygitwithr.com/
 * https://resources.github.com/github-and-rstudio/
