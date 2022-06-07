@@ -26,9 +26,9 @@ output:
   + [Download R](https://cran.r-project.org/)
   + [Download R Studio](https://www.rstudio.com/products/rstudio/download/#download)
   + [R Projects](https://www.tidyverse.org/blog/2017/12/workflow-vs-script)
-  + [Folder structures]()
-  + [File naming]()
-  + [Script comments]()
+  + [Folder structures](https://intro2r.com/dir-struct.html)
+  + [File naming](https://intro2r.com/file-names.html)
+  + [Script comments](https://bookdown.org/ndphillips/YaRrr/a-brief-style-guide-commenting-and-spacing.html)
 
 #### Data wrangling
 
@@ -41,7 +41,17 @@ output:
 
 #### Data analysis
 
-#### R Markdown & Github
+#### R Markdown & GitHub
 
-  + This is the definitive guide for all things R Markdown (you will find this very useful as you get better at this skill): [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
+**R Markdown**
+
+* [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)
+* [R Markdown Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf)
+* [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
+* [R Markdown lessons with RStudio](https://rmarkdown.rstudio.com/lesson-1.html)
+
+**GitHub**
+
+* [happygitwithr](https://happygitwithr.com/)
+* [GitHub and RStudio](https://resources.github.com/github-and-rstudio/)
 

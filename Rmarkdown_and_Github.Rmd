@@ -51,7 +51,7 @@ There are 3 major components to an R Markdown file:
 
 These three components are all you need to produce a high quality report in R. Here is how they are 'coded' in an R markdown file:
 
-1. YAML header
+### YAML header
 ```yaml
 ---
 title: "Title here"
@@ -61,7 +61,7 @@ output:
 ---
 ```
 
-2. R code chunk
+### R code chunk
 
 ````markdown
 `r ''````{r}
@@ -82,7 +82,7 @@ plot(x = seq(1:10), y = seq(1:10))
 plot(x = seq(1:10), y = seq(1:10))
 ```
 
-3. Plain text with formatting
+### Plain text with formatting
 
 ```markdown
 # First-level header
@@ -95,6 +95,9 @@ plot(x = seq(1:10), y = seq(1:10))
 
 **bold**
 ```
+
+To create an R Markdown file, in your RStudio session go to File --> New File --> R Markdown. Provide a Title and select any of the outputs. This automatically loads an example script. You can immediately test this out by clicking the **Knit** icon (shown as a ball of yarn) above your new `.Rmd` script. You will need to save the document to file before it runs. 
+To add a new code chunk either use the green button (+c) or the shortcut `CONTROL + ALT + I` (Windows) / `CMD + OPTION + I` (macOS). Happy knitting!
 
 ## Why should you use R Markdown?
 
@@ -179,9 +182,9 @@ We now want to download this to our computer. Go back to RStudio. In the Git tab
 * Collaborate
 * Share your work (like this website!)
 
-## GitHub-RStudio resources
+## RStudio-GitHub resources
 
 As this is a somewhat complicated process to setup, I want to only recommend two resources:
 
-* https://happygitwithr.com/
-* https://resources.github.com/github-and-rstudio/
+* [happygitwithr](https://happygitwithr.com/)
+* [GitHub and RStudio](https://resources.github.com/github-and-rstudio/)

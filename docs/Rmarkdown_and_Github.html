@@ -489,9 +489,8 @@ optional)</li>
 </ol>
 <p>These three components are all you need to produce a high quality
 report in R. Here is how they are ‘coded’ in an R markdown file:</p>
-<ol style="list-style-type: decimal">
-<li>YAML header</li>
-</ol>
+<div id="yaml-header" class="section level3">
+<h3>YAML header</h3>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Title here&quot;</span></span>
@@ -499,9 +498,9 @@ class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">    pdf_document</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>R code chunk</li>
-</ol>
+</div>
+<div id="r-code-chunk" class="section level3">
+<h3>R code chunk</h3>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">1 + 1</span></span>
@@ -512,9 +511,9 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">plot(x = seq(1:10), y = seq(1:10))</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p><img src="Rmarkdown_and_Github_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Plain text with formatting</li>
-</ol>
+</div>
+<div id="plain-text-with-formatting" class="section level3">
+<h3>Plain text with formatting</h3>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># First-level header</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -525,6 +524,15 @@ class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>*italics*</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>**bold**</span></code></pre></div>
+<p>To create an R Markdown file, in your RStudio session go to File
+–&gt; New File –&gt; R Markdown. Provide a Title and select any of the
+outputs. This automatically loads an example script. You can immediately
+test this out by clicking the <strong>Knit</strong> icon (shown as a
+ball of yarn) above your new <code>.Rmd</code> script. You will need to
+save the document to file before it runs. To add a new code chunk either
+use the green button (+c) or the shortcut <code>CONTROL + ALT + I</code>
+(Windows) / <code>CMD + OPTION + I</code> (macOS). Happy knitting!</p>
+</div>
 </div>
 <div id="why-should-you-use-r-markdown" class="section level2">
 <h2>Why should you use R Markdown?</h2>
@@ -681,15 +689,14 @@ GitHub.</p>
 <li>Share your work (like this website!)</li>
 </ul>
 </div>
-<div id="github-rstudio-resources" class="section level2">
-<h2>GitHub-RStudio resources</h2>
+<div id="rstudio-github-resources" class="section level2">
+<h2>RStudio-GitHub resources</h2>
 <p>As this is a somewhat complicated process to setup, I want to only
 recommend two resources:</p>
 <ul>
-<li><a href="https://happygitwithr.com/"
-class="uri">https://happygitwithr.com/</a></li>
-<li><a href="https://resources.github.com/github-and-rstudio/"
-class="uri">https://resources.github.com/github-and-rstudio/</a></li>
+<li><a href="https://happygitwithr.com/">happygitwithr</a></li>
+<li><a href="https://resources.github.com/github-and-rstudio/">GitHub
+and RStudio</a></li>
 </ul>
 </div>
 
