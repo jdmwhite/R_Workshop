@@ -32,6 +32,8 @@ output:
 
 #### Data wrangling
 
+* Add dplyr links
+
 #### Data visualisation
 
   + [ggplot2 cheatsheet](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf) 
@@ -40,6 +42,8 @@ output:
   + [patchwork](https://patchwork.data-imaginist.com/index.html)
 
 #### Data analysis
+
+* Add data analysis resources
 
 #### R Markdown & GitHub
 
