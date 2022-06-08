@@ -59,3 +59,8 @@ output:
 * [happygitwithr](https://happygitwithr.com/)
 * [GitHub and RStudio](https://resources.github.com/github-and-rstudio/)
 
+#### Understanding R errors/warnings
+
+Debugging your code is a crucial aspect of writing and editing any code/script based documents. 
+
+Take a look this page on [Common R Mistakes](https://nickch-k.github.io/DataCommSlides/Lecture_04_Common_R_Problems.html) for help to debug your code.
