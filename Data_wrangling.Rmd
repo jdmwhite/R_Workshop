@@ -18,6 +18,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```{r xaringanExtra-clipboard, echo=FALSE}
 xaringanExtra::use_clipboard()
 ```
+
 Data wrangling involves cleaning, (re)structuring and transforming the data. This allows us to analyse and visualise data more easily.
 
 # Part 1: Data cleaning
@@ -39,11 +40,12 @@ Load your libraries:
 library(readxl)
 library(tidyverse)
 library(janitor)
-
+library(dplyr)
 ```
+
 ## Import data
 
-Data can be imported from .txt, .csv or Excel (to name a few common file types) into R. For this workshop we will be importing from .xlsx (Excel file). 
+Data can be imported from .txt, .csv or Excel (to name a few common file types) into R. For this workshop we will be importing from .xlsx (Excel file).
 
 ```{r, message = FALSE, warning=FALSE}
 #### Loading the data ----
@@ -51,6 +53,7 @@ photographer_names <- read_excel("data/raw/photographer_names.xlsx")
 #photographer_names <- read.csv("path/filename.csv)
 
 ```
+
 We can see above, the structure of the data that we have loaded. Now we can start cleaning the data
 
 ## Inspect data
@@ -62,20 +65,28 @@ Before we decide how to clean the data, we need to know how they are structured.
 View(photographer_names)
 names(photographer_names)
 str(photographer_names)
-
-
+head(photographers)
+tail(photographers)
 ```
+
 ## Prepare data
-Preparing the data allows you to see duplicates, extra letters, symbols and other attributes  in data sets (dataframes) that may make it hard to combine, read, or understand data. 
+
+Preparing the data allows you to see duplicates, extra letters, symbols and other attributes in data sets (dataframes) that may make it hard to combine, read, or understand data.
 
 ```{r, message = FALSE, warning=FALSE}
 #### Clean data
-photographers <- clean_names(photographer_names)
-photographers
-```
+photographers <- clean_names(photographer_names) #The new names are unique
+photographers <- rename(photographers, initial_date = date_4)
+photographers <- rename(photographers, repeat_date = date_6)
+names(photographers)
+#### remove or add rows/columns
+rows_delete (photographers, tibble(site_number = 1100)) #you can match the delete function to any specific row
+rows_insert (photographers, tibble (site_number = 9)) #The new row is added.
 
+```
 
 # Part 2: Data structuring
 
 # Part 3: Data transformation
+
 # dplyr
