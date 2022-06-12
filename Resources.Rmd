@@ -32,7 +32,7 @@ output:
 
 #### Data wrangling
 
-* Add dplyr links
+  + []
 
 #### Data visualisation
 
