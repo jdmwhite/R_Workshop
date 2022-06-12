@@ -41,7 +41,7 @@ library(tidyverse)
 library(janitor)
 
 ```
-##Import data
+## Import data
 
 Data can be imported from .txt, .csv or Excel in R. For this workshop we will be importing from .xlsx (Excel file). 
 
@@ -54,7 +54,7 @@ str(photographer_names)
 ```
 We can see above, the structure of the data that we have loaded. Now we can start cleaning the data
 
-##Clean the data
+## Clean data
 ```{r, message = FALSE, warning=FALSE}
 #### Clean dataframe
 photographers <- clean_names(photographer_names)

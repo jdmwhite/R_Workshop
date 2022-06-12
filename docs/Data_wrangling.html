@@ -458,7 +458,8 @@ packages. If you already have these packages, skip this step.</p>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
-<p>##Import data</p>
+<div id="import-data" class="section level2">
+<h2>Import data</h2>
 <p>Data can be imported from .txt, .csv or Excel in R. For this workshop
 we will be importing from .xlsx (Excel file).</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load and explore data----</span></span>
@@ -477,7 +478,9 @@ we will be importing from .xlsx (Excel file).</p>
 ##  $ Altitude (m)         : num [1:87] 1324 1380 1340 1330 1330 ...</code></pre>
 <p>We can see above, the structure of the data that we have loaded. Now
 we can start cleaning the data</p>
-<p>##Clean the data</p>
+</div>
+<div id="clean-data" class="section level2">
+<h2>Clean data</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean dataframe</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(photographer_names)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>photographers</span></code></pre></div>
@@ -496,6 +499,7 @@ we can start cleaning the data</p>
 ## 10        1114 Welbedacht    Howes-Howell          Unknown Jack               
 ## # … with 77 more rows, and 4 more variables: date_6 &lt;dttm&gt;, latitude &lt;dbl&gt;,
 ## #   longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
+</div>
 </div>
 <div id="part-2-structuring-data" class="section level1">
 <h1>Part 2: Structuring Data</h1>
