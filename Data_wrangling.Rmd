@@ -32,7 +32,7 @@ install.packages('tidyverse') # dplyr, tidyr and readxl
 install.packages('janitor') # cleaning names
 ```
 
-## Load your libraries:
+Load your libraries:
 
 ```{r, message = FALSE, warning=FALSE}
 #### Load libraries ----
@@ -60,15 +60,16 @@ Before we decide how to clean the data, we need to know how they are structured.
 ```{r, message = FALSE, warning=FALSE}
 #### Inspecting the data
 View(photographer_names)
+names(photographer_names)
 str(photographer_names)
-photographers <- clean_names(photographer_names)
-photographers
+
+
 ```
 ## Prepare data
 Preparing the data allows you to see duplicates, extra letters, symbols and other attributes  in data sets (dataframes) that may make it hard to combine, read, or understand data. 
 
 ```{r, message = FALSE, warning=FALSE}
-#### 
+#### Clean data
 photographers <- clean_names(photographer_names)
 photographers
 ```

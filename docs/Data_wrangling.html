@@ -442,8 +442,10 @@ div.tocify {
 </div>
 
 
-<div id="part-1-cleaning-data" class="section level1">
-<h1>Part 1: Cleaning Data</h1>
+<p>Data wrangling involves cleaning, (re)structuring and transforming
+the data. This allows us to analyse and visualise data more easily.</p>
+<div id="part-1-data-cleaning" class="section level1">
+<h1>Part 1: Data cleaning</h1>
 <p>In this section we will look at turning messy data into data that we
 can understand. We need the data cleaned before we can structure it so
 that we do not have to add and remove spaces, periods and duplicates
@@ -460,12 +462,28 @@ packages. If you already have these packages, skip this step.</p>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
 <div id="import-data" class="section level2">
 <h2>Import data</h2>
-<p>Data can be imported from .txt, .csv or Excel in R. For this workshop
-we will be importing from .xlsx (Excel file).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load and explore data----</span></span>
+<p>Data can be imported from .txt, .csv or Excel (to name a few common
+file types) into R. For this workshop we will be importing from .xlsx
+(Excel file).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Loading the data ----</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>photographer_names <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/raw/photographer_names.xlsx&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(photographer_names)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(photographer_names)</span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#photographer_names &lt;- read.csv(&quot;path/filename.csv)</span></span></code></pre></div>
+<p>We can see above, the structure of the data that we have loaded. Now
+we can start cleaning the data</p>
+</div>
+<div id="inspect-data" class="section level2">
+<h2>Inspect data</h2>
+<p>Before we decide how to clean the data, we need to know how they are
+structured. We want to find out information about the rows(observations)
+and columns(variables). This will give us an idea of how we can clean.
+manipulate and structure the data before visualisation and analysis.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Inspecting the data</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(photographer_names)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(photographer_names)</span></code></pre></div>
+<pre><code>## [1] &quot;Site Number&quot;           &quot;Site Location&quot;         &quot;Original Photographer&quot;
+## [4] &quot;Date...4&quot;              &quot;Repeat Photographer&quot;   &quot;Date...6&quot;             
+## [7] &quot;Latitude&quot;              &quot;Longitude&quot;             &quot;Altitude (m)&quot;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(photographer_names)</span></code></pre></div>
 <pre><code>## tibble [87 × 9] (S3: tbl_df/tbl/data.frame)
 ##  $ Site Number          : num [1:87] 1100 1101 1103 1104 1105 ...
 ##  $ Site Location        : chr [1:87] &quot;Welbedacht&quot; &quot;Welbedacht&quot; &quot;Welbedacht&quot; &quot;Welbedacht&quot; ...
@@ -476,14 +494,15 @@ we will be importing from .xlsx (Excel file).</p>
 ##  $ Latitude             : num [1:87] -32.4 -32.4 -32.4 -32.4 -32.4 ...
 ##  $ Longitude            : num [1:87] 19.2 19.2 19.2 19.2 19.2 ...
 ##  $ Altitude (m)         : num [1:87] 1324 1380 1340 1330 1330 ...</code></pre>
-<p>We can see above, the structure of the data that we have loaded. Now
-we can start cleaning the data</p>
 </div>
-<div id="clean-data" class="section level2">
-<h2>Clean data</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean dataframe</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(photographer_names)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>photographers</span></code></pre></div>
+<div id="prepare-data" class="section level2">
+<h2>Prepare data</h2>
+<p>Preparing the data allows you to see duplicates, extra letters,
+symbols and other attributes in data sets (dataframes) that may make it
+hard to combine, read, or understand data.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean data</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(photographer_names)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>photographers</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 9
 ##    site_number site_location original_photographer date_4  repeat_photographer
 ##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;   &lt;chr&gt;              
@@ -501,11 +520,11 @@ we can start cleaning the data</p>
 ## #   longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<div id="part-2-structuring-data" class="section level1">
-<h1>Part 2: Structuring Data</h1>
+<div id="part-2-data-structuring" class="section level1">
+<h1>Part 2: Data structuring</h1>
 </div>
-<div id="part-3-transforming-data" class="section level1">
-<h1>Part 3: Transforming Data</h1>
+<div id="part-3-data-transformation" class="section level1">
+<h1>Part 3: Data transformation</h1>
 </div>
 <div id="dplyr" class="section level1">
 <h1>dplyr</h1>
