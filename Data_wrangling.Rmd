@@ -90,3 +90,13 @@ photographers <- mutate (photographers, location = " ") #adds a new column
 
 # Part 2: Data transformation
 
+Data transformation involves changing the structure of data.This involves adding new columns with computed data or joining a new column/row to the dataframe. We did some transformations above. Here are a few more.
+
+```{r, message = FALSE, warning=FALSE}
+#### Clean and structure data
+pull(photographers, latitude)
+select(photographers, site_location, altitude_m)
+
+```
+
+
