@@ -525,7 +525,7 @@ manipulate and structure the data before visualisation and analysis.</p>
 <p>Preparing the data allows you to see duplicates, extra letters,
 symbols and other attributes in data sets (dataframes) that may make it
 hard to combine, read, or understand data.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean data</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean and structure data</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(photographer_names) <span class="co">#The new names are unique</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">rename</span>(photographers, <span class="at">initial_date =</span> date_4)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">rename</span>(photographers, <span class="at">repeat_date =</span> date_6)</span>
@@ -533,7 +533,7 @@ hard to combine, read, or understand data.</p>
 <pre><code>## [1] &quot;site_number&quot;           &quot;site_location&quot;         &quot;original_photographer&quot;
 ## [4] &quot;initial_date&quot;          &quot;repeat_photographer&quot;   &quot;repeat_date&quot;          
 ## [7] &quot;latitude&quot;              &quot;longitude&quot;             &quot;altitude_m&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add rows/columns</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add rows</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_delete</span> (photographers, <span class="fu">tibble</span>(<span class="at">site_number =</span> <span class="dv">1100</span>)) <span class="co">#you can match the delete function to any specific row</span></span></code></pre></div>
 <pre><code>## # A tibble: 86 × 9
 ##    site_number site_location original_photographer initial_date repeat_photogra…
@@ -566,13 +566,28 @@ hard to combine, read, or understand data.</p>
 ## 10        1114 Welbedacht    Howes-Howell          Unknown      Jack            
 ## # … with 78 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
 ## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add columns</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers,<span class="sc">-</span>initial_date) <span class="co">#removes column</span></span></code></pre></div>
+<pre><code>## # A tibble: 87 × 8
+##    site_number site_location original_photographer repeat_photographer
+##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;              
+##  1        1100 Welbedacht    Lambert               Jack               
+##  2        1101 Welbedacht    Howes-Howell          Jack               
+##  3        1103 Welbedacht    Taylor                Jack               
+##  4        1104 Welbedacht    Taylor                Jack               
+##  5        1105 Welbedacht    Taylor                Jack               
+##  6        1107 Welbedacht    Taylor                Jack               
+##  7        1108 Welbedacht    Taylor                Jack               
+##  8        1111 Welbedacht    Howes-Howell          Jack               
+##  9        1113 Welbedacht    Manders               Jack               
+## 10        1114 Welbedacht    Howes-Howell          Jack               
+## # … with 77 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
+## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">mutate</span> (photographers, <span class="at">location =</span> <span class="st">&quot; &quot;</span>) <span class="co">#adds a new column</span></span></code></pre></div>
 </div>
 </div>
-<div id="part-2-data-structuring" class="section level1">
-<h1>Part 2: Data structuring</h1>
-</div>
-<div id="part-3-data-transformation" class="section level1">
-<h1>Part 3: Data transformation</h1>
+<div id="part-2-data-transformation" class="section level1">
+<h1>Part 2: Data transformation</h1>
 </div>
 
 

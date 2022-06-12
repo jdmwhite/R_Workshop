@@ -74,18 +74,19 @@ tail(photographer_names)
 Preparing the data allows you to see duplicates, extra letters, symbols and other attributes in data sets (dataframes) that may make it hard to combine, read, or understand data.
 
 ```{r, message = FALSE, warning=FALSE}
-#### Clean data
+#### Clean and structure data
 photographers <- clean_names(photographer_names) #The new names are unique
 photographers <- rename(photographers, initial_date = date_4)
 photographers <- rename(photographers, repeat_date = date_6)
 names(photographers)
-#### remove or add rows/columns
+#### remove or add rows
 rows_delete (photographers, tibble(site_number = 1100)) #you can match the delete function to any specific row
 rows_insert (photographers, tibble (site_number = 9)) #The new row is added.
+#### remove or add columns
+select(photographers,-initial_date) #removes column
+photographers <- mutate (photographers, location = " ") #adds a new column
 
 ```
 
-# Part 2: Data structuring
-
-# Part 3: Data transformation
+# Part 2: Data transformation
 
