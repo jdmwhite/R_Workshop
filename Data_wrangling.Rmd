@@ -36,13 +36,22 @@ library(tidyverse)
 library(janitor)
 
 ```
-
+Load data
 ```{r, message = FALSE, warning=FALSE}
-#### Load data ----
+#### Load and explore data----
 photographer_names <- read_excel("data/raw/photographer_names.xlsx")
 View(photographer_names)
-```
+str(photographer_names)
 
+```
+We can see above, the structure of the data that we have loaded. Now we can start cleaning the data
+
+Clean the data
+```{r, message = FALSE, warning=FALSE}
+#### Clean dataframe
+photographers <- clean_names(photographer_names)
+photographers
+```
 
 
 
