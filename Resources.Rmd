@@ -34,6 +34,7 @@ output:
 
   + [dplyr cheatsheet - includes all other cheat sheets](https://www.rstudio.com/resources/cheatsheets/)
   + [more resources - blog to check out](https://towardsdatascience.com/7-data-wrangling-r-functions-for-your-next-data-science-project-in-under-5-minutes-d5a4ad55f99b)
+  + [importing data into R](https://intro2r.com/importing-data.html)
 
 #### Data visualisation
 
