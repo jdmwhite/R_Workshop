@@ -16,7 +16,6 @@ photographer_names <- read_excel("data/raw/photographer_names.xlsx")
 #photographer_names <- read.csv("path/filename.csv)
 
 ## Inspect data
-
 #### Inspecting the data
 View(photographer_names)
 names(photographer_names)

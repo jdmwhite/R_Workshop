@@ -588,6 +588,40 @@ hard to combine, read, or understand data.</p>
 </div>
 <div id="part-2-data-transformation" class="section level1">
 <h1>Part 2: Data transformation</h1>
+<p>Data transformation involves changing the structure of data.This
+involves adding new columns with computed data or joining a new
+column/row to the dataframe. We did some transformations above. Here are
+a few more.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean and structure data</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(photographers, latitude)</span></code></pre></div>
+<pre><code>##  [1] -32.40899 -32.40719 -32.43596 -32.43659 -32.43647 -32.40108 -32.40224
+##  [8] -32.40020 -32.40693 -32.40862 -32.40862 -32.41253 -32.41253 -32.21079
+## [15] -32.22125 -32.22133 -32.22163 -32.21944 -32.22029 -32.31575 -32.32013
+## [22] -32.32323 -32.32635 -32.32814 -32.33909 -32.34566 -32.34819 -32.34806
+## [29] -32.35179 -32.34477 -32.33626 -32.33396 -32.33234 -32.33243 -32.34393
+## [36] -32.34039 -32.34191 -32.34203 -32.35600 -32.35546 -32.35418 -32.35741
+## [43] -32.35763 -32.35807 -32.35098 -32.36158 -32.36173 -32.35576 -32.35582
+## [50] -32.35677 -32.35630 -32.36166 -32.37061 -32.36857 -32.36961 -32.36892
+## [57] -32.36937 -32.36919 -32.37169 -32.36862 -32.36839 -32.37067 -32.37078
+## [64] -32.36963 -32.37199 -32.37231 -32.37511 -32.37489 -32.37434 -32.37340
+## [71] -32.37318 -32.37313 -32.37331 -32.37402 -32.37518 -32.37396 -32.37388
+## [78] -32.37385 -32.37342 -32.36967 -32.38276 -32.38267 -32.38255 -32.38125
+## [85] -32.38279 -32.35810 -32.35474</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers, site_location, altitude_m)</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 2
+##    site_location altitude_m
+##    &lt;chr&gt;              &lt;dbl&gt;
+##  1 Welbedacht          1324
+##  2 Welbedacht          1380
+##  3 Welbedacht          1340
+##  4 Welbedacht          1330
+##  5 Welbedacht          1330
+##  6 Welbedacht          1426
+##  7 Welbedacht          1409
+##  8 Welbedacht          1420
+##  9 Welbedacht          1378
+## 10 Welbedacht          1386
+## # … with 77 more rows</code></pre>
 </div>
 
 
