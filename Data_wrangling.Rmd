@@ -65,8 +65,8 @@ Before we decide how to clean the data, we need to know how they are structured.
 View(photographer_names)
 names(photographer_names)
 str(photographer_names)
-head(photographers)
-tail(photographers)
+head(photographer_names)
+tail(photographer_names)
 ```
 
 ## Prepare data
