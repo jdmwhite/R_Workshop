@@ -14,4 +14,40 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 xaringanExtra::use_clipboard()
 ```
 
+
+# Part 1: Cleaning Data
+
+In this section we will look at turning messy data into data that we can understand. We need the data cleaned before we can structure it so that we do not have to add and remove spaces, periods and duplicates when we are structuring the data.
+
+We will start by installing packages. You might already have these packages. If you already have these packages, skip this step.
+
+```{r eval=FALSE}
+#### Install packages ----
+install.packages('tidyverse') # dplyr, tidyr and readxl 
+install.packages('janitor') # cleaning names
+```
+
+Load your libraries:
+
+```{r, message = FALSE, warning=FALSE}
+#### Load libraries ----
+library(readxl)
+library(tidyverse)
+library(janitor)
+
+```
+
+```{r, message = FALSE, warning=FALSE}
+#### Load data ----
+photographer_names <- read_excel("data/raw/photographer_names.xlsx")
+View(photographer_names)
+```
+
+
+
+
+
+# Part 2: Structuring Data
+
+# Part 3: Transforming Data
 # dplyr
