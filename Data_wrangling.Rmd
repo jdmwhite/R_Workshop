@@ -89,4 +89,3 @@ rows_insert (photographers, tibble (site_number = 9)) #The new row is added.
 
 # Part 3: Data transformation
 
-# dplyr
