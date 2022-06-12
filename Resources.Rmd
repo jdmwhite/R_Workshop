@@ -44,8 +44,10 @@ output:
 
 #### Data analysis
 
-* Add data analysis resources
-
+  + [Descriptive statistics](https://b-rodrigues.github.io/modern_R/descriptive-statistics-and-data-manipulation.html#going-beyond-descriptive-statistics-and-data-manipulation)
+  + [t.test using R](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/t.test)
+  + [More descriptive statistics resources](https://www.r-bloggers.com/2021/10/descriptive-statistics-in-r-3/)
+  
 #### R Markdown & GitHub
 
 **R Markdown**
