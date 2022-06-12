@@ -46,6 +46,100 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -272,6 +366,65 @@ $(document).ready(function () {
 </div>
 
 
+<div id="part-1-cleaning-data" class="section level1">
+<h1>Part 1: Cleaning Data</h1>
+<p>In this section we will look at turning messy data into data that we
+can understand. We need the data cleaned before we can structure it so
+that we do not have to add and remove spaces, periods and duplicates
+when we are structuring the data.</p>
+<p>We will start by installing packages. You might already have these
+packages. If you already have these packages, skip this step.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Install packages ----</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>) <span class="co"># dplyr, tidyr and readxl </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;janitor&#39;</span>) <span class="co"># cleaning names</span></span></code></pre></div>
+<p>Load your libraries:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load libraries ----</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
+<p>Load data</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load and explore data----</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>photographer_names <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/raw/photographer_names.xlsx&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(photographer_names)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(photographer_names)</span></code></pre></div>
+<pre><code>## tibble [87 × 9] (S3: tbl_df/tbl/data.frame)
+##  $ Site Number          : num [1:87] 1100 1101 1103 1104 1105 ...
+##  $ Site Location        : chr [1:87] &quot;Welbedacht&quot; &quot;Welbedacht&quot; &quot;Welbedacht&quot; &quot;Welbedacht&quot; ...
+##  $ Original Photographer: chr [1:87] &quot;Lambert&quot; &quot;Howes-Howell&quot; &quot;Taylor&quot; &quot;Taylor&quot; ...
+##  $ Date...4             : chr [1:87] &quot;Unknown&quot; &quot;11324&quot; &quot;1986/7&quot; &quot;1986/7&quot; ...
+##  $ Repeat Photographer  : chr [1:87] &quot;Jack&quot; &quot;Jack&quot; &quot;Jack&quot; &quot;Jack&quot; ...
+##  $ Date...6             : POSIXct[1:87], format: &quot;2013-04-01&quot; &quot;2013-04-01&quot; ...
+##  $ Latitude             : num [1:87] -32.4 -32.4 -32.4 -32.4 -32.4 ...
+##  $ Longitude            : num [1:87] 19.2 19.2 19.2 19.2 19.2 ...
+##  $ Altitude (m)         : num [1:87] 1324 1380 1340 1330 1330 ...</code></pre>
+<p>We can see above, the structure of the data that we have loaded. Now
+we can start cleaning the data</p>
+<p>Clean the data</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean dataframe</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(photographer_names)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>photographers</span></code></pre></div>
+<pre><code>## # A tibble: 87 × 9
+##    site_number site_location original_photographer date_4  repeat_photographer
+##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;   &lt;chr&gt;              
+##  1        1100 Welbedacht    Lambert               Unknown Jack               
+##  2        1101 Welbedacht    Howes-Howell          11324   Jack               
+##  3        1103 Welbedacht    Taylor                1986/7  Jack               
+##  4        1104 Welbedacht    Taylor                1986/7  Jack               
+##  5        1105 Welbedacht    Taylor                1986/7  Jack               
+##  6        1107 Welbedacht    Taylor                1986/7  Jack               
+##  7        1108 Welbedacht    Taylor                1986/7  Jack               
+##  8        1111 Welbedacht    Howes-Howell          12724   Jack               
+##  9        1113 Welbedacht    Manders               30195   Jack               
+## 10        1114 Welbedacht    Howes-Howell          Unknown Jack               
+## # … with 77 more rows, and 4 more variables: date_6 &lt;dttm&gt;, latitude &lt;dbl&gt;,
+## #   longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
+</div>
+<div id="part-2-structuring-data" class="section level1">
+<h1>Part 2: Structuring Data</h1>
+</div>
+<div id="part-3-transforming-data" class="section level1">
+<h1>Part 3: Transforming Data</h1>
+</div>
 <div id="dplyr" class="section level1">
 <h1>dplyr</h1>
 </div>
