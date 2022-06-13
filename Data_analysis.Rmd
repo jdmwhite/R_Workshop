@@ -76,4 +76,3 @@ View(penguins)
 oneway <- lm(bill_length_mm ~ island, data = penguins)
 oneway
 ```
-## dplyr, broom & stargazer
