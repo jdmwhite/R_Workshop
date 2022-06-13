@@ -128,3 +128,17 @@ combined_plot +
 #### Save your plot ----
 # using ggsave()
 ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'white', width = 180, height = 80, units = 'mm', dpi = 320)
+
+#### Save plot for Publication ----
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8, size = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species:', shape = 'Penguin species:') + theme_classic() +
+  theme(legend.position = 'top',
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        axis.title = element_text(size = 8),
+        axis.text = element_text(size = 6))
+
+ggsave("output/figs/peng_mass_bill_flipper_length_publication.png", device = 'png', bg = 'white', width = 80, height = 60, units = 'mm', dpi = 600)

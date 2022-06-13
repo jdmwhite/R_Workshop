@@ -416,6 +416,32 @@ ggsave("output/figs/peng_mass_bill_flipper_length.png", device = 'png', bg = 'wh
        width = 120, height = 80, units = 'mm', dpi = 320)
 ```
 
+## Save your plot for publication
+
+The plot we saved above will work well for most projects. However, if we are submitting our work to peer-reviewed journals, we will need to follow the journal instructions on the figure types, dimensions and resolution. For example, Wiley journals have quite specific [electronic artwork guidelines](https://authorservices.wiley.com/asset/photos/electronic_artwork_guidelines.pdf). For a small figure (that takes up one column or half the width of the page), they are required to be a PDF or EPS file type and 80 mm wide. 
+
+Let's save an example of our single scatterplot following the above guidelines. Making the figure this small, will require some adjustments from our ggplot text and point size. See the added features below, which first change the point size `size = 0.8` and then change the legend title and text, and the axes titles and text using `element_text(size = )` arguments.
+
+```{r}
+ggplot(penguins) +
+  geom_point(aes(body_mass_g, bill_length_mm, col = species, shape = species), alpha = 0.8, size = 0.8) +
+  scale_colour_manual(values = c('darkorange', 'purple', 'cyan4')) +
+  labs(x = 'Body mass (g)', y = 'Bill length (mm)',
+       colour = 'Penguin species:', shape = 'Penguin species:') + theme_classic() +
+  theme(legend.position = 'top',
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 6),
+        axis.title = element_text(size = 8),
+        axis.text = element_text(size = 6))
+```
+
+This won't look great in the R Markdown output, but if you open the file on your local drive, it will be the correct file type and size. We then specify the width of our figure as 80mm: `width = 80`. Lastly, we adjust the height accordingly.
+
+```{r, eval = FALSE}
+ggsave("output/figs/peng_mass_bill_flipper_length_publication.pdf", device = 'pdf', width = 80, height = 60, units = 'mm')
+```
+
+
 # Part 2: Different geometries
 
 In Part 2, we will explore the range of different plots available in `ggplot2`. We have already looked at a type of correlation plot using `geom_point()` (i.e. scatterplots). In this section, we will explore a range of distribution plots (boxplots, histograms and density plots) and ranking plots (barplots and lollipop plots). There are many more ways to plot your data and the [r-graph-gallery](https://r-graph-gallery.com/index.html) or following the [#TidyTuesday challenge on Twitter](https://twitter.com/search?q=%23TidyTuesday&src=typeahead_click) are good places to look for inspiration.
