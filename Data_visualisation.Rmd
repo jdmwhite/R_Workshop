@@ -19,7 +19,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 xaringanExtra::use_clipboard()
 ```
 
-Download the scripts for this session at the links below:
+Download the scripts for this session at the links below (Click Link --> Right Click on Page --> Save Page As):
 
 * [Session 5: data visualisation R script](https://raw.githubusercontent.com/jdmwhite/R_Workshop/main/scripts/5_data_visualisation.R)
 * [Session 6: data visualisation R script](https://raw.githubusercontent.com/jdmwhite/R_Workshop/main/scripts/6_data_visualisation.R)
