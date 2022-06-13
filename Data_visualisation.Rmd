@@ -19,6 +19,11 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 xaringanExtra::use_clipboard()
 ```
 
+Download the scripts for this session at the links below:
+
+* [Session 5: data visualisation R script](https://raw.githubusercontent.com/jdmwhite/R_Workshop/main/scripts/5_data_visualisation.R)
+* [Session 6: data visualisation R script](https://raw.githubusercontent.com/jdmwhite/R_Workshop/main/scripts/6_data_visualisation.R)
+
 # Part 1: Building a ggplot()
 
 In Part 1, we will work on building one good, publication ready figure.

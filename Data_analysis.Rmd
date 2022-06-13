@@ -18,6 +18,11 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```{r xaringanExtra-clipboard, echo=FALSE}
 xaringanExtra::use_clipboard()
 ```
+
+Download the script for this session at the link below:
+
+* [Session 7: data analysis R script](https://raw.githubusercontent.com/jdmwhite/R_Workshop/main/scripts/7_Data_Analysis.R)
+
 # Basic data analysis
 
 The most basic computing one can do on R is arithmetic

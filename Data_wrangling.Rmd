@@ -19,6 +19,10 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 xaringanExtra::use_clipboard()
 ```
 
+Download the script for this session at the link below:
+
+* [Session 3 and 4: data wrangling R script](https://raw.githubusercontent.com/jdmwhite/R_Workshop/main/scripts/3_Data_Wrangling.R)
+
 Data wrangling involves cleaning, (re)structuring and transforming the data. This allows us to analyse and visualise data more easily.
 
 # Part 1: Data cleaning

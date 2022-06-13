@@ -29,14 +29,17 @@ ggplot(data = drop_na(penguins), aes(body_mass_g, bill_length_mm, col = species,
 penguins %>% 
   group_by(species) %>% 
   summarise(flipper_mean = mean(flipper_length_mm, na.rm = T),
-            flipper_sd = sd(flipper_length_mm, na.rm = T)) %>% 
-  ggplot() +
+            flipper_sd = sd(flipper_length_mm, na.rm = T)) -> penguins_summary
+
+penguins_summary %>%
+ggplot() +
   geom_col(aes(x = species, y = flipper_mean),
            fill = c('darkorange','purple','cyan4')) +
   geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd, ymin = flipper_mean - flipper_sd), width = 0.5) +
   labs(x = "Penguin species", y = 'Flipper length (mm)') +
   theme_minimal()
 
+penguins_summary %>%
 ggplot() +
   geom_point(aes(x = species, y = flipper_mean, col = species)) +
   geom_errorbar(aes(x = species, ymax = flipper_mean + flipper_sd, ymin = flipper_mean - flipper_sd, col = species), width = 0.5) +
@@ -73,8 +76,6 @@ ggplot(penguins) +
   theme_minimal()
 
 #### Extreme distribution plots ----
-penguins %>% filter(species == 'Chinstrap') %>% select(flipper_length_mm) %>% median_qi(na.rm = T)
-
 ggplot() +
   stat_halfeye(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), point_interval = 'median_qi', side = 'left', scale = 0.5, adjust = 0.75) +
   stat_dots(data = penguins, aes(species, flipper_length_mm, fill = species, col = species), scale = 0.5) +
@@ -104,5 +105,6 @@ ggplot() +
                   segment.curvature = 0.2,
                   segment.size = 0.2, size = 3)
 
+penguins %>% filter(species == 'Chinstrap') %>% select(flipper_length_mm) %>% median_qi(na.rm = T)
 
 
