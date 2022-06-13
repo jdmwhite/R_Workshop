@@ -466,8 +466,8 @@ div.tocify {
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">&lt;</span> <span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
-<div id="data-analysis-using-dataframe" class="section level1">
-<h1>Data analysis using dataframe</h1>
+<div id="data-analysis-using-a-dataframe" class="section level1">
+<h1>Data analysis using a dataframe</h1>
 <p>We will continue to work with the penguins data from the data
 visualisation section. These data have already been cleaned and
 visualised. Therefore, we will only focus on the analysis.</p>
@@ -484,9 +484,18 @@ visualised. Therefore, we will only focus on the analysis.</p>
 ##  $ sex              : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 1 NA 1 2 1 2 NA NA ...
 ##  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(penguins)</span></code></pre></div>
+<div id="linear-models" class="section level2">
+<h2>Linear models</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>oneway <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>oneway</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = bill_length_mm ~ island, data = penguins)
+## 
+## Coefficients:
+##     (Intercept)      islandDream  islandTorgersen  
+##          45.257           -1.090           -6.307</code></pre>
 </div>
-<div id="linear-models" class="section level1">
-<h1>Linear models</h1>
 <div id="dplyr-broom-stargazer" class="section level2">
 <h2>dplyr, broom &amp; stargazer</h2>
 </div>

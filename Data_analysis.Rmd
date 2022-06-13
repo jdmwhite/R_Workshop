@@ -71,6 +71,9 @@ str(penguins)
 View(penguins)
 ```
 
-# Linear models
-
+## Linear models
+```{r}
+oneway <- lm(bill_length_mm ~ island, data = penguins)
+oneway
+```
 ## dplyr, broom & stargazer
