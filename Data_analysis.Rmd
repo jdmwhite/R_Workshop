@@ -59,10 +59,7 @@ Comparisons
 ```
 
 
-# Data analysis using dataframe
-
-
-
+# Data analysis using a dataframe
 
 We will continue to work with the penguins data from the data visualisation section. These data have already been cleaned and visualised. Therefore, we will only focus on the analysis. 
 
