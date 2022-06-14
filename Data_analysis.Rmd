@@ -66,18 +66,179 @@ Comparisons
 
 # Data analysis using a dataframe
 
-We will continue to work with the penguins data from the data visualisation section. These data have already been cleaned and visualised. Therefore, we will only focus on the analysis. 
-
+We will continue to work with the penguins data from the data visualisation section. These data have already been cleaned. 
 load the processed data
 
 ```{r}
+#### Extra packages 
+install.packages('broom')
+install.packages('stargazer')
+install.packages('effects')
+
+#### Load libraries
+library(readxl)
+library(tidyverse)
+library(janitor)
+library(dplyr)
+library(palmerpenguins)
+library(broom)
+library(stargazer)
+library(effects)
+library(ggplot2)
+```
+
+```{r}
+#### Load data ----
 penguins <- palmerpenguins::penguins
 str(penguins)
 View(penguins)
 ```
 
-## Linear models
 ```{r}
-oneway <- lm(bill_length_mm ~ island, data = penguins)
-oneway
+#### Selecting and filtering data
+penguins_bill <- select (penguins, species, island, bill_length_mm, bill_depth_mm)
+penguins_flipper <- select (penguins, species, island, flipper_length_mm)
+penguins_bodymass <- select(penguins, -flipper_length_mm, -bill_length_mm, -bill_depth_mm)
+penguins_09 <- filter(penguins, year == 2009)
+penguins2 <- filter(penguins, year < 2008)
+
+#### say for instance you want the penguin bill information for 2007 and 2008 only
+
+##### option 1
+penguins_bill2 <- select (penguins, species, island, bill_length_mm, bill_depth_mm, year)
+penguins_bill2 <- filter(penguins_bill2, year < 2009)
+penguins_bill2
+penguins_bill2 <- na.omit(penguins_bill2)
+penguins_bill2
+
+##### option 2
+penguins_bill2_2 <- select(filter(penguins, year < 2009), species, island, bill_length_mm, bill_depth_mm, year)
+penguins_bill2_2 <- na.omit(penguins_bill2_2)
+penguins_bill2_2
+
+##### option 3 
+## you can use the pipe function
+Penguins_bill<-penguins %>%
+  filter(year < 2009) %>%
+  select(species, island, bill_length_mm, bill_depth_mm, year) %>% 
+  na.omit()
+Penguins_bill
+```
+
+```{r}
+##### mutate
+
+Penguins_bill<-Penguins_bill %>% mutate(bill_length_m = bill_length_mm/1000) #added a new column with new units for bill_length
+Penguins_bill
+Penguins_bill<-Penguins_bill %>% mutate(bill_depth_m = bill_depth_mm/1000)
+
+##### group_by
+Penguins_bill_mean<-Penguins_bill %>%
+  group_by(species, year) %>% 
+  summarise(mean_bill_length_mm = mean(bill_length_mm))
+Penguins_bill_mean
+
+Penguins_bill_mean<-Penguins_bill %>%
+  group_by(species, year) %>% 
+  summarise(mean_bill_length_mm = mean(bill_length_mm)) %>% 
+  arrange(desc(year))
+Penguins_bill_mean
+
+Penguins_bill_mean<-Penguins_bill %>%
+  group_by(species, year) %>% 
+  summarise(mean_bill_length_mm = mean(bill_length_mm))
+Penguins_bill_mean
+
+alpha=0.05
+Penguins_bill_Stats <- Penguins_bill %>%
+  group_by(species, island, year) %>%
+  summarise( 
+    n=n(),
+    mean_bill_length_mm=mean(na.omit(bill_length_mm)),
+    bill_length_sd=sd(na.omit(bill_length_mm)),
+    mean_bill_depth_mm=mean(na.omit(bill_length_mm)),
+    bill_depth_sd=sd(na.omit(bill_length_mm)))
+
+Penguins_bill_Stats
+```
+
+```{r}
+##### Plot stats 
+names(Penguins_bill_Stats)
+StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm))+
+  geom_line(size = 1, colour = "red")+
+  geom_point(shape = 19, size = 1, colour = "red")+
+  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.5, colour ="black", linetype = "solid")
+
+StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm))+
+  geom_line(size = 1, colour = "red")+
+  geom_point(shape = 19, size = 1, colour = "red")+
+  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.5, colour ="black", linetype = "solid")+
+  theme_classic()+
+  xlab("Species_Names")+
+  ylab("Bill_length (mm)")
+
+StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm))+
+  geom_line(size = 1, colour = "red")+
+  geom_point(shape = 19, size = 1, colour = "red")+
+  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.5, colour ="black", linetype = "solid")+
+  theme_classic()+
+  xlab("Species_Names")+
+  ylab("Bill_length (mm)")+facet_grid(rows=vars(year))
+
+StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm))+
+  geom_line(size = 8, colour = "red")+
+  geom_point(shape = 19, size = 4, colour = "red")+
+  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.1, colour ="black", linetype = "solid")+
+  theme_classic()+
+  xlab("Species_Names")+
+  ylab("Bill_length (mm)")+facet_grid(rows=vars(year, island))
+
+StatsPlot
+```
+
+```{r}
+#### Categorical linear model ----
+aov <- lm(bill_length_mm ~ island, data = penguins)
+
+summary(aov)
+```
+
+```{r}
+#### Continuous linear model ----
+aov2 <- lm(bill_length_mm ~ body_mass_g, data = penguins)
+
+summary(aov2)
+```
+
+```{r}
+#### Categorical and Continuous model ----
+aov3 <- lm(bill_length_mm ~ body_mass_g + island, data = penguins)
+
+summary(aov3)
+```
+
+```{r}
+#### Summarise results ----
+# Broom::tidy
+aov_coefficients <- tidy(aov)
+aov2_coefficients <- tidy(aov2)
+aov3_coefficients <- tidy(aov3)
+```
+
+```{r}
+#### Plot effects ----
+aov_effects <- allEffects(aov)
+aov2_effects <- allEffects(aov2)
+aov3_effects <- allEffects(aov3)
+
+plot(aov_effects)
+plot(aov2_effects)
+plot(aov3_effects)
+```
+
+```{r}
+#### Stargazer summary table ----
+# export as a text; copy and paste
+stargazer::stargazer(lm1, lm2, lm3, type = 'text', out = 'output/tables/lm_summaries.text')
 ```
