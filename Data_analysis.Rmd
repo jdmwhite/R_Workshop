@@ -71,9 +71,9 @@ load the processed data
 
 ```{r}
 #### Extra packages 
-install.packages('broom')
-install.packages('stargazer')
-install.packages('effects')
+#install.packages('broom')
+#install.packages('stargazer')
+#install.packages('effects')
 
 #### Load libraries
 library(readxl)
@@ -220,7 +220,7 @@ summary(aov3)
 
 ```{r}
 #### Summarise results ----
-# Broom::tidy
+Broom::tidy
 aov_coefficients <- tidy(aov)
 aov2_coefficients <- tidy(aov2)
 aov3_coefficients <- tidy(aov3)
@@ -240,5 +240,5 @@ plot(aov3_effects)
 ```{r}
 #### Stargazer summary table ----
 # export as a text; copy and paste
-stargazer::stargazer(lm1, lm2, lm3, type = 'text', out = 'output/tables/lm_summaries.text')
+stargazer::stargazer(aov, aov2, aov3, type = 'text', out = 'output/tables/lm_summaries.text')
 ```
