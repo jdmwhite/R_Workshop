@@ -476,11 +476,26 @@ href="https://raw.githubusercontent.com/jdmwhite/R_Workshop/main/scripts/7_Data_
 <div id="data-analysis-using-a-dataframe" class="section level1">
 <h1>Data analysis using a dataframe</h1>
 <p>We will continue to work with the penguins data from the data
-visualisation section. These data have already been cleaned and
-visualised. Therefore, we will only focus on the analysis.</p>
-<p>load the processed data</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins)</span></code></pre></div>
+visualisation section. These data have already been cleaned. load the
+processed data</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Extra packages </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;broom&#39;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;stargazer&#39;</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;effects&#39;</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load libraries</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effects)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load data ----</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> palmerpenguins<span class="sc">::</span>penguins</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(penguins)</span></code></pre></div>
 <pre><code>## tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
 ##  $ species          : Factor w/ 3 levels &quot;Adelie&quot;,&quot;Chinstrap&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ island           : Factor w/ 3 levels &quot;Biscoe&quot;,&quot;Dream&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
@@ -490,19 +505,342 @@ visualised. Therefore, we will only focus on the analysis.</p>
 ##  $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
 ##  $ sex              : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 1 NA 1 2 1 2 NA NA ...
 ##  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(penguins)</span></code></pre></div>
-<div id="linear-models" class="section level2">
-<h2>Linear models</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>oneway <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>oneway</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Selecting and filtering data</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>penguins_bill <span class="ot">&lt;-</span> <span class="fu">select</span> (penguins, species, island, bill_length_mm, bill_depth_mm)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>penguins_flipper <span class="ot">&lt;-</span> <span class="fu">select</span> (penguins, species, island, flipper_length_mm)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>penguins_bodymass <span class="ot">&lt;-</span> <span class="fu">select</span>(penguins, <span class="sc">-</span>flipper_length_mm, <span class="sc">-</span>bill_length_mm, <span class="sc">-</span>bill_depth_mm)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>penguins_09 <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, year <span class="sc">==</span> <span class="dv">2009</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>penguins2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins, year <span class="sc">&lt;</span> <span class="dv">2008</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="do">#### say for instance you want the penguin bill information for 2007 and 2008 only</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="do">##### option 1</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>penguins_bill2 <span class="ot">&lt;-</span> <span class="fu">select</span> (penguins, species, island, bill_length_mm, bill_depth_mm, year)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>penguins_bill2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(penguins_bill2, year <span class="sc">&lt;</span> <span class="dv">2009</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>penguins_bill2</span></code></pre></div>
+<pre><code>## # A tibble: 224 × 5
+##    species island    bill_length_mm bill_depth_mm  year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt; &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7  2007
+##  2 Adelie  Torgersen           39.5          17.4  2007
+##  3 Adelie  Torgersen           40.3          18    2007
+##  4 Adelie  Torgersen           NA            NA    2007
+##  5 Adelie  Torgersen           36.7          19.3  2007
+##  6 Adelie  Torgersen           39.3          20.6  2007
+##  7 Adelie  Torgersen           38.9          17.8  2007
+##  8 Adelie  Torgersen           39.2          19.6  2007
+##  9 Adelie  Torgersen           34.1          18.1  2007
+## 10 Adelie  Torgersen           42            20.2  2007
+## # … with 214 more rows</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>penguins_bill2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins_bill2)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>penguins_bill2</span></code></pre></div>
+<pre><code>## # A tibble: 223 × 5
+##    species island    bill_length_mm bill_depth_mm  year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt; &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7  2007
+##  2 Adelie  Torgersen           39.5          17.4  2007
+##  3 Adelie  Torgersen           40.3          18    2007
+##  4 Adelie  Torgersen           36.7          19.3  2007
+##  5 Adelie  Torgersen           39.3          20.6  2007
+##  6 Adelie  Torgersen           38.9          17.8  2007
+##  7 Adelie  Torgersen           39.2          19.6  2007
+##  8 Adelie  Torgersen           34.1          18.1  2007
+##  9 Adelie  Torgersen           42            20.2  2007
+## 10 Adelie  Torgersen           37.8          17.1  2007
+## # … with 213 more rows</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">##### option 2</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>penguins_bill2_2 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(penguins, year <span class="sc">&lt;</span> <span class="dv">2009</span>), species, island, bill_length_mm, bill_depth_mm, year)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>penguins_bill2_2 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(penguins_bill2_2)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>penguins_bill2_2</span></code></pre></div>
+<pre><code>## # A tibble: 223 × 5
+##    species island    bill_length_mm bill_depth_mm  year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt; &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7  2007
+##  2 Adelie  Torgersen           39.5          17.4  2007
+##  3 Adelie  Torgersen           40.3          18    2007
+##  4 Adelie  Torgersen           36.7          19.3  2007
+##  5 Adelie  Torgersen           39.3          20.6  2007
+##  6 Adelie  Torgersen           38.9          17.8  2007
+##  7 Adelie  Torgersen           39.2          19.6  2007
+##  8 Adelie  Torgersen           34.1          18.1  2007
+##  9 Adelie  Torgersen           42            20.2  2007
+## 10 Adelie  Torgersen           37.8          17.1  2007
+## # … with 213 more rows</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">##### option 3 </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">## you can use the pipe function</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Penguins_bill<span class="ot">&lt;-</span>penguins <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&lt;</span> <span class="dv">2009</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, bill_length_mm, bill_depth_mm, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>Penguins_bill</span></code></pre></div>
+<pre><code>## # A tibble: 223 × 5
+##    species island    bill_length_mm bill_depth_mm  year
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt; &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7  2007
+##  2 Adelie  Torgersen           39.5          17.4  2007
+##  3 Adelie  Torgersen           40.3          18    2007
+##  4 Adelie  Torgersen           36.7          19.3  2007
+##  5 Adelie  Torgersen           39.3          20.6  2007
+##  6 Adelie  Torgersen           38.9          17.8  2007
+##  7 Adelie  Torgersen           39.2          19.6  2007
+##  8 Adelie  Torgersen           34.1          18.1  2007
+##  9 Adelie  Torgersen           42            20.2  2007
+## 10 Adelie  Torgersen           37.8          17.1  2007
+## # … with 213 more rows</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="do">##### mutate</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>Penguins_bill<span class="ot">&lt;-</span>Penguins_bill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">bill_length_m =</span> bill_length_mm<span class="sc">/</span><span class="dv">1000</span>) <span class="co">#added a new column with new units for bill_length</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>Penguins_bill</span></code></pre></div>
+<pre><code>## # A tibble: 223 × 6
+##    species island    bill_length_mm bill_depth_mm  year bill_length_m
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt; &lt;int&gt;         &lt;dbl&gt;
+##  1 Adelie  Torgersen           39.1          18.7  2007        0.0391
+##  2 Adelie  Torgersen           39.5          17.4  2007        0.0395
+##  3 Adelie  Torgersen           40.3          18    2007        0.0403
+##  4 Adelie  Torgersen           36.7          19.3  2007        0.0367
+##  5 Adelie  Torgersen           39.3          20.6  2007        0.0393
+##  6 Adelie  Torgersen           38.9          17.8  2007        0.0389
+##  7 Adelie  Torgersen           39.2          19.6  2007        0.0392
+##  8 Adelie  Torgersen           34.1          18.1  2007        0.0341
+##  9 Adelie  Torgersen           42            20.2  2007        0.042 
+## 10 Adelie  Torgersen           37.8          17.1  2007        0.0378
+## # … with 213 more rows</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>Penguins_bill<span class="ot">&lt;-</span>Penguins_bill <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">bill_depth_m =</span> bill_depth_mm<span class="sc">/</span><span class="dv">1000</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="do">##### group_by</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>Penguins_bill_mean<span class="ot">&lt;-</span>Penguins_bill <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length_mm =</span> <span class="fu">mean</span>(bill_length_mm))</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>Penguins_bill_mean</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   species [3]
+##   species    year mean_bill_length_mm
+##   &lt;fct&gt;     &lt;int&gt;               &lt;dbl&gt;
+## 1 Adelie     2007                38.8
+## 2 Adelie     2008                38.6
+## 3 Chinstrap  2007                48.7
+## 4 Chinstrap  2008                48.7
+## 5 Gentoo     2007                47.0
+## 6 Gentoo     2008                46.9</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Penguins_bill_mean<span class="ot">&lt;-</span>Penguins_bill <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length_mm =</span> <span class="fu">mean</span>(bill_length_mm)) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(year))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>Penguins_bill_mean</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   species [3]
+##   species    year mean_bill_length_mm
+##   &lt;fct&gt;     &lt;int&gt;               &lt;dbl&gt;
+## 1 Adelie     2008                38.6
+## 2 Chinstrap  2008                48.7
+## 3 Gentoo     2008                46.9
+## 4 Adelie     2007                38.8
+## 5 Chinstrap  2007                48.7
+## 6 Gentoo     2007                47.0</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Penguins_bill_mean<span class="ot">&lt;-</span>Penguins_bill <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_bill_length_mm =</span> <span class="fu">mean</span>(bill_length_mm))</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>Penguins_bill_mean</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   species [3]
+##   species    year mean_bill_length_mm
+##   &lt;fct&gt;     &lt;int&gt;               &lt;dbl&gt;
+## 1 Adelie     2007                38.8
+## 2 Adelie     2008                38.6
+## 3 Chinstrap  2007                48.7
+## 4 Chinstrap  2008                48.7
+## 5 Gentoo     2007                47.0
+## 6 Gentoo     2008                46.9</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>alpha<span class="ot">=</span><span class="fl">0.05</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>Penguins_bill_Stats <span class="ot">&lt;-</span> Penguins_bill <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, island, year) <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>( </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n=</span><span class="fu">n</span>(),</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bill_length_mm=</span><span class="fu">mean</span>(<span class="fu">na.omit</span>(bill_length_mm)),</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_length_sd=</span><span class="fu">sd</span>(<span class="fu">na.omit</span>(bill_length_mm)),</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bill_depth_mm=</span><span class="fu">mean</span>(<span class="fu">na.omit</span>(bill_length_mm)),</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_depth_sd=</span><span class="fu">sd</span>(<span class="fu">na.omit</span>(bill_length_mm)))</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>Penguins_bill_Stats</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 8
+## # Groups:   species, island [5]
+##    species   island  year     n mean_bill_lengt… bill_length_sd mean_bill_depth…
+##    &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt; &lt;int&gt;            &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+##  1 Adelie    Biscoe  2007    10             38.3           1.85             38.3
+##  2 Adelie    Biscoe  2008    18             38.7           2.59             38.7
+##  3 Adelie    Dream   2007    20             39.1           2.32             39.1
+##  4 Adelie    Dream   2008    16             38.2           2.79             38.2
+##  5 Adelie    Torge…  2007    19             38.8           2.93             38.8
+##  6 Adelie    Torge…  2008    16             38.8           3.65             38.8
+##  7 Chinstrap Dream   2007    26             48.7           3.47             48.7
+##  8 Chinstrap Dream   2008    18             48.7           3.62             48.7
+##  9 Gentoo    Biscoe  2007    34             47.0           3.27             47.0
+## 10 Gentoo    Biscoe  2008    46             46.9           2.64             46.9
+## # … with 1 more variable: bill_depth_sd &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="do">##### Plot stats </span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Penguins_bill_Stats)</span></code></pre></div>
+<pre><code>## [1] &quot;species&quot;             &quot;island&quot;              &quot;year&quot;               
+## [4] &quot;n&quot;                   &quot;mean_bill_length_mm&quot; &quot;bill_length_sd&quot;     
+## [7] &quot;mean_bill_depth_mm&quot;  &quot;bill_depth_sd&quot;</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>StatsPlot<span class="ot">&lt;-</span><span class="fu">ggplot</span>(Penguins_bill_Stats, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_bill_length_mm))<span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean_bill_length_mm<span class="sc">-</span>bill_length_sd, <span class="at">ymax=</span>mean_bill_length_mm<span class="sc">+</span>bill_length_sd),<span class="at">width=</span>.<span class="dv">5</span>, <span class="at">colour =</span><span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>StatsPlot<span class="ot">&lt;-</span><span class="fu">ggplot</span>(Penguins_bill_Stats, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_bill_length_mm))<span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean_bill_length_mm<span class="sc">-</span>bill_length_sd, <span class="at">ymax=</span>mean_bill_length_mm<span class="sc">+</span>bill_length_sd),<span class="at">width=</span>.<span class="dv">5</span>, <span class="at">colour =</span><span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species_Names&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Bill_length (mm)&quot;</span>)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>StatsPlot<span class="ot">&lt;-</span><span class="fu">ggplot</span>(Penguins_bill_Stats, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_bill_length_mm))<span class="sc">+</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean_bill_length_mm<span class="sc">-</span>bill_length_sd, <span class="at">ymax=</span>mean_bill_length_mm<span class="sc">+</span>bill_length_sd),<span class="at">width=</span>.<span class="dv">5</span>, <span class="at">colour =</span><span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species_Names&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Bill_length (mm)&quot;</span>)<span class="sc">+</span><span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(year))</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>StatsPlot<span class="ot">&lt;-</span><span class="fu">ggplot</span>(Penguins_bill_Stats, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_bill_length_mm))<span class="sc">+</span></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean_bill_length_mm<span class="sc">-</span>bill_length_sd, <span class="at">ymax=</span>mean_bill_length_mm<span class="sc">+</span>bill_length_sd),<span class="at">width=</span>.<span class="dv">1</span>, <span class="at">colour =</span><span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species names&quot;</span>)<span class="sc">+</span></span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>)<span class="sc">+</span><span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(year, island))</span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>StatsPlot</span></code></pre></div>
+<p><img src="Data_analysis_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>StatsPlot2<span class="ot">&lt;-</span><span class="fu">ggplot</span>(Penguins_bill_Stats, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_bill_length_mm, <span class="at">col=</span>island))<span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">8</span>)<span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean_bill_length_mm<span class="sc">-</span>bill_length_sd, <span class="at">ymax=</span>mean_bill_length_mm<span class="sc">+</span>bill_length_sd),<span class="at">width=</span>.<span class="dv">1</span>, <span class="at">colour =</span><span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>)<span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Species names&quot;</span>)<span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Bill length (mm)&quot;</span>)<span class="sc">+</span><span class="fu">facet_grid</span>(<span class="at">rows=</span><span class="fu">vars</span>(year))</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>StatsPlot2</span></code></pre></div>
+<p><img src="Data_analysis_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Categorical linear model ----</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>aov <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = bill_length_mm ~ island, data = penguins)
 ## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -12.0677  -3.8559   0.2958   3.8175  14.3425 
+## 
 ## Coefficients:
-##     (Intercept)      islandDream  islandTorgersen  
-##          45.257           -1.090           -6.307</code></pre>
-</div>
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      45.2575     0.3897 116.127  &lt; 2e-16 ***
+## islandDream      -1.0897     0.5970  -1.825   0.0688 .  
+## islandTorgersen  -6.3065     0.8057  -7.827 6.44e-14 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.036 on 339 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.154,  Adjusted R-squared:  0.149 
+## F-statistic: 30.86 on 2 and 339 DF,  p-value: 4.86e-13</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Continuous linear model ----</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>aov2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> body_mass_g, <span class="at">data =</span> penguins)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = bill_length_mm ~ body_mass_g, data = penguins)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.1251  -3.0434  -0.8089   2.0711  16.1109 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 2.690e+01  1.269e+00   21.19   &lt;2e-16 ***
+## body_mass_g 4.051e-03  2.967e-04   13.65   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.394 on 340 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.3542, Adjusted R-squared:  0.3523 
+## F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Categorical and Continuous model ----</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>aov3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> body_mass_g <span class="sc">+</span> island, <span class="at">data =</span> penguins)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = bill_length_mm ~ body_mass_g + island, data = penguins)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -10.4676  -2.3806   0.0498   2.4179  13.8966 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     21.7428965  1.6468756  13.203  &lt; 2e-16 ***
+## body_mass_g      0.0049861  0.0003431  14.532  &lt; 2e-16 ***
+## islandDream      3.9118982  0.5818015   6.724 7.56e-11 ***
+## islandTorgersen -1.2723006  0.7216507  -1.763   0.0788 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.957 on 338 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.4793, Adjusted R-squared:  0.4747 
+## F-statistic: 103.7 on 3 and 338 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Summarise results ----</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>aov_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(aov)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>aov2_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(aov2)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>aov3_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(aov3)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Plot effects ----</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>aov_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(aov)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>aov2_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(aov2)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>aov3_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(aov3)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(aov_effects)</span></code></pre></div>
+<p><img src="Data_analysis_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(aov2_effects)</span></code></pre></div>
+<p><img src="Data_analysis_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(aov3_effects)</span></code></pre></div>
+<p><img src="Data_analysis_files/figure-html/unnamed-chunk-18-3.png" width="672" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Stargazer summary table ----</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># export as a text; copy and paste</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>stargazer<span class="sc">::</span><span class="fu">stargazer</span>(aov, aov2, aov3, <span class="at">type =</span> <span class="st">&#39;text&#39;</span>)</span></code></pre></div>
+<pre><code>## 
+## =============================================================================================
+##                                                Dependent variable:                           
+##                     -------------------------------------------------------------------------
+##                                                  bill_length_mm                              
+##                               (1)                     (2)                      (3)           
+## ---------------------------------------------------------------------------------------------
+## islandDream                 -1.090*                                          3.912***        
+##                             (0.597)                                          (0.582)         
+##                                                                                              
+## islandTorgersen            -6.307***                                         -1.272*         
+##                             (0.806)                                          (0.722)         
+##                                                                                              
+## body_mass_g                                         0.004***                 0.005***        
+##                                                     (0.0003)                 (0.0003)        
+##                                                                                              
+## Constant                   45.257***               26.899***                21.743***        
+##                             (0.390)                 (1.269)                  (1.647)         
+##                                                                                              
+## ---------------------------------------------------------------------------------------------
+## Observations                  342                     342                      342           
+## R2                           0.154                   0.354                    0.479          
+## Adjusted R2                  0.149                   0.352                    0.475          
+## Residual Std. Error    5.036 (df = 339)         4.394 (df = 340)         3.957 (df = 338)    
+## F Statistic         30.862*** (df = 2; 339) 186.443*** (df = 1; 340) 103.720*** (df = 3; 338)
+## =============================================================================================
+## Note:                                                             *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01</code></pre>
 </div>
 
 

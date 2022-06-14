@@ -191,10 +191,21 @@ StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm)
   geom_point(shape = 19, size = 4, colour = "red")+
   geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.1, colour ="black", linetype = "solid")+
   theme_classic()+
-  xlab("Species_Names")+
-  ylab("Bill_length (mm)")+facet_grid(rows=vars(year, island))
+  xlab("Species names")+
+  ylab("Bill length (mm)")+facet_grid(rows=vars(year, island))
 
 StatsPlot
+
+StatsPlot2<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm, col=island))+
+  geom_line(size = 8)+
+  geom_point(shape = 19, size = 4)+
+  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.1, colour ="black", linetype = "solid")+
+  theme_classic()+
+  xlab("Species names")+
+  ylab("Bill length (mm)")+facet_grid(rows=vars(year))
+
+StatsPlot2
+
 ```
 
 ```{r}
@@ -239,5 +250,5 @@ plot(aov3_effects)
 ```{r}
 #### Stargazer summary table ----
 # export as a text; copy and paste
-stargazer::stargazer(aov, aov2, aov3, type = 'text', out = 'output/tables/lm_summaries.text')
+stargazer::stargazer(aov, aov2, aov3, type = 'text')
 ```

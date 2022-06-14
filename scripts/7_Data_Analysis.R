@@ -171,4 +171,4 @@ plot(aov3_effects)
 
 #### Stargazer summary table ----
 # export as a text; copy and paste
-stargazer::stargazer(lm1, lm2, lm3, type = 'text', out = 'output/tables/lm_summaries.text')
+stargazer::stargazer(aov, aov2, aov3, type = 'text')

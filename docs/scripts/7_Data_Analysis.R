@@ -133,7 +133,7 @@ StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm)
 StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm))+
   geom_line(size = 8, colour = "red")+
   geom_point(shape = 19, size = 4, colour = "red")+
-  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.2, colour ="black", linetype = "solid")+
+  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.1, colour ="black", linetype = "solid")+
   theme_classic()+
   xlab("Species_Names")+
   ylab("Bill_length (mm)")+facet_grid(rows=vars(year, island))
@@ -156,7 +156,6 @@ aov3 <- lm(bill_length_mm ~ body_mass_g + island, data = penguins)
 summary(aov3)
 
 #### Summarise results ----
-# Broom::tidy
 aov_coefficients <- tidy(aov)
 aov2_coefficients <- tidy(aov2)
 aov3_coefficients <- tidy(aov3)
@@ -172,4 +171,4 @@ plot(aov3_effects)
 
 #### Stargazer summary table ----
 # export as a text; copy and paste
-stargazer::stargazer(lm1, lm2, lm3, type = 'text', out = 'output/tables/lm_summaries.text')
+stargazer::stargazer(aov, aov2, aov3, type = 'text')
