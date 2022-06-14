@@ -141,34 +141,40 @@ StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm)
 StatsPlot
 
 #### Categorical linear model ----
-aov <- lm(bill_length_mm ~ island, data = penguins)
+lm <- lm(bill_length_mm ~ island, data = penguins)
+lm
+summary(lm)
 
+#### Analysis of Variance ----
+aov <- aov(bill_length_mm ~ island, data = penguins)
+aov
 summary(aov)
 
 #### Continuous linear model ----
-aov2 <- lm(bill_length_mm ~ body_mass_g, data = penguins)
+lm2 <- lm(bill_length_mm ~ body_mass_g, data = penguins)
 
-summary(aov2)
+summary(lm2)
 
 #### Categorical and Continuous model ----
-aov3 <- lm(bill_length_mm ~ body_mass_g + island, data = penguins)
+lm3 <- lm(bill_length_mm ~ body_mass_g + island, data = penguins)
 
-summary(aov3)
+summary(lm3)
 
 #### Summarise results ----
-aov_coefficients <- tidy(aov)
-aov2_coefficients <- tidy(aov2)
-aov3_coefficients <- tidy(aov3)
+lm_coefficients <- tidy(aov)
+lm
+lm2_coefficients <- tidy(lm2)
+lm3_coefficients <- tidy(lm3)
 
 #### Plot effects ----
-aov_effects <- allEffects(aov)
-aov2_effects <- allEffects(aov2)
-aov3_effects <- allEffects(aov3)
+lm_effects <- allEffects(lm)
+lm2_effects <- allEffects(lm2)
+lm3_effects <- allEffects(lm3)
 
-plot(aov_effects)
-plot(aov2_effects)
-plot(aov3_effects)
+plot(lm_effects)
+plot(lm2_effects)
+plot(lm3_effects)
 
 #### Stargazer summary table ----
 # export as a text; copy and paste
-stargazer::stargazer(aov, aov2, aov3, type = 'text')
+stargazer::stargazer(lm, lm2, lm3, type = 'text', out = 'output/tables/lm_summaries.text')

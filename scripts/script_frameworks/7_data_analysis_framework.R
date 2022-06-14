@@ -173,7 +173,7 @@ summary(lm2)
 #### Categorical and Continuous model ----
 lm3 <- lm(bill_length_mm ~ body_mass_g + island, data = penguins)
 
-summary(aov3)
+summary(lm3)
 
 #### Summarise results ----
 lm_coefficients <- tidy(aov)
