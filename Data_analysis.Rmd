@@ -30,6 +30,8 @@ The most basic computing one can do on R is arithmetic
 1+3
 
 ```
+
+
 ```{r}
 1+(4*2)
 
