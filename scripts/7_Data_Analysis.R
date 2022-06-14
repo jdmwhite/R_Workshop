@@ -156,7 +156,6 @@ aov3 <- lm(bill_length_mm ~ body_mass_g + island, data = penguins)
 summary(aov3)
 
 #### Summarise results ----
-# Broom::tidy
 aov_coefficients <- tidy(aov)
 aov2_coefficients <- tidy(aov2)
 aov3_coefficients <- tidy(aov3)

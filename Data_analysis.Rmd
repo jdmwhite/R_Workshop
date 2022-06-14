@@ -72,8 +72,8 @@ load the processed data
 ```{r}
 #### Extra packages 
 install.packages('broom')
-#install.packages('stargazer')
-#install.packages('effects')
+install.packages('stargazer')
+install.packages('effects')
 
 #### Load libraries
 library(readxl)
@@ -220,7 +220,6 @@ summary(aov3)
 
 ```{r}
 #### Summarise results ----
-broom::tidy
 aov_coefficients <- tidy(aov)
 aov2_coefficients <- tidy(aov2)
 aov3_coefficients <- tidy(aov3)
