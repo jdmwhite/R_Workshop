@@ -133,7 +133,7 @@ StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm)
 StatsPlot<-ggplot(Penguins_bill_Stats, aes(x = species, y = mean_bill_length_mm))+
   geom_line(size = 8, colour = "red")+
   geom_point(shape = 19, size = 4, colour = "red")+
-  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.2, colour ="black", linetype = "solid")+
+  geom_errorbar(aes(ymin=mean_bill_length_mm-bill_length_sd, ymax=mean_bill_length_mm+bill_length_sd),width=.1, colour ="black", linetype = "solid")+
   theme_classic()+
   xlab("Species_Names")+
   ylab("Bill_length (mm)")+facet_grid(rows=vars(year, island))
