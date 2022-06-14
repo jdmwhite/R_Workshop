@@ -164,6 +164,9 @@ summary(lm)
 aov <- aov(bill_length_mm ~ island, data = penguins)
 aov
 summary(aov)
+##### Post-hoc test - if there is a significant difference
+Tukey.aov <- TukeyHSD(aov)
+Tukey.aov
 
 #### Continuous linear model ----
 lm2 <- lm(bill_length_mm ~ body_mass_g, data = penguins)
