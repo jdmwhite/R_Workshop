@@ -725,9 +725,9 @@ processed data</p>
 <span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>StatsPlot2</span></code></pre></div>
 <p><img src="Data_analysis_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Categorical linear model ----</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>aov <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov)</span></code></pre></div>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = bill_length_mm ~ island, data = penguins)
@@ -748,10 +748,44 @@ processed data</p>
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.154,  Adjusted R-squared:  0.149 
 ## F-statistic: 30.86 on 2 and 339 DF,  p-value: 4.86e-13</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Continuous linear model ----</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>aov2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> body_mass_g, <span class="at">data =</span> penguins)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov2)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Analysis of Variance ----</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(bill_length_mm <span class="sc">~</span> island, <span class="at">data =</span> penguins)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>aov</span></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = bill_length_mm ~ island, data = penguins)
+## 
+## Terms:
+##                   island Residuals
+## Sum of Squares  1565.599  8598.607
+## Deg. of Freedom        2       339
+## 
+## Residual standard error: 5.03633
+## Estimated effects may be unbalanced
+## 2 observations deleted due to missingness</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov)</span></code></pre></div>
+<pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## island        2   1566   782.8   30.86 4.86e-13 ***
+## Residuals   339   8599    25.4                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 2 observations deleted due to missingness</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">##### Post-hoc test - if there is a significant difference</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>Tukey.aov <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(aov)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>Tukey.aov</span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = bill_length_mm ~ island, data = penguins)
+## 
+## $island
+##                       diff       lwr        upr     p adj
+## Dream-Biscoe     -1.089743 -2.495170  0.3156833 0.1628734
+## Torgersen-Biscoe -6.306505 -8.203279 -4.4097305 0.0000000
+## Torgersen-Dream  -5.216762 -7.188974 -3.2445487 0.0000000</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Continuous linear model ----</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>lm2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> body_mass_g, <span class="at">data =</span> penguins)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = bill_length_mm ~ body_mass_g, data = penguins)
@@ -771,10 +805,10 @@ processed data</p>
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.3542, Adjusted R-squared:  0.3523 
 ## F-statistic: 186.4 on 1 and 340 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Categorical and Continuous model ----</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>aov3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> body_mass_g <span class="sc">+</span> island, <span class="at">data =</span> penguins)</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(aov3)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Categorical and Continuous model ----</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>lm3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(bill_length_mm <span class="sc">~</span> body_mass_g <span class="sc">+</span> island, <span class="at">data =</span> penguins)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = bill_length_mm ~ body_mass_g + island, data = penguins)
@@ -796,24 +830,27 @@ processed data</p>
 ##   (2 observations deleted due to missingness)
 ## Multiple R-squared:  0.4793, Adjusted R-squared:  0.4747 
 ## F-statistic: 103.7 on 3 and 338 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Summarise results ----</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>aov_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(aov)</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>aov2_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(aov2)</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>aov3_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(aov3)</span></code></pre></div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Plot effects ----</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>aov_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(aov)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>aov2_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(aov2)</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>aov3_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(aov3)</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(aov_effects)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Summarise results ----</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>lm_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(lm)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>lm2_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(lm2)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>lm3_coefficients <span class="ot">&lt;-</span> <span class="fu">tidy</span>(lm3)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Plot effects ----</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>lm_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(lm)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>lm2_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(lm2)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>lm3_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(lm3)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>aov_effects <span class="ot">&lt;-</span> <span class="fu">allEffects</span>(aov)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_effects)</span></code></pre></div>
 <p><img src="Data_analysis_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(aov2_effects)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm2_effects)</span></code></pre></div>
 <p><img src="Data_analysis_files/figure-html/unnamed-chunk-18-2.png" width="672" /></p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(aov3_effects)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm3_effects)</span></code></pre></div>
 <p><img src="Data_analysis_files/figure-html/unnamed-chunk-18-3.png" width="672" /></p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Stargazer summary table ----</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># export as a text; copy and paste</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>stargazer<span class="sc">::</span><span class="fu">stargazer</span>(aov, aov2, aov3, <span class="at">type =</span> <span class="st">&#39;text&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(aov_effects)</span></code></pre></div>
+<p><img src="Data_analysis_files/figure-html/unnamed-chunk-18-4.png" width="672" /></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Stargazer summary table ----</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># export as a text; copy and paste</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>stargazer<span class="sc">::</span><span class="fu">stargazer</span>(lm, lm2, lm3, <span class="at">type =</span> <span class="st">&#39;text&#39;</span>)<span class="do">### you can do this for the aov too</span></span></code></pre></div>
 <pre><code>## 
 ## =============================================================================================
 ##                                                Dependent variable:                           
