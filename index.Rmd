@@ -8,7 +8,9 @@ output:
     theme: paper
 ---
 
-This short workshop for SAEON GSN will introduce you to the basics of R and go over some fundamentals that you may have previously missed. It is aimed at R beginners, though many lessons will likely be useful to those who have been using R for several years with bad ingrained practices. Use this website together with the [slides](), [R scripts]() and [video recordings](). 
+Note: the slides and video recordings will be added to the site once available (21st June 2022, JW)
+
+This short workshop for SAEON GSN will introduce you to the basics of R and go over some fundamentals that you may have previously missed. It is aimed at R beginners, though many lessons will likely be useful to those who have been using R for several years with bad ingrained practices. Use this website together with the [slides]() and [video recordings](). 
 
 #### We will cover four topics:
 
