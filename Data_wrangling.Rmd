@@ -27,62 +27,61 @@ Data wrangling involves cleaning, (re)structuring and transforming the data. Thi
 
 # Part 1: Data cleaning
 
-In this section we will look at turning messy data into data that we can understand. We need the data cleaned before we can structure it so that we do not have to add and remove spaces, periods and duplicates when we are structuring the data.
+In this section we will look at turning messy data into tidy data. Tidy data allows us easily (re)structure it, should we need to. Cleaning data involves removing unnecessary spaces, periods and duplicate observations in the data. Clean data make it easy for us to select columns and rows in our data set.
 
-We will start by installing packages. You might already have these packages. If you already have these packages, skip this step.
+## Install packages and load libraries
+
+We will start by installing and loading the packages that we will need to clean our data and for the rest of the data wrangling session. *You might already have these packages. If you do, you can skip this step. We will be using the janitor package as well as the dplyr, tidyr and readxl packages from the tidyverse collection of packages. 
 
 ```{r eval=FALSE}
 #### Install packages ----
-install.packages('tidyverse') # dplyr, tidyr and readxl 
+install.packages('tidyverse') # dplyr, tidyr, readxl  
 install.packages('janitor') # cleaning names
 ```
 
-Load your libraries:
+Next we need to load our packages (libraries) onto our work spaces. Note that we have to load 'readxl' separately because it is not a core tidyverse package like dplyr and tidyr. 
 
 ```{r, message = FALSE, warning=FALSE}
 #### Load libraries ----
 library(readxl)
 library(tidyverse)
 library(janitor)
-library(dplyr)
 ```
 
 ## Import data
 
-Data can be imported from .txt, .csv or Excel (to name a few common file types) into R. For this workshop we will be importing from .xlsx (Excel file).
+Our data that need cleaning will be loaded next. Data can be imported from .txt, .csv or Excel (to name a few common file types) into R. For this workshop we will be importing an excel file. I added another line to show one can import a .csv file too.
 
 ```{r, message = FALSE, warning=FALSE}
 #### Loading the data ----
 photographer_names <- read_excel("data/raw/photographer_names.xlsx")
 #photographer_names <- read.csv("path/filename.csv)
-
 ```
-
-We can see above, the structure of the data that we have loaded. Now we can start cleaning the data
-
 ## Inspect data
 
-Before we decide how to clean the data, we need to know how they are structured. We want to find out information about the rows(observations) and columns(variables). This will give us an idea of how we can clean. manipulate and structure the data before visualisation and analysis.
+Before we decide how to clean the data, we need to have a clear view of the data and know how they are structured. We want to find out information about the rows(observations) and columns(variables). This will give us an idea of how we can clean, manipulate/transform and (re)structure the data before visualisation and analysis. 
 
 ```{r, message = FALSE, warning=FALSE}
 #### Inspecting the data
 View(photographer_names)
-names(photographer_names)
-str(photographer_names)
-head(photographer_names)
-tail(photographer_names)
+names(photographer_names) # gives you the names of the columns 
+str(photographer_names) # gives you the structure of the data
+head(photographer_names) # gives you the first 6 rows of the data
+tail(photographer_names) # gives you the last 6 rows of the data
 ```
 
 ## Prepare data
 
-Preparing the data allows you to see duplicates, extra letters, symbols and other attributes in data sets (dataframes) that may make it hard to combine, read, or understand data.
+Data preparation is a step that you might not always need if your data have no gaps, extra letter, symbols or other attibutes you might not need. It also allows you to see duplicate information. Preparing the data allows you to clean up the messy parts of your data that may make it hard for you to transform your data.We will start by cleaning the names of the columns, renaming columns that have ambiguous names. Then we will move to changing the column class. Data can be in different classes/formats such as numeric, character or date format.   
 
 ```{r, message = FALSE, warning=FALSE}
-#### Clean and structure data
-photographers <- clean_names(photographer_names) #The new names are unique
+#### Clean and rename data (columns)
+photographers <- clean_names(photographer_names) # the new names are unique
 photographers <- rename(photographers, initial_date = date_4)
 photographers <- rename(photographers, repeat_date = date_6)
-names(photographers)
+names(photographers) # view the new names of the columns
+
+
 #### remove or add rows
 rows_delete (photographers, tibble(site_number = 1100)) #you can match the delete function to any specific row
 rows_insert (photographers, tibble (site_number = 9)) #The new row is added.
