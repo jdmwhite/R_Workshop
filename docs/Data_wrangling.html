@@ -569,7 +569,7 @@ classes/formats such as numeric, character or date format.</p>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(photographers)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add rows</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_delete</span> (photographers, <span class="fu">tibble</span>(<span class="at">site_number =</span> <span class="dv">1100</span>)) <span class="co">#you can match the delete function to any specific row</span></span></code></pre></div>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_delete</span> (photographers, <span class="fu">tibble</span>(<span class="at">site_number =</span> <span class="dv">1100</span>)) <span class="co"># you can match the delete function to any specific row</span></span></code></pre></div>
 <pre><code>## # A tibble: 86 × 9
 ##    site_number site_location original_photographer initial_date repeat_photogra…
 ##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;        &lt;chr&gt;           
@@ -585,7 +585,7 @@ classes/formats such as numeric, character or date format.</p>
 ## 10        1115 Welbedacht    Howes-Howell          1944-10-01   Jack            
 ## # … with 76 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
 ## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_insert</span> (photographers, <span class="fu">tibble</span> (<span class="at">site_number =</span> <span class="dv">9</span>)) <span class="co">#The new row is added.</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_insert</span> (photographers, <span class="fu">tibble</span> (<span class="at">site_number =</span> <span class="dv">9</span>)) <span class="co"># new row is added.</span></span></code></pre></div>
 <pre><code>## # A tibble: 88 × 9
 ##    site_number site_location original_photographer initial_date repeat_photogra…
 ##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;        &lt;chr&gt;           
@@ -602,7 +602,7 @@ classes/formats such as numeric, character or date format.</p>
 ## # … with 78 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
 ## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add columns</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers,<span class="sc">-</span>initial_date) <span class="co">#removes column</span></span></code></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers,<span class="sc">-</span>initial_date) <span class="co"># removes column</span></span></code></pre></div>
 <pre><code>## # A tibble: 87 × 8
 ##    site_number site_location original_photographer repeat_photographer
 ##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;              
@@ -618,17 +618,17 @@ classes/formats such as numeric, character or date format.</p>
 ## 10        1114 Welbedacht    Howes-Howell          Jack               
 ## # … with 77 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
 ## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">mutate</span> (photographers, <span class="at">location =</span> <span class="st">&quot; &quot;</span>) <span class="co">#adds a new column</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">mutate</span> (photographers, <span class="at">location =</span> <span class="st">&quot; &quot;</span>) <span class="co">#adds a new column</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(photographers)</span></code></pre></div>
 </div>
 </div>
 <div id="part-2-data-transformation" class="section level1">
 <h1>Part 2: Data transformation</h1>
-<p>Data transformation involves changing the structure of data.This
-involves adding new columns with computed data or joining a new
-column/row to the dataframe. We did some transformations above. Here are
-a few more.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean and structure data</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(photographers, latitude)</span></code></pre></div>
+<p>Data transformation involves changing the structure of data, adding
+new columns, making new data frames from the existing data or pulling a
+column from the existing data frame. We performed a few data
+transformations above and here are a few more.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(photographers, latitude) <span class="co"># we pulled the latitude column from the dataframe</span></span></code></pre></div>
 <pre><code>##  [1] -32.40899 -32.40719 -32.43596 -32.43659 -32.43647 -32.40108 -32.40224
 ##  [8] -32.40020 -32.40693 -32.40862 -32.40862 -32.41253 -32.41253 -32.21079
 ## [15] -32.22125 -32.22133 -32.22163 -32.21944 -32.22029 -32.31575 -32.32013
@@ -642,7 +642,7 @@ a few more.</p>
 ## [71] -32.37318 -32.37313 -32.37331 -32.37402 -32.37518 -32.37396 -32.37388
 ## [78] -32.37385 -32.37342 -32.36967 -32.38276 -32.38267 -32.38255 -32.38125
 ## [85] -32.38279 -32.35810 -32.35474</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers, site_location, altitude_m)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers, site_location, altitude_m) <span class="co"># we selected the site_location and altitude_m columns from the dataframe</span></span></code></pre></div>
 <pre><code>## # A tibble: 87 × 2
 ##    site_location altitude_m
 ##    &lt;chr&gt;              &lt;dbl&gt;
@@ -657,6 +657,8 @@ a few more.</p>
 ##  9 Welbedacht          1378
 ## 10 Welbedacht          1386
 ## # … with 77 more rows</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>New_Data <span class="ot">&lt;-</span><span class="fu">select</span>(photographers, site_location, altitude_m) <span class="co"># we selected the site_location and altitude_m columns from the photographers data frame and made a new data frame called New_Data</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(New_Data)</span></code></pre></div>
 </div>
 
 

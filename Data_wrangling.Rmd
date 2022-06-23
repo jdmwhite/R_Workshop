@@ -96,23 +96,25 @@ photographers %>% mutate(initial_date = case_when(
 View(photographers)
 
 #### remove or add rows
-rows_delete (photographers, tibble(site_number = 1100)) #you can match the delete function to any specific row
-rows_insert (photographers, tibble (site_number = 9)) #The new row is added.
-#### remove or add columns
-select(photographers,-initial_date) #removes column
-photographers <- mutate (photographers, location = " ") #adds a new column
+rows_delete (photographers, tibble(site_number = 1100)) # you can match the delete function to any specific row
+rows_insert (photographers, tibble (site_number = 9)) # new row is added.
 
+#### remove or add columns
+select(photographers,-initial_date) # removes column
+photographers <- mutate (photographers, location = " ") #adds a new column
+View(photographers)
 ```
 
 # Part 2: Data transformation
 
-Data transformation involves changing the structure of data.This involves adding new columns with computed data or joining a new column/row to the dataframe. We did some transformations above. Here are a few more.
+Data transformation involves changing the structure of data, adding new columns, making new data frames from the existing data or pulling a column from the existing data frame. We performed a few data transformations above and here are a few more.
 
 ```{r, message = FALSE, warning=FALSE}
-#### Clean and structure data
-pull(photographers, latitude)
-select(photographers, site_location, altitude_m)
 
+pull(photographers, latitude) # we pulled the latitude column from the dataframe
+select(photographers, site_location, altitude_m) # we selected the site_location and altitude_m columns from the dataframe
+New_Data <-select(photographers, site_location, altitude_m) # we selected the site_location and altitude_m columns from the photographers data frame and made a new data frame called New_Data
+View(New_Data)
 ```
 
 
