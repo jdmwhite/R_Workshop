@@ -474,7 +474,8 @@ tidyverse package like dplyr and tidyr.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load libraries ----</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 </div>
 <div id="import-data" class="section level2">
 <h2>Import data</h2>
@@ -553,41 +554,55 @@ classes/formats such as numeric, character or date format.</p>
 <pre><code>## [1] &quot;site_number&quot;           &quot;site_location&quot;         &quot;original_photographer&quot;
 ## [4] &quot;initial_date&quot;          &quot;repeat_photographer&quot;   &quot;repeat_date&quot;          
 ## [7] &quot;latitude&quot;              &quot;longitude&quot;             &quot;altitude_m&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add rows</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_delete</span> (photographers, <span class="fu">tibble</span>(<span class="at">site_number =</span> <span class="dv">1100</span>)) <span class="co">#you can match the delete function to any specific row</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### changing column format/class</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(photographers<span class="sc">$</span>initial_date) <span class="co"># view the class of the column</span></span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(photographers<span class="sc">$</span>repeat_date)</span></code></pre></div>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>photographers <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">initial_date =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  initial_date <span class="sc">==</span> <span class="st">&quot;1986/7&quot;</span> <span class="sc">~</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.character</span>(<span class="fu">as.Date</span>(<span class="st">&#39;86/01/01&#39;</span>, <span class="at">format =</span> <span class="st">&quot;%y/%m/%d&quot;</span>)),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  initial_date <span class="sc">!=</span> <span class="st">&quot;1986/7&quot;</span> <span class="sc">~</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.character</span>(<span class="fu">as.Date</span>(<span class="fu">as.numeric</span>(initial_date), <span class="at">origin=</span><span class="st">&quot;1899-12-30&quot;</span>))</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)) <span class="ot">-&gt;</span> photographers</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(photographers)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add rows</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_delete</span> (photographers, <span class="fu">tibble</span>(<span class="at">site_number =</span> <span class="dv">1100</span>)) <span class="co">#you can match the delete function to any specific row</span></span></code></pre></div>
 <pre><code>## # A tibble: 86 × 9
 ##    site_number site_location original_photographer initial_date repeat_photogra…
 ##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;        &lt;chr&gt;           
-##  1        1101 Welbedacht    Howes-Howell          11324        Jack            
-##  2        1103 Welbedacht    Taylor                1986/7       Jack            
-##  3        1104 Welbedacht    Taylor                1986/7       Jack            
-##  4        1105 Welbedacht    Taylor                1986/7       Jack            
-##  5        1107 Welbedacht    Taylor                1986/7       Jack            
-##  6        1108 Welbedacht    Taylor                1986/7       Jack            
-##  7        1111 Welbedacht    Howes-Howell          12724        Jack            
-##  8        1113 Welbedacht    Manders               30195        Jack            
-##  9        1114 Welbedacht    Howes-Howell          Unknown      Jack            
-## 10        1115 Welbedacht    Howes-Howell          16346        Jack            
+##  1        1101 Welbedacht    Howes-Howell          1931-01-01   Jack            
+##  2        1103 Welbedacht    Taylor                1986-01-01   Jack            
+##  3        1104 Welbedacht    Taylor                1986-01-01   Jack            
+##  4        1105 Welbedacht    Taylor                1986-01-01   Jack            
+##  5        1107 Welbedacht    Taylor                1986-01-01   Jack            
+##  6        1108 Welbedacht    Taylor                1986-01-01   Jack            
+##  7        1111 Welbedacht    Howes-Howell          1934-11-01   Jack            
+##  8        1113 Welbedacht    Manders               1982-09-01   Jack            
+##  9        1114 Welbedacht    Howes-Howell          &lt;NA&gt;         Jack            
+## 10        1115 Welbedacht    Howes-Howell          1944-10-01   Jack            
 ## # … with 76 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
 ## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_insert</span> (photographers, <span class="fu">tibble</span> (<span class="at">site_number =</span> <span class="dv">9</span>)) <span class="co">#The new row is added.</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rows_insert</span> (photographers, <span class="fu">tibble</span> (<span class="at">site_number =</span> <span class="dv">9</span>)) <span class="co">#The new row is added.</span></span></code></pre></div>
 <pre><code>## # A tibble: 88 × 9
 ##    site_number site_location original_photographer initial_date repeat_photogra…
 ##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;        &lt;chr&gt;           
-##  1        1100 Welbedacht    Lambert               Unknown      Jack            
-##  2        1101 Welbedacht    Howes-Howell          11324        Jack            
-##  3        1103 Welbedacht    Taylor                1986/7       Jack            
-##  4        1104 Welbedacht    Taylor                1986/7       Jack            
-##  5        1105 Welbedacht    Taylor                1986/7       Jack            
-##  6        1107 Welbedacht    Taylor                1986/7       Jack            
-##  7        1108 Welbedacht    Taylor                1986/7       Jack            
-##  8        1111 Welbedacht    Howes-Howell          12724        Jack            
-##  9        1113 Welbedacht    Manders               30195        Jack            
-## 10        1114 Welbedacht    Howes-Howell          Unknown      Jack            
+##  1        1100 Welbedacht    Lambert               &lt;NA&gt;         Jack            
+##  2        1101 Welbedacht    Howes-Howell          1931-01-01   Jack            
+##  3        1103 Welbedacht    Taylor                1986-01-01   Jack            
+##  4        1104 Welbedacht    Taylor                1986-01-01   Jack            
+##  5        1105 Welbedacht    Taylor                1986-01-01   Jack            
+##  6        1107 Welbedacht    Taylor                1986-01-01   Jack            
+##  7        1108 Welbedacht    Taylor                1986-01-01   Jack            
+##  8        1111 Welbedacht    Howes-Howell          1934-11-01   Jack            
+##  9        1113 Welbedacht    Manders               1982-09-01   Jack            
+## 10        1114 Welbedacht    Howes-Howell          &lt;NA&gt;         Jack            
 ## # … with 78 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
 ## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add columns</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers,<span class="sc">-</span>initial_date) <span class="co">#removes column</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### remove or add columns</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers,<span class="sc">-</span>initial_date) <span class="co">#removes column</span></span></code></pre></div>
 <pre><code>## # A tibble: 87 × 8
 ##    site_number site_location original_photographer repeat_photographer
 ##          &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;              
@@ -603,7 +618,7 @@ classes/formats such as numeric, character or date format.</p>
 ## 10        1114 Welbedacht    Howes-Howell          Jack               
 ## # … with 77 more rows, and 4 more variables: repeat_date &lt;dttm&gt;,
 ## #   latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, altitude_m &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">mutate</span> (photographers, <span class="at">location =</span> <span class="st">&quot; &quot;</span>) <span class="co">#adds a new column</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>photographers <span class="ot">&lt;-</span> <span class="fu">mutate</span> (photographers, <span class="at">location =</span> <span class="st">&quot; &quot;</span>) <span class="co">#adds a new column</span></span></code></pre></div>
 </div>
 </div>
 <div id="part-2-data-transformation" class="section level1">
@@ -612,8 +627,8 @@ classes/formats such as numeric, character or date format.</p>
 involves adding new columns with computed data or joining a new
 column/row to the dataframe. We did some transformations above. Here are
 a few more.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean and structure data</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(photographers, latitude)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Clean and structure data</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(photographers, latitude)</span></code></pre></div>
 <pre><code>##  [1] -32.40899 -32.40719 -32.43596 -32.43659 -32.43647 -32.40108 -32.40224
 ##  [8] -32.40020 -32.40693 -32.40862 -32.40862 -32.41253 -32.41253 -32.21079
 ## [15] -32.22125 -32.22133 -32.22163 -32.21944 -32.22029 -32.31575 -32.32013
@@ -627,7 +642,7 @@ a few more.</p>
 ## [71] -32.37318 -32.37313 -32.37331 -32.37402 -32.37518 -32.37396 -32.37388
 ## [78] -32.37385 -32.37342 -32.36967 -32.38276 -32.38267 -32.38255 -32.38125
 ## [85] -32.38279 -32.35810 -32.35474</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers, site_location, altitude_m)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(photographers, site_location, altitude_m)</span></code></pre></div>
 <pre><code>## # A tibble: 87 × 2
 ##    site_location altitude_m
 ##    &lt;chr&gt;              &lt;dbl&gt;

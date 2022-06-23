@@ -46,6 +46,7 @@ Next we need to load our packages (libraries) onto our work spaces. Note that we
 library(readxl)
 library(tidyverse)
 library(janitor)
+library(dplyr)
 ```
 
 ## Import data
@@ -81,6 +82,18 @@ photographers <- rename(photographers, initial_date = date_4)
 photographers <- rename(photographers, repeat_date = date_6)
 names(photographers) # view the new names of the columns
 
+#### changing column format/class
+class(photographers$initial_date) # view the class of the column
+class(photographers$repeat_date)
+
+photographers %>% mutate(initial_date = case_when(
+  initial_date == "1986/7" ~ 
+    as.character(as.Date('86/01/01', format = "%y/%m/%d")),
+  initial_date != "1986/7" ~ 
+    as.character(as.Date(as.numeric(initial_date), origin="1899-12-30"))
+)) -> photographers
+
+View(photographers)
 
 #### remove or add rows
 rows_delete (photographers, tibble(site_number = 1100)) #you can match the delete function to any specific row
